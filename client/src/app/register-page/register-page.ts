@@ -14,10 +14,6 @@ type Gender = 'Male' | 'Female';
 })
 
 export class RegisterPage {
-    genders: Gender[] = [
-        'Male',
-        'Female'
-    ]
 
     async onRegister(e: Event) {
         e.preventDefault();
