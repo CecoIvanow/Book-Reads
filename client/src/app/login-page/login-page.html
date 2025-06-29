@@ -1,7 +1,7 @@
 <div class="wrapper">
     <section>
         <h1>Login</h1>
-        <form>
+        <form (submit)="onLogin($event)">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" name="email" placeholder="email@example.com" required>
