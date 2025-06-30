@@ -1,7 +1,7 @@
 <div class="wrapper">
     <section>
         <h1>Register</h1>
-        <form>
+        <form (submit)="onRegister($event)">
             <div class="input-fields">
                 <div class="left-side">
                     <mat-form-field appearance="outline">
@@ -16,7 +16,7 @@
 
                     <mat-form-field appearance="outline">
                         <mat-label>Repeat Password</mat-label>
-                        <input matInput type="password" name="password" required>
+                        <input matInput type="password" name="rePass" required>
                     </mat-form-field>
                 </div>
                 <div class="right-side">
