@@ -1397,7 +1397,8 @@
                 createdOn: "1751236331451",
                 _id: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
                 likes: ["5cd483f5-c3b8-4cf5-92a4-da1139107d4a"],
-                comments: ["d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"]
+                comments: ["d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"],
+                summary: "A young girl in 1930s Alabama watches her lawyer father defend a Black man falsely accused of rape, confronting racial injustice and moral growth."
             },
             "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1407,7 +1408,8 @@
                 createdOn: "1577884800000",
                 _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
                 likes: ["3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"],
-                comments: ["d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"]
+                comments: ["d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"],
+                summary: "In a dystopian future, a low-ranking government worker rebels against the omnipresent surveillance and thought control of a totalitarian regime."
             },
             "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
@@ -1417,7 +1419,8 @@
                 createdOn: "1583020800000",
                 _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
                 likes: ["4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e"],
-                comments: []
+                comments: [],
+                summary: "A mysterious millionaire's obsessive pursuit of his lost love exposes the hollow excess and moral decay of the Jazz Age elite."
             },
             "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
                 _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
@@ -1427,7 +1430,8 @@
                 createdOn: "1585699200000",
                 _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
                 likes: ["5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f"],
-                comments: ["e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"]
+                comments: ["e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"],
+                summary: "Sparks fly when the spirited Elizabeth Bennet clashes with the proud Mr. Darcy in this witty exploration of love and social status."
             },
             "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
                 _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -1437,7 +1441,8 @@
                 createdOn: "1590969600000",
                 _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
                 likes: ["6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a"],
-                comments: ["f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"]
+                comments: ["f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"],
+                summary: "A reluctant hobbit embarks on an epic quest with a wizard and dwarves to reclaim treasure from a dragon, discovering unexpected courage."
             },
             "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
                 _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
@@ -1447,7 +1452,8 @@
                 createdOn: "1596240000000",
                 _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
                 likes: ["7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b"],
-                comments: ["a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"]
+                comments: ["a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"],
+                summary: "An orphaned boy discovers he's a wizard and begins his education at Hogwarts School, uncovering secrets about his past and a magical artifact."
             },
             "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
@@ -1457,7 +1463,8 @@
                 createdOn: "1601510400000",
                 _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
                 likes: ["8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c"],
-                comments: ["b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"]
+                comments: ["b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"],
+                summary: "Farm animals overthrow their human owner only to see their revolution corrupted by power-hungry pigs in this political allegory."
             },
             "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
                 _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -1467,7 +1474,8 @@
                 createdOn: "1606780800000",
                 _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
                 likes: ["9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d"],
-                comments: []
+                comments: [],
+                summary: "A Jewish teenager documents her family's hidden life in Nazi-occupied Amsterdam during WWII, revealing resilience in the face of horror."
             },
             "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1477,7 +1485,8 @@
                 createdOn: "1612051200000",
                 _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
                 likes: ["0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e"],
-                comments: ["c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"]
+                comments: ["c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"],
+                summary: "An Andalusian shepherd boy journeys to Egypt in search of treasure but discovers life's true riches through spiritual enlightenment."
             },
             "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
@@ -1487,7 +1496,8 @@
                 createdOn: "1617321600000",
                 _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
                 likes: ["1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f"],
-                comments: ["d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"]
+                comments: ["d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"],
+                summary: "A stranded pilot meets a mysterious prince from another planet who teaches profound truths about love and human nature."
             },
             "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
                 _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
@@ -1497,7 +1507,8 @@
                 createdOn: "1622592000000",
                 _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
                 likes: ["2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a"],
-                comments: ["e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"]
+                comments: ["e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"],
+                summary: "Narrated by Death, this WWII story follows a German girl who finds solace in stolen books while hiding a Jewish man in her basement."
             },
             "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
                 _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -1507,7 +1518,8 @@
                 createdOn: "1627862400000",
                 _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
                 likes: ["3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b"],
-                comments: ["f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"]
+                comments: ["f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"],
+                summary: "A Harvard symbologist races through Europe to solve a murder mystery linked to a centuries-old religious conspiracy and hidden messages in art."
             },
             "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
                 _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
@@ -1517,7 +1529,8 @@
                 createdOn: "1633132800000",
                 _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
                 likes: ["4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c"],
-                comments: []
+                comments: [],
+                summary: "In a dystopian future, a teenager volunteers for deadly televised games to save her sister, sparking rebellion against a tyrannical regime."
             },
             "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
@@ -1527,7 +1540,8 @@
                 createdOn: "1638403200000",
                 _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
                 likes: ["5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d"],
-                comments: ["a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"]
+                comments: ["a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"],
+                summary: "A futuristic society achieves stability through genetic engineering and mind control, until one man questions the cost of manufactured happiness."
             },
             "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
                 _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -1537,7 +1551,8 @@
                 createdOn: "1643673600000",
                 _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
                 likes: ["6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e"],
-                comments: ["b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"]
+                comments: ["b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"],
+                summary: "A disaffected teenager wanders New York City after expulsion from prep school, grappling with identity and society's 'phoniness'."
             },
             "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1547,7 +1562,8 @@
                 createdOn: "1648944000000",
                 _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
                 likes: ["7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f"],
-                comments: ["c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f"]
+                comments: ["c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f"],
+                summary: "A fellowship races to destroy an all-powerful ring before a dark lord uses it to enslave Middle-earth in this epic fantasy adventure."
             }
         },
         comments: {
