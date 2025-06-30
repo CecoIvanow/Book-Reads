@@ -1459,7 +1459,7 @@
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
                 title: "Animal Farm",
                 author: "George Orwell",
-                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1325861570i/7613.jpg",
+                img: "https://images.penguinrandomhouse.com/cover/9780452284241",
                 createdOn: "1601510400000",
                 _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
                 likes: ["8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c"],
