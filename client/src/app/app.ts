@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginPage } from './login-page/login-page.js';
-import { RegisterPage } from './register-page/register-page.js';
-import { NavBar } from './nav-bar/nav-bar.js';
+import { NavBar } from './core/layout/nav-bar/nav-bar.js';
+import { CatalogPage } from './catalog-page/catalog-page.js';
+import { Login } from './core/auth/pages/login/login.js';
+import { Register } from './core/auth/pages/register/register.js';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginPage, RegisterPage, NavBar],
+  imports: [RouterOutlet, Login, Register, NavBar, CatalogPage],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

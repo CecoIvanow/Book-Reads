@@ -1326,28 +1326,64 @@
     var identity = "email";
     var protectedData = {
     	users: {
-    		"35c62d76-8152-4626-8712-eeb96381bea8": {
-    			email: "peter@abv.bg",
-    			username: "Peter",
-    			hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+            "35c62d76-8152-4626-8712-eeb96381bea8": {
+                email: "peter@abv.bg",
+                username: "Peter",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
                 firstName: 'Peter',
                 lastName: 'Ivanov'
-    		},
-    		"847ec027-f659-4086-8032-5173e2f9c93a": {
-    			email: "george@abv.bg",
-    			username: "George",
-    			hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+            },
+            "847ec027-f659-4086-8032-5173e2f9c93a": {
+                email: "george@abv.bg",
+                username: "George",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
                 firstName: 'George',
                 lastName: 'Vladimirov'
-    		},
-    		"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
-    			email: "admin@abv.bg",
-    			username: "Admin",
-    			hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
+            },
+            "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
+                email: "admin@abv.bg",
+                username: "Admin",
+                hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
                 firstName: 'Admin',
                 lastName: 'Admin'
-    		},
-    	},
+            },
+            // New Users (5)
+            "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b": {
+                email: "sophia@abv.bg",
+                username: "Sophia",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Sophia',
+                lastName: 'Petrova'
+            },
+            "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d": {
+                email: "liam@abv.bg",
+                username: "Liam",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Liam',
+                lastName: 'Johnson'
+            },
+            "aa11bb22-cc33-dd44-ee55-ff66aa11bb22": {
+                email: "olivia@abv.bg",
+                username: "Olivia",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Olivia',
+                lastName: 'Williams'
+            },
+            "123e4567-e89b-12d3-a456-426614174000": {
+                email: "noah@abv.bg",
+                username: "Noah",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Noah',
+                lastName: 'Brown'
+            },
+            "f47ac10b-58cc-4372-a567-0e02b2c3d479": {
+                email: "emma@abv.bg",
+                username: "Emma",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Emma',
+                lastName: 'Davis'
+            }
+        },
     	sessions: {
     	}
     };
@@ -1360,12 +1396,174 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg",
                 createdOn: "1751236331451",
                 _id: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
-                likes: [
-                    "5cd483f5-c3b8-4cf5-92a4-da1139107d4a"
-                ],
-                comments: [
-                    "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"
-                ]
+                likes: ["5cd483f5-c3b8-4cf5-92a4-da1139107d4a"],
+                comments: ["d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"],
+                summary: "A young girl in 1930s Alabama watches her lawyer father defend a Black man falsely accused of rape, confronting racial injustice and moral growth."
+            },
+            "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "1984",
+                author: "George Orwell",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg",
+                createdOn: "1577884800000",
+                _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+                likes: ["3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"],
+                comments: ["d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"],
+                summary: "In a dystopian future, a low-ranking government worker rebels against the omnipresent surveillance and thought control of a totalitarian regime."
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1490528560i/4671.jpg",
+                createdOn: "1583020800000",
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                likes: ["4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e"],
+                comments: [],
+                summary: "A mysterious millionaire's obsessive pursuit of his lost love exposes the hollow excess and moral decay of the Jazz Age elite."
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "Pride and Prejudice",
+                author: "Jane Austen",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320399351i/1885.jpg",
+                createdOn: "1585699200000",
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                likes: ["5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f"],
+                comments: ["e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"],
+                summary: "Sparks fly when the spirited Elizabeth Bennet clashes with the proud Mr. Darcy in this witty exploration of love and social status."
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                title: "The Hobbit",
+                author: "J.R.R. Tolkien",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg",
+                createdOn: "1590969600000",
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                likes: ["6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a"],
+                comments: ["f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"],
+                summary: "A reluctant hobbit embarks on an epic quest with a wizard and dwarves to reclaim treasure from a dragon, discovering unexpected courage."
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                title: "Harry Potter and the Sorcerer's Stone",
+                author: "J.K. Rowling",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
+                createdOn: "1596240000000",
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                likes: ["7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b"],
+                comments: ["a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"],
+                summary: "An orphaned boy discovers he's a wizard and begins his education at Hogwarts School, uncovering secrets about his past and a magical artifact."
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                title: "Animal Farm",
+                author: "George Orwell",
+                img: "https://images.penguinrandomhouse.com/cover/9780452284241",
+                createdOn: "1601510400000",
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                likes: ["8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c"],
+                comments: ["b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"],
+                summary: "Farm animals overthrow their human owner only to see their revolution corrupted by power-hungry pigs in this political allegory."
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "The Diary of a Young Girl",
+                author: "Anne Frank",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1560816565i/48855.jpg",
+                createdOn: "1606780800000",
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                likes: ["9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d"],
+                comments: [],
+                summary: "A Jewish teenager documents her family's hidden life in Nazi-occupied Amsterdam during WWII, revealing resilience in the face of horror."
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "The Alchemist",
+                author: "Paulo Coelho",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1466865542i/18144590.jpg",
+                createdOn: "1612051200000",
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                likes: ["0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e"],
+                comments: ["c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"],
+                summary: "An Andalusian shepherd boy journeys to Egypt in search of treasure but discovers life's true riches through spiritual enlightenment."
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "The Little Prince",
+                author: "Antoine de Saint-Exupéry",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg",
+                createdOn: "1617321600000",
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                likes: ["1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f"],
+                comments: ["d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"],
+                summary: "A stranded pilot meets a mysterious prince from another planet who teaches profound truths about love and human nature."
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "The Book Thief",
+                author: "Markus Zusak",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522157426i/19063.jpg",
+                createdOn: "1622592000000",
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                likes: ["2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a"],
+                comments: ["e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"],
+                summary: "Narrated by Death, this WWII story follows a German girl who finds solace in stolen books while hiding a Jewish man in her basement."
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                title: "The Da Vinci Code",
+                author: "Dan Brown",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579621267i/968.jpg",
+                createdOn: "1627862400000",
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                likes: ["3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b"],
+                comments: ["f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"],
+                summary: "A Harvard symbologist races through Europe to solve a murder mystery linked to a centuries-old religious conspiracy and hidden messages in art."
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                title: "The Hunger Games",
+                author: "Suzanne Collins",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
+                createdOn: "1633132800000",
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                likes: ["4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c"],
+                comments: [],
+                summary: "In a dystopian future, a teenager volunteers for deadly televised games to save her sister, sparking rebellion against a tyrannical regime."
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                title: "Brave New World",
+                author: "Aldous Huxley",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1575509280i/5129.jpg",
+                createdOn: "1638403200000",
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                likes: ["5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d"],
+                comments: ["a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"],
+                summary: "A futuristic society achieves stability through genetic engineering and mind control, until one man questions the cost of manufactured happiness."
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "The Catcher in the Rye",
+                author: "J.D. Salinger",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
+                createdOn: "1643673600000",
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                likes: ["6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e"],
+                comments: ["b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"],
+                summary: "A disaffected teenager wanders New York City after expulsion from prep school, grappling with identity and society's 'phoniness'."
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "The Lord of the Rings",
+                author: "J.R.R. Tolkien",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
+                createdOn: "1648944000000",
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                likes: ["7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f"],
+                comments: ["c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f"],
+                summary: "A fellowship races to destroy an all-powerful ring before a dark lord uses it to enslave Middle-earth in this epic fantasy adventure."
             }
         },
         comments: {
@@ -1374,6 +1572,72 @@
                 bookId: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
                 content: "This book really shows the racial discrimination in America during the 30s, I loved the book.",
                 _id: "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"
+            },
+            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+                content: "Chilling depiction of totalitarianism that feels more relevant every year.",
+                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"
+            },
+            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                content: "Elizabeth Bennet remains one of literature's most compelling heroines.",
+                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
+            },
+            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                content: "Bilbo's journey sets the standard for fantasy adventures. Timeless!",
+                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                content: "The start of an incredible journey. Hogwarts feels like home.",
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                content: "A perfect allegory that remains terrifyingly accurate.",
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                content: "Simple yet profound. Changed how I view personal journeys.",
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                content: "Deceptively simple story with deep philosophical insights.",
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                content: "Death as narrator gives this WWII story unforgettable perspective.",
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                content: "The puzzles and historical references make this impossible to put down.",
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                content: "Scary how many predictions came true about society's direction.",
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                content: "Holden's voice still resonates with teenage rebellion decades later.",
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"
             }
         },
         likes: {
@@ -1381,6 +1645,82 @@
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 bookId: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
                 _id: "5cd483f5-c3b8-4cf5-92a4-da1139107d4a"
+            },
+            // New Likes
+            "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+                _id: "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"
+            },
+            "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _id: "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e"
+            },
+            "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _id: "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f"
+            },
+            "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _id: "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a"
+            },
+            "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _id: "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b"
+            },
+            "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _id: "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c"
+            },
+            "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _id: "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d"
+            },
+            "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _id: "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e"
+            },
+            "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _id: "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f"
+            },
+            "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _id: "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a"
+            },
+            "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _id: "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b"
+            },
+            "4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _id: "4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c"
+            },
+            "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _id: "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d"
+            },
+            "6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _id: "6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e"
+            },
+            "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _id: "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f"
             }
         },
     	// recipes: {
