@@ -17,4 +17,8 @@ export class AuthService {
     login(body: LoginCredentials): Observable<AuthResponse> {
         return this.httpClient.post<AuthResponse>(this.apiUrl + '/login', body)
     }
+
+    register(body: RegisterCredentials): Observable<AuthResponse> {
+        return this.httpClient.post<AuthResponse>(this.apiUrl + '/register', body);
+    }
 }

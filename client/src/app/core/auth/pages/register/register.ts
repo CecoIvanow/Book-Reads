@@ -4,6 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { RegisterCredentials } from '../../models/register-credentials.model.js';
+import { AuthService } from '../../auth.service.js';
+import { AuthResponse } from '../../models/auth-response.model.js';
 
 type Gender = 'Male' | 'Female';
 
@@ -15,12 +17,15 @@ type Gender = 'Male' | 'Female';
 })
 
 export class Register {
+    authResponse: AuthResponse | null = null;
+
+    constructor(private authService: AuthService){
+    }
 
     async onRegister(e: Event) {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget as HTMLFormElement);
-        const registerData = Object.fromEntries(formData);
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
         const firstName = formData.get('firstName') as string;
@@ -33,10 +38,6 @@ export class Register {
             lastName
         }
 
-        const resp = await fetch('http://localhost:3030/users/register', {
-            method: 'POST',
-            body: JSON.stringify(credentials)
-        })
-        const data = await resp.json();
+        this.authService.register(credentials).subscribe(data => this.authResponse = data);
     }
 }
