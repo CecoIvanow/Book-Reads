@@ -4,12 +4,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    selector: 'login-page',
+    selector: 'app-login',
     imports: [MatInputModule, MatFormFieldModule, MatButtonModule],
-    templateUrl: './login-page.html',
-    styleUrl: './login-page.scss',
+    templateUrl: './login.html',
+    styleUrl: './login.scss',
 })
-export class LoginPage {
+export class Login {
     async onLogin(e: Event) {
         e.preventDefault();
 
