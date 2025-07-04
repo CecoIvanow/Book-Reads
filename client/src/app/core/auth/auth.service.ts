@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterCredentials } from './models/register-credentials.model.js';
-import { LoginCredentials } from './models/login-credentials.model.js';
-import { AuthResponse } from './models/auth-response.model.js';
+import { LoginCredentials, RegisterCredentials, AuthResponse } from './models/index.js';
 import { Observable } from 'rxjs';
 
 @Injectable({
