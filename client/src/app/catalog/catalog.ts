@@ -15,12 +15,12 @@ type Book = {
 }
 
 @Component({
-    selector: 'catalog-page',
+    selector: 'app-catalog-page',
     imports: [],
-    templateUrl: './catalog-page.html',
-    styleUrl: './catalog-page.scss'
+    templateUrl: './catalog.html',
+    styleUrl: './catalog.scss'
 })
-export class CatalogPage {
+export class Catalog {
     books: Book[] = [];
 
     async ngOnInit() {
