@@ -1,3 +1,5 @@
+import { UUIDv4 } from "../../shared/models/index.js"
+
 export interface Book {
     _ownerId: UUIDv4,
     title: string,
@@ -9,5 +11,3 @@ export interface Book {
     comments: UUIDv4[],
     summary: string
 }
-
-type UUIDv4 = string;
