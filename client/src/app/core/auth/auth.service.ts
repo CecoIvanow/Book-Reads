@@ -2,21 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginCredentials, RegisterCredentials, AuthResponse } from './models/index.js';
 import { Observable } from 'rxjs';
+import { API_PATHS } from '../../shared/constants/index.js';
+import { buildURL } from '../../shared/utils/api-url-builder.js';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:3030/users';
-
     constructor(private httpClient: HttpClient) {
     }
 
     login(body: LoginCredentials): Observable<AuthResponse> {
-        return this.httpClient.post<AuthResponse>(this.apiUrl + '/login', body)
+        const url = buildURL(API_PATHS.USERS.LOGIN);
+
+        return this.httpClient.post<AuthResponse>(url , body)
     }
 
     register(body: RegisterCredentials): Observable<AuthResponse> {
-        return this.httpClient.post<AuthResponse>(this.apiUrl + '/register', body);
+        const url = buildURL(API_PATHS.USERS.REGISTER);
+
+        return this.httpClient.post<AuthResponse>(url, body);
     }
 }
