@@ -1,1 +1,1 @@
-export * from '../constants/api.constants.js'
+export * from './api-constants.js'

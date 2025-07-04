@@ -1,11 +1,13 @@
+import { ApiPaths, ApiRoots } from "./api-constants.model.js";
+
 export const BASE_API_URL = 'http://localhost:3030';
 
-const API_ROOTS = {
+const API_ROOTS: ApiRoots = {
     BOOKS: '/books',
     USERS: '/users'
 }
 
-export const API_PATHS = {
+export const API_PATHS: ApiPaths = {
     BOOKS: {
         ROOT: API_ROOTS.BOOKS,
     },
