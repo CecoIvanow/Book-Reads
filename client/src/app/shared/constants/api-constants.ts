@@ -3,7 +3,7 @@ import { ApiPaths, ApiRoots } from "./api-constants.model.js";
 export const BASE_API_URL = 'http://localhost:3030';
 
 const API_ROOTS: ApiRoots = {
-    BOOKS: '/books',
+    BOOKS: '/data/books',
     USERS: '/users'
 }
 
