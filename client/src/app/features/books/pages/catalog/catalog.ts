@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Book } from '../../book.model.js';
 import { BooksService } from '../../books.service.js';
 import { forkJoin } from 'rxjs';
@@ -12,8 +12,8 @@ import { forkJoin } from 'rxjs';
     imports: [
         MatCardModule,
         MatButtonModule,
-        MatProgressSpinner,
-        MatPaginator
+        MatProgressSpinnerModule,
+        MatPaginatorModule
     ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss'
@@ -22,6 +22,8 @@ export class Catalog implements OnInit {
     protected booksCount: number = 0;
     protected books: Book[] | null = null;
     protected isLoading: boolean = false;
+    protected skipBooks: number = 0;
+    protected pageSize: number = 10;
 
     constructor(private booksService: BooksService) {
     }
@@ -29,8 +31,12 @@ export class Catalog implements OnInit {
     ngOnInit() {
         this.isLoading = true;
 
+        this.fetchBooks();
+    }  
+
+    fetchBooks(){
         const observables$ = forkJoin([
-            this.booksService.getPaginatedBooks(),
+            this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
             this.booksService.getBooksCount(),
         ])
 
@@ -43,6 +49,11 @@ export class Catalog implements OnInit {
                 this.isLoading = false;
             },
         });
-
+    }
+ 
+    onPageChange(e: PageEvent): void {
+        this.pageSize = e.pageSize;
+        this.skipBooks = e.pageIndex * this.pageSize;
+        this.fetchBooks();
     }
 }
