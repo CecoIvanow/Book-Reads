@@ -1,4 +1,5 @@
 import { UUIDv4 } from "../../shared/models/index.js"
+import { Owner } from "./pages/details/owner.model.js"
 
 export interface Book {
     _ownerId: UUIDv4,
@@ -9,5 +10,6 @@ export interface Book {
     _id: UUIDv4,
     likes: UUIDv4[],
     comments: UUIDv4[],
-    summary: string
+    summary: string,
+    owner?: Owner
 }
