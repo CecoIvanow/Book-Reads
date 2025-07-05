@@ -1,41 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatPaginator } from '@angular/material/paginator';
 import { Book } from '../../book.model.js';
 import { BooksService } from '../../books.service.js';
 import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-catalog-page',
-    imports: [MatCardModule, MatButtonModule, MatProgressSpinner],
+    imports: [
+        MatCardModule,
+        MatButtonModule,
+        MatProgressSpinner,
+        MatPaginator
+    ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss'
 })
-export class Catalog {
-    protected booksCount$: number = 0;
-    protected books$: Book[] | null = null;
+export class Catalog implements OnInit {
+    protected booksCount: number = 0;
+    protected books: Book[] | null = null;
     protected isLoading: boolean = false;
 
-    constructor(private booksServices: BooksService) {
+    constructor(private booksService: BooksService) {
     }
 
     ngOnInit() {
         this.isLoading = true;
 
-        const observable = forkJoin([
-            this.booksServices.getPaginatedBooks(),
-            this.booksServices.getBooksCount(),
+        const observables$ = forkJoin([
+            this.booksService.getPaginatedBooks(),
+            this.booksService.getBooksCount(),
         ])
 
-        observable.subscribe({
+        observables$.subscribe({
             next: (data) => {
-                this.books$ = data[0];
-                this.booksCount$ = data[1];
+                this.books = data[0];
+                this.booksCount = data[1];
             },
             complete: () => {
                 this.isLoading = false;
-                console.log(this.booksCount$)
             },
         });
 

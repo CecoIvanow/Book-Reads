@@ -7,7 +7,7 @@
             </div>
         } @else {
             <ul>
-                @for (book of books$; track book._id) {
+                @for (book of books; track book._id) {
                     <li>
                         <mat-card class="book-item">
                             <a [href]="'/books/details/' + book._id">
