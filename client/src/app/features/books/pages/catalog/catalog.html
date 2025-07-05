@@ -1,24 +1,33 @@
 <div class="wrapper">
     <section class="catalog">
-        <ul>
-            @for (book of books$; track book._id) {
-            <li>
-                <mat-card>
-                    <img [src]="book.img">
-                    <mat-card-content>
-                        <mat-card-title>{{book.title}}</mat-card-title>
-                        <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
-                    </mat-card-content>
+        <h1>Catalog</h1>
+        @if (isLoading) {
+            <div class="spinner">
+                <mat-spinner></mat-spinner>
+            </div>
+        } @else {
+            <ul>
+                @for (book of books$; track book._id) {
+                    <li>
+                        <mat-card class="book-item">
+                            <a [href]="'/books/details/' + book._id">
+                                <div class="media">
+                                    <img [src]="book.img">
+                                </div>
+                                <mat-card-title-group>
+                                    <mat-card-title class="book-title">{{book.title}}</mat-card-title>
+                                    <mat-card-subtitle class="book-author">{{book.author}}</mat-card-subtitle>
+                                </mat-card-title-group>
+                            </a>
 
-                    <mat-card-actions>
-                        <button>Like</button>
-                        <button>Comment</button>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </mat-card-actions>
-                </mat-card>
-            </li>
+                            <mat-card-actions>
+                                <a class="edit-button" matButton="text" [href]="'/books/edit/' + book._id">Edit</a>
+                                <button class="delete-button" matButton="filled">Delete</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </li>
+                }
+            </ul>
             }
-        </ul>
     </section>
 </div>
