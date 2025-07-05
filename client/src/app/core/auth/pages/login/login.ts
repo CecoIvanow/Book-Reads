@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginCredentials } from '../../models/login-credentials.model.js';
+import { AuthResponse, LoginCredentials } from '../../models/index.js';
 import { AuthService } from '../../auth.service.js';
-import { AuthResponse } from '../../models/auth-response.model.js';
 
 @Component({
     selector: 'app-login',
