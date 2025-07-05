@@ -35,7 +35,13 @@ export class BooksService {
     }
 
     getBook(id: UUIDv4): Observable<Book> {
-        const url = buildURL(API_PATHS.BOOKS.DETAILS(id));
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
+
+        return this.httpClient.get<Book>(url);
+    }
+
+    getBookWithOwner(id: UUIDv4): Observable<Book> {
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.WITH_OWNER(id));
 
         return this.httpClient.get<Book>(url);
     }
