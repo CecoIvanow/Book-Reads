@@ -5,6 +5,7 @@ import { Book } from './book.model.js';
 import { buildURL } from '../../shared/utils/api-url-builder.js';
 import { API_PATHS } from '../../shared/constants/api-constants.js';
 import { UUIDv4 } from '../../shared/models/index.js';
+import { Comment } from './pages/details/models/index.js';
 
 @Injectable({
     providedIn: 'root'
@@ -44,5 +45,11 @@ export class BooksService {
         const url = buildURL(API_PATHS.BOOKS.DETAILS.WITH_OWNER(id));
 
         return this.httpClient.get<Book>(url);
+    }
+
+    getBookComments(bookId: UUIDv4): Observable<Comment[]> {
+        const url = buildURL(API_PATHS.COMMENTS.OF_BOOK(bookId));
+
+        return this.httpClient.get<Comment[]>(url);
     }
 }
