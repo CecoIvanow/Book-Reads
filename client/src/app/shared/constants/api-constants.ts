@@ -4,8 +4,9 @@ import { ApiPaths, ApiRoots } from "./api-constants.model.js";
 export const BASE_API_URL = 'http://localhost:3030';
 
 const API_ROOTS: ApiRoots = {
+    COMMENTS: `/data/comments`,
     BOOKS: '/data/books',
-    USERS: '/users'
+    USERS: '/users',
 }
 
 export const API_PATHS: ApiPaths = {
@@ -23,4 +24,7 @@ export const API_PATHS: ApiPaths = {
         LOGIN: `${API_ROOTS.USERS}/login`,
         REGISTER: `${API_ROOTS.USERS}/register`,
     },
+    COMMENTS: {
+        OF_BOOK: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=bookId%3D%22${bookId}%22`,
+    }
 }
