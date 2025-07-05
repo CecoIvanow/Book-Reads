@@ -1,1 +1,39 @@
-<p>details works!</p>
+<div class="wrapper">
+    <section class="section">
+        <h1>Book Details</h1>
+
+        <div class="content">
+            <section class="book-cover">
+                <mat-card>
+                    <div class="media">
+                        <img mat-card-image [src]="book?.img">
+                    </div>
+                    <mat-card-actions>
+                        <section class="owner-actions">
+                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
+                            <button class="delete-button" matButton="filled">Delete</button>
+                        </section>
+                        <section class="user-actions">
+                            <p>Likes: {{book?.likes?.length}}</p>
+                            <div class="like-button-div">
+                                <button class="like-button" matButton="filled">Like</button>
+                            </div>
+                        </section>
+                    </mat-card-actions>
+                </mat-card>
+            </section>
+
+            <section class="book-details">
+                <div>
+                    <h2 class="title">{{book?.title}}</h2>
+                    <h3 class="author">by {{book?.author}}</h3>
+                </div>
+                <p class="added-by">Added by: {{book?.owner?.firstName}} {{book?.owner?.lastName}}</p>
+                <section class="book-summary">
+                    <h2>Summary:</h2>
+                    <p>{{book?.summary}}</p>
+                </section>
+            </section>
+        </div>
+    </section>
+</div>
