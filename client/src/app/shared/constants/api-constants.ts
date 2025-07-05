@@ -10,6 +10,8 @@ const API_ROOTS: ApiRoots = {
 export const API_PATHS: ApiPaths = {
     BOOKS: {
         ROOT: API_ROOTS.BOOKS,
+        PAGINATION: (skip: number, size: number) => `${API_ROOTS.BOOKS}?offset=${skip}&pageSize=${size}`,
+        COUNT: `${API_ROOTS.BOOKS}/?count=true`
     },
     USERS: {
         ROOT: API_ROOTS.USERS,
