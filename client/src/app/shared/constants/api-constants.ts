@@ -13,8 +13,10 @@ export const API_PATHS: ApiPaths = {
         ROOT: API_ROOTS.BOOKS,
         COUNT: `${API_ROOTS.BOOKS}/?count=true`,
         PAGINATION: (skip: number, size: number) => `${API_ROOTS.BOOKS}?offset=${skip}&pageSize=${size}`,
-        DETAILS: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}`,
-        'DETAILS-W-OWNER': (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}?load=owner%3D_ownerId%3Ausers`,
+        DETAILS: {
+            ROOT: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}`,
+            WITH_OWNER: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}?load=owner%3D_ownerId%3Ausers`
+        },
     },  
     USERS: {
         ROOT: API_ROOTS.USERS,
