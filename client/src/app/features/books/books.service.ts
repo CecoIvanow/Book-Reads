@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Book } from './book.model.js';
 import { buildURL } from '../../shared/utils/api-url-builder.js';
 import { API_PATHS } from '../../shared/constants/api-constants.js';
+import { UUIDv4 } from '../../shared/models/index.js';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import { API_PATHS } from '../../shared/constants/api-constants.js';
 export class BooksService {
     private defaultSkip: number = 0;
     private defaultSize: number = 10;
-    
+
     constructor(private httpClient: HttpClient) {
     }
 
@@ -31,5 +32,11 @@ export class BooksService {
         const url = buildURL(API_PATHS.BOOKS.COUNT);
 
         return this.httpClient.get<number>(url);
+    }
+
+    getBook(id: UUIDv4): Observable<Book> {
+        const url = buildURL(API_PATHS.BOOKS.DETAILS(id));
+
+        return this.httpClient.get<Book>(url);
     }
 }
