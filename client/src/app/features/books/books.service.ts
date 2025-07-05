@@ -16,7 +16,7 @@ export class BooksService {
     }
 
     getAllBooks(): Observable<Book[]> {
-        const url = buildURL(API_PATHS.BOOKS.ROOT)
+        const url = buildURL(API_PATHS.BOOKS.ROOT);
 
         return this.httpClient.get<Book[]>(url);
     }
@@ -25,5 +25,11 @@ export class BooksService {
         const url = buildURL(API_PATHS.BOOKS.PAGINATION(skip, size));
 
         return this.httpClient.get<Book[]>(url);
+    }
+
+    getBooksCount(): Observable<number> {
+        const url = buildURL(API_PATHS.BOOKS.COUNT);
+
+        return this.httpClient.get<number>(url);
     }
 }

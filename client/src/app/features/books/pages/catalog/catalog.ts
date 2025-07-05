@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { Book } from '../../book.model.js';
 import { BooksService } from '../../books.service.js';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-catalog-page',
@@ -12,6 +13,7 @@ import { BooksService } from '../../books.service.js';
     styleUrl: './catalog.scss'
 })
 export class Catalog {
+    protected booksCount$: number = 0;
     protected books$: Book[] | null = null;
     protected isLoading: boolean = false;
 
@@ -20,13 +22,22 @@ export class Catalog {
 
     ngOnInit() {
         this.isLoading = true;
-        this.booksServices.getPaginatedBooks().subscribe({
+
+        const observable = forkJoin([
+            this.booksServices.getPaginatedBooks(),
+            this.booksServices.getBooksCount(),
+        ])
+
+        observable.subscribe({
             next: (data) => {
-                this.books$ = data;
+                this.books$ = data[0];
+                this.booksCount$ = data[1];
             },
-            complete:() => {
+            complete: () => {
                 this.isLoading = false;
+                console.log(this.booksCount$)
             },
         });
+
     }
 }
