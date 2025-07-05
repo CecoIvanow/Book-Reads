@@ -9,12 +9,20 @@ import { API_PATHS } from '../../shared/constants/api-constants.js';
     providedIn: 'root'
 })
 export class BooksService {
+    private defaultSkip: number = 0;
+    private defaultSize: number = 10;
     
     constructor(private httpClient: HttpClient) {
     }
 
     getAllBooks(): Observable<Book[]> {
         const url = buildURL(API_PATHS.BOOKS.ROOT)
+
+        return this.httpClient.get<Book[]>(url);
+    }
+
+    getPaginatedBooks(skip: number = this.defaultSkip, size: number = this.defaultSize): Observable<Book[]> {
+        const url = buildURL(API_PATHS.BOOKS.PAGINATION(skip, size));
 
         return this.httpClient.get<Book[]>(url);
     }

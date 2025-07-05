@@ -20,7 +20,7 @@ export class Catalog {
 
     ngOnInit() {
         this.isLoading = true;
-        this.booksServices.getAllBooks().subscribe(data => {
+        this.booksServices.getPaginatedBooks().subscribe(data => {
             this.books$ = data
             this.isLoading = false;
         });

@@ -1,5 +1,6 @@
 type BookPaths = {
     ROOT: string,
+    PAGINATION: (skip: number, size: number) => string,
 }
 
 type UserPaths = {
