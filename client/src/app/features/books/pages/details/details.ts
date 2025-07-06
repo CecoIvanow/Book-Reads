@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../../book.model.js';
+import { Book } from '../../models/book.model.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Comment } from './models/index.js';
+import { CommentType } from '../../models/comment.model.js';
 import { BooksService } from '../../books.service.js';
 
 @Component({
@@ -13,7 +13,7 @@ import { BooksService } from '../../books.service.js';
 })
 export class Details implements OnInit {
     protected book: Book | null = null;
-    protected comments: Comment[] = [];
+    protected comments: CommentType[] = [];
 
     constructor(private bookService: BooksService) {
     }

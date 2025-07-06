@@ -1,5 +1,5 @@
-import { UUIDv4 } from "../../shared/models/index.js"
-import { Owner } from "./pages/details/models/index.js"
+import { UUIDv4 } from "../../../shared/models/index.js"
+import { Owner } from "./owner.model.js"
 
 export interface Book {
     _ownerId: UUIDv4,

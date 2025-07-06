@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { API_PATHS } from '../../shared/constants/index.js';
 import { UUIDv4 } from '../../shared/models/index.js';
 import { buildURL } from '../../shared/utils/api-url-builder.js';
-import { Book } from '../books/book.model.js';
-import { Comment } from '../books/pages/details/models/index.js';
+import { Book } from './models/book.model.js';
+import { CommentType } from './models/comment.model.js';
 
 
 @Injectable({
@@ -48,15 +48,15 @@ export class BooksService {
         return this.httpClient.get<Book>(url);
     }
 
-    getBookCommentsId(bookId: UUIDv4): Observable<Comment[]> {
+    getBookCommentsId(bookId: UUIDv4): Observable<CommentType[]> {
         const url = buildURL(API_PATHS.COMMENTS.OF_BOOK.ONLY_ID(bookId));
 
-        return this.httpClient.get<Comment[]>(url);
+        return this.httpClient.get<CommentType[]>(url);
     }
 
-    getCommentWithOwner(commentId: UUIDv4): Observable<Comment>{
+    getCommentWithOwner(commentId: UUIDv4): Observable<CommentType> {
         const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
 
-        return this.httpClient.get<Comment>(url);
+        return this.httpClient.get<CommentType>(url);
     }
 }
