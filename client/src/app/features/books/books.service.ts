@@ -47,9 +47,15 @@ export class BooksService {
         return this.httpClient.get<Book>(url);
     }
 
-    getBookCommentsOwnerId(bookId: UUIDv4): Observable<Comment[]> {
+    getBookCommentsId(bookId: UUIDv4): Observable<Comment[]> {
         const url = buildURL(API_PATHS.COMMENTS.OF_BOOK.ONLY_ID(bookId));
 
         return this.httpClient.get<Comment[]>(url);
+    }
+
+    getCommentWithOwner(commentId: UUIDv4): Observable<Comment>{
+        const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
+
+        return this.httpClient.get<Comment>(url);
     }
 }
