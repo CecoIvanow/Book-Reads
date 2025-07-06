@@ -21,10 +21,9 @@ export class Details implements OnInit {
     ngOnInit(): void {
         this.bookService.getBookWithOwner('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
             this.book = data
-            console.log(this.book);
         });
 
-        this.bookService.getBookComments('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
+        this.bookService.getBookCommentsOwnerId('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
             this.comments = data
             console.log(this.comments);
         });

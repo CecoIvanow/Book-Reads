@@ -26,8 +26,7 @@ export const API_PATHS: ApiPaths = {
     },
     COMMENTS: {
         OF_BOOK: {
-            ONLY_OWNERID: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=bookId%3D%22${bookId}%22&select=_ownerId`
+            ONLY_ID: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=bookId%3D%22${bookId}%22&select=_id`
         },
-        // ROOT: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=bookId%3D%22${bookId}%22`,
     }
 }
