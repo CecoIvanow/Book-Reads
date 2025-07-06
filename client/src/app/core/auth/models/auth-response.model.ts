@@ -1,7 +1,8 @@
 import { UUIDv4 } from "../../../shared/models/index.js";
+import { AccessToken } from "./access-token.model.js";
 
 export type AuthResponse = {
-    accessToken: string,
+    accessToken: AccessToken,
     email: string,
     firstName: string,
     lastName: string,
