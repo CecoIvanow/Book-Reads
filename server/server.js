@@ -1398,7 +1398,7 @@
                 _id: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
                 likes: ["5cd483f5-c3b8-4cf5-92a4-da1139107d4a"],
                 comments: ["d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"],
-                summary: "A young girl in 1930s Alabama watches her lawyer father defend a Black man falsely accused of rape, confronting racial injustice and moral growth."
+                summary: "Set in 1930s Alabama, this Pulitzer Prize-winning novel follows young Scout Finch as her lawyer father Atticus defends Tom Robinson, a Black man falsely accused of raping a white woman. Through Scout's innocent perspective, the story explores themes of racial injustice, moral growth, and the loss of innocence in a deeply segregated society. The children's fascination with their reclusive neighbor Boo Radley provides a parallel narrative about prejudice and human kindness."
             },
             "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1409,7 +1409,7 @@
                 _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
                 likes: ["3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"],
                 comments: ["d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"],
-                summary: "In a dystopian future, a low-ranking government worker rebels against the omnipresent surveillance and thought control of a totalitarian regime."
+                summary: "In a dystopian future London, Winston Smith works for the totalitarian Party that controls every aspect of life through omnipresent surveillance and psychological manipulation. As Winston secretly rebels by keeping a diary and pursuing a forbidden relationship, he discovers the terrifying extent of the Party's power to rewrite history and control thought. The novel's concepts of Newspeak, doublethink, and Big Brother have become fundamental to discussions about government overreach and individual freedom."
             },
             "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
@@ -1420,7 +1420,7 @@
                 _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
                 likes: ["4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e"],
                 comments: [],
-                summary: "A mysterious millionaire's obsessive pursuit of his lost love exposes the hollow excess and moral decay of the Jazz Age elite."
+                summary: "Narrated by Nick Carraway, this Jazz Age classic explores the mysterious millionaire Jay Gatsby and his obsessive pursuit of Daisy Buchanan, his lost love from years past. Through lavish parties at Gatsby's West Egg mansion and tense encounters in New York City, Fitzgerald reveals the hollow excess and moral decay beneath the glittering surface of the Roaring Twenties. The novel's exploration of the American Dream, class barriers, and romantic idealism culminates in a tragic confrontation that exposes the emptiness of wealth without purpose."
             },
             "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
                 _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
@@ -1431,7 +1431,7 @@
                 _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
                 likes: ["5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f"],
                 comments: ["e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"],
-                summary: "Sparks fly when the spirited Elizabeth Bennet clashes with the proud Mr. Darcy in this witty exploration of love and social status."
+                summary: "The spirited Elizabeth Bennet navigates the complexities of social expectations and romantic entanglements in Regency England. Her initial dislike for the proud Mr. Darcy transforms through a series of misunderstandings, family crises, and revelations about true character. Austen's witty social commentary explores themes of marriage, class, reputation, and personal growth as Elizabeth learns to distinguish between superficial charm and genuine virtue."
             },
             "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
                 _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -1442,7 +1442,7 @@
                 _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
                 likes: ["6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a"],
                 comments: ["f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"],
-                summary: "A reluctant hobbit embarks on an epic quest with a wizard and dwarves to reclaim treasure from a dragon, discovering unexpected courage."
+                summary: "The comfortable life of Bilbo Baggins is disrupted when the wizard Gandalf recruits him as a 'burglar' for a quest to reclaim the Lonely Mountain from the dragon Smaug. Accompanied by thirteen dwarves led by Thorin Oakenshield, Bilbo journeys through treacherous lands, encountering trolls, elves, goblins, and the mysterious Gollum. Through these trials, the reluctant hobbit discovers unexpected courage, resourcefulness, and the corrupting power of treasure."
             },
             "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
                 _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
@@ -1453,7 +1453,7 @@
                 _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
                 likes: ["7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b"],
                 comments: ["a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"],
-                summary: "An orphaned boy discovers he's a wizard and begins his education at Hogwarts School, uncovering secrets about his past and a magical artifact."
+                summary: "Harry Potter discovers on his eleventh birthday that he is a famous wizard, rescued from his neglectful Muggle relatives to attend Hogwarts School of Witchcraft and Wizardry. As he befriends Ron Weasley and Hermione Granger, Harry learns about his parents' murder by the dark wizard Voldemort and his own mysterious connection to the evil sorcerer. Their first year culminates in a quest to protect the Sorcerer's Stone from falling into Voldemort's hands, revealing hidden strengths and loyalties."
             },
             "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
@@ -1464,7 +1464,7 @@
                 _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
                 likes: ["8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c"],
                 comments: ["b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"],
-                summary: "Farm animals overthrow their human owner only to see their revolution corrupted by power-hungry pigs in this political allegory."
+                summary: "When the mistreated animals of Manor Farm revolt against their human owner Mr. Jones, they establish an egalitarian society under the principles of Animalism. As the pigs Napoleon and Snowball vie for leadership, the revolution gradually corrupts into a new tyranny more oppressive than the original. Orwell's allegorical novella traces how ideals of equality become twisted through propaganda, rewritten history, and the consolidation of power by a ruling elite."
             },
             "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
                 _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -1475,7 +1475,7 @@
                 _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
                 likes: ["9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d"],
                 comments: [],
-                summary: "A Jewish teenager documents her family's hidden life in Nazi-occupied Amsterdam during WWII, revealing resilience in the face of horror."
+                summary: "Discovered in the attic where she spent the last years of her life, Anne Frank's remarkable diary documents her experiences hiding with her family during the Nazi occupation of the Netherlands. Written between ages 13-15 while confined in the Secret Annex, the diary reveals Anne's thoughts on family dynamics, budding sexuality, human nature, and her aspirations to become a writer. This intimate account personalizes the Holocaust while showcasing the resilience of the human spirit under unimaginable circumstances."
             },
             "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1486,7 +1486,7 @@
                 _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
                 likes: ["0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e"],
                 comments: ["c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"],
-                summary: "An Andalusian shepherd boy journeys to Egypt in search of treasure but discovers life's true riches through spiritual enlightenment."
+                summary: "Santiago, an Andalusian shepherd boy, embarks on a journey to Egypt after a recurring dream about treasure near the Pyramids. Along his odyssey across the Mediterranean and Sahara, he encounters a series of mentors who teach him to listen to his heart, recognize omens, and understand the Soul of the World. This allegorical novel explores themes of destiny, personal legend, and the idea that when you pursue your dreams, the universe conspires to help you achieve them."
             },
             "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
@@ -1497,7 +1497,7 @@
                 _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
                 likes: ["1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f"],
                 comments: ["d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"],
-                summary: "A stranded pilot meets a mysterious prince from another planet who teaches profound truths about love and human nature."
+                summary: "After crash-landing in the Sahara Desert, a stranded pilot meets a curious little prince who has traveled from his tiny asteroid home. Through their conversations, the prince recounts his interstellar journey visiting various planets inhabited by symbolic adult characters representing vanity, greed, and narrow-mindedness. This poetic fable explores profound themes of love, loss, friendship, and the importance of seeing with the heart rather than just the eyes."
             },
             "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
                 _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
@@ -1508,7 +1508,7 @@
                 _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
                 likes: ["2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a"],
                 comments: ["e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"],
-                summary: "Narrated by Death, this WWII story follows a German girl who finds solace in stolen books while hiding a Jewish man in her basement."
+                summary: "Narrated by Death, this WWII novel follows Liesel Meminger, a young girl in Nazi Germany who finds solace by stealing books and sharing them with others. After being sent to live with foster parents in Munich, she forms powerful bonds with her accordion-playing foster father, her neighbor Rudy, and Max, the Jewish refugee hidden in their basement. Through the power of words and storytelling, Liesel preserves her humanity in a time of devastating cruelty and loss."
             },
             "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
                 _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -1519,7 +1519,7 @@
                 _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
                 likes: ["3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b"],
                 comments: ["f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"],
-                summary: "A Harvard symbologist races through Europe to solve a murder mystery linked to a centuries-old religious conspiracy and hidden messages in art."
+                summary: "Harvard symbologist Robert Langdon finds himself embroiled in a murder investigation at the Louvre Museum after the curator is killed with mysterious symbols carved into his body. Teaming up with cryptologist Sophie Neveu, they uncover clues hidden in Da Vinci's paintings that lead to a centuries-old secret society protecting a religious secret that could shatter Christianity's foundations. Their breathless race through Paris and London pits them against a secret Catholic organization determined to silence them at any cost."
             },
             "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
                 _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
@@ -1530,7 +1530,7 @@
                 _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
                 likes: ["4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c"],
                 comments: [],
-                summary: "In a dystopian future, a teenager volunteers for deadly televised games to save her sister, sparking rebellion against a tyrannical regime."
+                summary: "In the dystopian nation of Panem, teenager Katniss Everdeen volunteers for the Hunger Games to save her younger sister from participating in the annual televised death match. Forced into an arena with 23 other tributes, Katniss must use her hunting skills and instincts to survive while navigating complex alliances and the Capitol's manipulative game-making. Her actions spark unexpected political consequences that challenge the Capitol's absolute control over the oppressed districts."
             },
             "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
@@ -1541,7 +1541,7 @@
                 _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
                 likes: ["5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d"],
                 comments: ["a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"],
-                summary: "A futuristic society achieves stability through genetic engineering and mind control, until one man questions the cost of manufactured happiness."
+                summary: "Set in a futuristic World State where humans are genetically engineered and conditioned for predetermined social roles, this dystopian novel explores a society obsessed with stability, pleasure, and consumption. When Bernard Marx brings John the Savage—a man born naturally outside this controlled system—from a reservation into London, his presence exposes the profound costs of this engineered utopia. The ensuing conflict questions the value of truth, art, suffering, and what it means to be truly human."
             },
             "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
                 _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -1552,7 +1552,7 @@
                 _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
                 likes: ["6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e"],
                 comments: ["b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"],
-                summary: "A disaffected teenager wanders New York City after expulsion from prep school, grappling with identity and society's 'phoniness'."
+                summary: "After being expelled from prep school, disillusioned teenager Holden Caulfield spends three days wandering New York City, reflecting on his encounters with teachers, classmates, and strangers. Through his distinctive cynical voice and recurring expressions of disgust for 'phonies,' Holden reveals his deep alienation and struggle with the transition to adulthood. His fantasy of being 'the catcher in the rye'—protecting children from falling off a cliff into adulthood—symbolizes his desire to preserve innocence in a world he finds corrupt and artificial."
             },
             "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1563,7 +1563,7 @@
                 _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
                 likes: ["7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f"],
                 comments: ["c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f"],
-                summary: "A fellowship races to destroy an all-powerful ring before a dark lord uses it to enslave Middle-earth in this epic fantasy adventure."
+                summary: "In this epic fantasy trilogy, a young hobbit named Frodo Baggins inherits the One Ring, a powerful artifact created by the Dark Lord Sauron to dominate Middle-earth. Joined by a diverse fellowship including humans, elves, dwarves, and other hobbits, Frodo embarks on a perilous journey to Mount Doom to destroy the ring. Their quest becomes a sweeping battle between good and evil that explores themes of power, corruption, friendship, and sacrifice across richly imagined kingdoms and cultures."
             }
         },
         comments: {
