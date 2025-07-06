@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { removeSessionToken } from '../../auth/auth-storage.util.js';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NavBar {
 
+    onLogout(){
+        removeSessionToken();
+    }
 }
