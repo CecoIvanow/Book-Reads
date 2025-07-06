@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Book } from '../../book.model.js';
-import { BooksService } from '../../books.service.js';
+import { BooksService } from '../../services/index.js';
 import { forkJoin } from 'rxjs';
 
 @Component({

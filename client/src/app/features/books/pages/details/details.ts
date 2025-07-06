@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../book.model.js';
-import { BooksService } from '../../books.service.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Comment } from './models/index.js';
+import { BooksService } from '../../services/index.js';
 
 @Component({
     selector: 'app-details',
