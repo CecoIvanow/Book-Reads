@@ -24,11 +24,9 @@ export class Details implements OnInit {
         });
 
         this.bookService.getBookCommentsId('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
-            data.forEach((value, index, commentArr) => {
+            data.forEach((value) => {
                 this.bookService.getCommentWithOwner(value._id).subscribe(data => this.comments?.push(data));
             });
-
-            console.log(this.comments)
         });
     }
 }
