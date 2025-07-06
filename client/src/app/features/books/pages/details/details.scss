@@ -1,3 +1,22 @@
+li{
+    list-style: none;
+}
+
+h1 {
+    position: relative;
+    width: fit-content;
+    margin-block-end: 3rem;
+}
+
+h1::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    border-bottom: 3.5px solid #e8e0be;
+    bottom: -6px;
+}
+
 .wrapper {
     min-height: 100vh;
     width: 100%;
@@ -14,21 +33,6 @@
     padding: 2rem;
     border-radius: 25px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.116);
-}
-
-h1 {
-    position: relative;
-    width: fit-content;
-    margin-block-end: 3rem;
-}
-
-h1::before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    width: 100%;
-    border-bottom: 3.5px solid #e8e0be;
-    bottom: -6px;
 }
 
 .section .content {
@@ -142,4 +146,29 @@ mat-card-actions .user-actions {
     line-height: 1.8;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.65);
+}
+
+.book-details .comments {
+    margin-top: 2rem;
+}
+
+.book-details .comments .comment-item mat-card {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.comment-item mat-card mat-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.comment-item mat-card mat-card-header img {
+    margin: 0;
+}
+
+.comment-item mat-card mar-card-content {
+    margin: 0 auto;
 }
