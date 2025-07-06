@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginCredentials, RegisterCredentials, AuthResponse } from './models/index.js';
 import { Observable } from 'rxjs';
 import { API_PATHS } from '../../shared/constants/index.js';
-import { buildURL } from '../../shared/utils/api-url-builder.util.js';
+import { buildURL } from '../../shared/utils/index.js';
 
 @Injectable({
     providedIn: 'root'

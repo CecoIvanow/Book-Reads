@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_PATHS } from '../../shared/constants/index.js';
 import { UUIDv4 } from '../../shared/models/index.js';
-import { buildURL } from '../../shared/utils/api-url-builder.util.js';
+import { buildURL } from '../../shared/utils/index.js';
 import { Book } from './models/book.model.js';
 import { CommentType } from './models/comment.model.js';
 
