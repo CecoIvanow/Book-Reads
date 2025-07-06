@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { buildURL } from '../../../shared/utils/api-url-builder.js';
-import { API_PATHS } from '../../../shared/constants/index.js';
-import { Book } from '../book.model.js';
-import { UUIDv4 } from '../../../shared/models/index.js';
-import { Comment } from '../pages/details/models/index.js';
+import { API_PATHS } from '../../shared/constants/index.js';
+import { UUIDv4 } from '../../shared/models/index.js';
+import { buildURL } from '../../shared/utils/api-url-builder.js';
+import { Book } from '../books/book.model.js';
+import { Comment } from '../books/pages/details/models/index.js';
 
 
 @Injectable({

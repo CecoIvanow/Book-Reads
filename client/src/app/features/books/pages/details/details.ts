@@ -3,7 +3,7 @@ import { Book } from '../../book.model.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Comment } from './models/index.js';
-import { BooksService } from '../../services/index.js';
+import { BooksService } from '../../books.service.js';
 
 @Component({
     selector: 'app-details',
