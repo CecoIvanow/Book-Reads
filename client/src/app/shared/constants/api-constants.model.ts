@@ -12,7 +12,10 @@ type BookDetails = {
 }
 
 type CommentsPath = {
-    OF_BOOK: (bookId: UUIDv4) => string,
+    WITH_OWNER: (commentId: UUIDv4) => string,
+    OF_BOOK: {
+        ONLY_ID: (bookId: UUIDv4) => string,
+    }
 }
 
 type BookPaths = {
