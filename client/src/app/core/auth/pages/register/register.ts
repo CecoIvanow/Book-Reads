@@ -7,8 +7,6 @@ import { RegisterCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
 import { saveSessionToken } from '../../auth-storage.util.js';
 
-type Gender = 'Male' | 'Female';
-
 @Component({
     selector: 'app-register',
     imports: [MatInputModule, MatFormFieldModule, MatRadioModule, MatButtonModule],
