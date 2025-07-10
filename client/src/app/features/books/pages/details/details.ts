@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../../models/book.model.js';
+import { Book } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CommentType } from '../../models/comment.model.js';
+import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
 
 @Component({
