@@ -1,1 +1,1 @@
-export * from './api-paths.js'
+export * from './api-paths.const.js'
