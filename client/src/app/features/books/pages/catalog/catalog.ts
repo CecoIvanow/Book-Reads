@@ -3,9 +3,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { Book } from '../../book.model.js';
-import { BooksService } from '../../books.service.js';
+import { Book } from '../../models/book.model.js';
 import { forkJoin } from 'rxjs';
+import { BooksService } from '../../books.service.js';
 
 @Component({
     selector: 'app-catalog-page',
@@ -32,9 +32,9 @@ export class Catalog implements OnInit {
         this.isLoading = true;
 
         this.fetchBooks();
-    }  
+    }
 
-    fetchBooks(){
+    fetchBooks() {
         const observables$ = forkJoin([
             this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
             this.booksService.getBooksCount(),
@@ -50,7 +50,7 @@ export class Catalog implements OnInit {
             },
         });
     }
- 
+
     onPageChange(e: PageEvent): void {
         this.pageSize = e.pageSize;
         this.skipBooks = e.pageIndex * this.pageSize;

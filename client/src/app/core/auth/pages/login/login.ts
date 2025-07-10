@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthResponse, LoginCredentials } from '../../models/index.js';
-import { AuthService } from '../../auth.service.js';
+import { LoginCredentials } from '../../models/index.js';
+import { AuthService } from '../../services/auth.service.js';
+import { saveSessionToken } from '../../auth-storage.util.js';
 
 @Component({
     selector: 'app-login',
@@ -12,7 +13,6 @@ import { AuthService } from '../../auth.service.js';
     styleUrl: './login.scss',
 })
 export class Login {
-    authResponse: AuthResponse | null = null; 
 
     constructor(private authService: AuthService) {
     }
@@ -29,7 +29,6 @@ export class Login {
             password,
         }
 
-        this.authService.login(credentials).subscribe(data => this.authResponse = data);
-        
+        this.authService.login(credentials).subscribe(data => saveSessionToken(data.accessToken));
     }
 }

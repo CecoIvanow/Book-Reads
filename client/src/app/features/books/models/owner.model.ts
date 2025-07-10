@@ -1,4 +1,4 @@
-import { UUIDv4 } from "../../../../../shared/models/index.js"
+import { UUIDv4 } from "../../../shared/models/index.js"
 
 export type Owner = {
     email: string,
@@ -6,5 +6,5 @@ export type Owner = {
     lastName: string,
     username: string,
     _id: UUIDv4
- 
+
 }

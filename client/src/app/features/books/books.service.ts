@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from './book.model.js';
-import { buildURL } from '../../shared/utils/api-url-builder.js';
-import { API_PATHS } from '../../shared/constants/api-constants.js';
+import { API_PATHS } from '../../shared/constants/index.js';
 import { UUIDv4 } from '../../shared/models/index.js';
-import { Comment } from './pages/details/models/index.js';
+import { buildURL } from '../../shared/utils/index.js';
+import { Book } from './models/book.model.js';
+import { CommentType } from './models/comment.model.js';
+
 
 @Injectable({
     providedIn: 'root'
@@ -47,15 +48,15 @@ export class BooksService {
         return this.httpClient.get<Book>(url);
     }
 
-    getBookCommentsId(bookId: UUIDv4): Observable<Comment[]> {
+    getBookCommentsId(bookId: UUIDv4): Observable<CommentType[]> {
         const url = buildURL(API_PATHS.COMMENTS.OF_BOOK.ONLY_ID(bookId));
 
-        return this.httpClient.get<Comment[]>(url);
+        return this.httpClient.get<CommentType[]>(url);
     }
 
-    getCommentWithOwner(commentId: UUIDv4): Observable<Comment>{
+    getCommentWithOwner(commentId: UUIDv4): Observable<CommentType> {
         const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
 
-        return this.httpClient.get<Comment>(url);
+        return this.httpClient.get<CommentType>(url);
     }
 }
