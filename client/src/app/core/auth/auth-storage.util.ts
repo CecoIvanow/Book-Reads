@@ -1,6 +1,5 @@
+import { TOKEN_KEY } from "./auth.const.js";
 import { AccessToken } from "./models/access-token.model.js";
-
-const TOKEN_KEY = 'accessToken';
 
 export function saveSessionToken(token: AccessToken) {    
     sessionStorage.setItem(TOKEN_KEY, token);
