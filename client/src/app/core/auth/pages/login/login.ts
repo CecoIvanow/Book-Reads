@@ -3,7 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginCredentials } from '../../models/index.js';
-import { AuthService } from '../../auth.service.js';
+import { AuthService } from '../../services/auth.service.js';
 import { saveSessionToken } from '../../auth-storage.util.js';
 
 @Component({

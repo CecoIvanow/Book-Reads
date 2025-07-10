@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { RegisterCredentials } from '../../models/index.js';
-import { AuthService } from '../../auth.service.js';
+import { AuthService } from '../../services/auth.service.js';
 import { saveSessionToken } from '../../auth-storage.util.js';
 
 type Gender = 'Male' | 'Female';
@@ -18,7 +18,7 @@ type Gender = 'Male' | 'Female';
 
 export class Register {
 
-    constructor(private authService: AuthService){
+    constructor(private authService: AuthService) {
     }
 
     async onRegister(e: Event) {
