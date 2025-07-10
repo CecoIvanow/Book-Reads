@@ -1,5 +1,5 @@
 import { UUIDv4 } from "../models/uuid.model.js";
-import { ApiPaths, ApiRoots } from "./api-constants.model.js";
+import { ApiPaths, ApiRoots } from "./api-paths.model.js";
 
 export const BASE_API_URL = 'http://localhost:3030';
 
