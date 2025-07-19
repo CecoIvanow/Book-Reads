@@ -5,10 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
 import { saveSessionToken } from '../../auth-storage.util.js';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-login',
-    imports: [MatInputModule, MatFormFieldModule, MatButtonModule],
+    imports: [MatInputModule, MatFormFieldModule, MatButtonModule, RouterModule],
     templateUrl: './login.html',
     styleUrl: './login.scss',
 })
