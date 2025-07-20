@@ -53,7 +53,6 @@ export class Catalog implements OnInit, OnDestroy {
             next: (data) => {
                 this.books = data[0];
                 this.booksCount = data[1];
-                this.cdr.detectChanges();
             },
             complete: () => {
                 this.isLoading = false;
