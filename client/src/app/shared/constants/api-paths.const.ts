@@ -1,5 +1,5 @@
 import { UUIDv4 } from "../models/uuid.model.js";
-import { ApiPaths, ApiRoots } from "./api-constants.model.js";
+import { ApiPaths, ApiRoots } from "./api-paths.model.js";
 
 export const BASE_API_URL = 'http://localhost:3030';
 
@@ -26,8 +26,5 @@ export const API_PATHS: ApiPaths = {
     },
     COMMENTS: {
         WITH_OWNER: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}?load=${encodeURIComponent('owner=_ownerId:users')}`,
-        OF_BOOK: {
-            ONLY_ID: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=${encodeURIComponent(`bookId="${bookId}"`)}&select=_id`
-        },
     }
 }

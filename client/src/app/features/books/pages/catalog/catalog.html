@@ -1,7 +1,7 @@
 <div class="wrapper">
     <section class="catalog">
         <h1>Catalog</h1>
-        
+
         @if (isLoading) {
         <div class="spinner">
             <mat-spinner></mat-spinner>
@@ -11,7 +11,7 @@
             @for (book of books; track book._id) {
             <li>
                 <mat-card class="book-item">
-                    <a [href]="'/books/details/' + book._id">
+                    <a [routerLink]="[`/books/details/${book._id}`]">
                         <div class="media">
                             <img [src]="book.img">
                         </div>
@@ -31,13 +31,8 @@
         </ul>
         }
 
-        <mat-paginator
-            class="paginator"
-            [length]="booksCount"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            (page)="onPageChange($event)"
-        >
+        <mat-paginator class="paginator" [length]="booksCount" [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
         </mat-paginator>
     </section>
 </div>

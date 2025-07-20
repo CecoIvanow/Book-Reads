@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { Book } from '../../models/book.model.js';
-import { forkJoin } from 'rxjs';
+import { Book } from '../../models/index.js';
+import { forkJoin, Subscription } from 'rxjs';
 import { BooksService } from '../../books.service.js';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-catalog-page',
@@ -13,19 +14,22 @@ import { BooksService } from '../../books.service.js';
         MatCardModule,
         MatButtonModule,
         MatProgressSpinnerModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        RouterModule,
     ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss'
 })
-export class Catalog implements OnInit {
+export class Catalog implements OnInit, OnDestroy {
     protected booksCount: number = 0;
     protected books: Book[] | null = null;
     protected isLoading: boolean = false;
     protected skipBooks: number = 0;
     protected pageSize: number = 10;
 
-    constructor(private booksService: BooksService) {
+    private subscriptions: Subscription | null = null;
+
+    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -34,21 +38,31 @@ export class Catalog implements OnInit {
         this.fetchBooks();
     }
 
+    ngOnDestroy(): void {
+        this.subscriptions?.unsubscribe();
+    }
+    
     fetchBooks() {
+        this.subscriptions?.unsubscribe();
         const observables$ = forkJoin([
             this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
             this.booksService.getBooksCount(),
         ])
 
-        observables$.subscribe({
+        const sub = observables$.subscribe({
             next: (data) => {
                 this.books = data[0];
                 this.booksCount = data[1];
             },
             complete: () => {
                 this.isLoading = false;
+                this.cdr.detectChanges();
             },
-        });
+            
+        }
+    );
+
+        this.subscriptions?.add(sub);
     }
 
     onPageChange(e: PageEvent): void {
