@@ -1347,7 +1347,6 @@
                 firstName: 'Admin',
                 lastName: 'Admin'
             },
-            // New Users (5)
             "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b": {
                 email: "sophia@abv.bg",
                 username: "Sophia",
@@ -1382,6 +1381,118 @@
                 hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
                 firstName: 'Emma',
                 lastName: 'Davis'
+            },
+            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                email: "michael@abv.bg",
+                username: "Michael",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Michael',
+                lastName: 'Wilson'
+            },
+            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                email: "ava@abv.bg",
+                username: "Ava",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Ava',
+                lastName: 'Miller'
+            },
+            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
+                email: "james@abv.bg",
+                username: "James",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'James',
+                lastName: 'Taylor'
+            },
+            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
+                email: "isabella@abv.bg",
+                username: "Isabella",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Isabella',
+                lastName: 'Anderson'
+            },
+            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
+                email: "benjamin@abv.bg",
+                username: "Benjamin",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Benjamin',
+                lastName: 'Thomas'
+            },
+            "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e": {
+                email: "mia@abv.bg",
+                username: "Mia",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Mia',
+                lastName: 'Jackson'
+            },
+            "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f": {
+                email: "william@abv.bg",
+                username: "William",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'William',
+                lastName: 'White'
+            },
+            "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a": {
+                email: "charlotte@abv.bg",
+                username: "Charlotte",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Charlotte',
+                lastName: 'Harris'
+            },
+            "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b": {
+                email: "ethan@abv.bg",
+                username: "Ethan",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Ethan',
+                lastName: 'Martin'
+            },
+            "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c": {
+                email: "amelia@abv.bg",
+                username: "Amelia",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Amelia',
+                lastName: 'Thompson'
+            },
+            "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d": {
+                email: "alexander@abv.bg",
+                username: "Alexander",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Alexander',
+                lastName: 'Garcia'
+            },
+            "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e": {
+                email: "harper@abv.bg",
+                username: "Harper",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Harper',
+                lastName: 'Martinez'
+            },
+            "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f": {
+                email: "daniel@abv.bg",
+                username: "Daniel",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Daniel',
+                lastName: 'Robinson'
+            },
+            "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a": {
+                email: "abigail@abv.bg",
+                username: "Abigail",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Abigail',
+                lastName: 'Clark'
+            },
+            "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b": {
+                email: "matthew@abv.bg",
+                username: "Matthew",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Matthew',
+                lastName: 'Rodriguez'
+            },
+            "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c": {
+                email: "ella@abv.bg",
+                username: "Ella",
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                firstName: 'Ella',
+                lastName: 'Lewis'
             }
         },
     	sessions: {
