@@ -1501,6 +1501,191 @@
     };
     var seedData = {
         books: {
+            "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                title: "The Shining",
+                author: "Stephen King",
+                img: "https://assets.blogs.bsu.edu/wp-content/uploads/sites/25/2020/03/09153737/shining.jpg",
+                createdOn: "1711929600000",
+                _id: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
+                likes: [
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
+                ],
+                comments: [
+                    "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b"
+                ],
+                summary: "Struggling writer Jack Torrance becomes winter caretaker at the isolated Overlook Hotel, bringing his wife and psychic son Danny. As supernatural forces amplify Jack's instability, Danny's 'shining' abilities become their only hope. King's masterpiece explores addiction, family trauma, and haunted places through relentless psychological horror."
+            },
+            "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                title: "Beloved",
+                author: "Toni Morrison",
+                img: "https://m.media-amazon.com/images/I/51Qj9kPD4CL.jpg",
+                createdOn: "1714521600000",
+                _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                likes: [
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "123e4567-e89b-12d3-a456-426614174000"
+                ],
+                comments: [
+                    "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                    "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d"
+                ],
+                summary: "Former slave Sethe is haunted by her decision to kill her baby daughter rather than have her enslaved. When a mysterious young woman named Beloved appears, the family confronts suppressed memories of trauma. Morrison's ghost story explores slavery's psychological aftermath through poetic prose and magical realism."
+            },
+            "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "Dune",
+                author: "Frank Herbert",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
+                createdOn: "1717200000000",
+                _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
+                likes: [
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
+                ],
+                comments: [
+                    "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e"
+                ],
+                summary: "On desert planet Arrakis, young Paul Atreides inherits stewardship of the universe's most valuable substance: spice. Betrayed by political rivals, he leads native Fremen in a revolution that fulfills ancient prophecies. Herbert's ecological epic blends politics, religion, and human evolution in a richly detailed sci-fi universe."
+            },
+            "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "Gone Girl",
+                author: "Gillian Flynn",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554086139i/19288043.jpg",
+                createdOn: "1719792000000",
+                _id: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
+                ],
+                comments: [
+                    "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f"
+                ],
+                summary: "On their fifth anniversary, Nick Dunne reports his wife Amy missing amid growing media frenzy. As police scrutiny intensifies, alternating narratives reveal disturbing truths about their marriage. Flynn's psychological thriller deconstructs modern relationships with razor-sharp twists and unreliable narrators."
+            },
+            "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                title: "The Name of the Wind",
+                author: "Patrick Rothfuss",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1270352123i/186074.jpg",
+                createdOn: "1722470400000",
+                _id: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                likes: [
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b"
+                ],
+                comments: [
+                    "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
+                    "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
+                ],
+                summary: "Chronicler tracks down legendary hero Kvothe to record his true story: from childhood troupe tragedy to University magic student and beyond. Rothfuss reinvents fantasy tropes through lyrical storytelling, music-infused magic, and layered myths. This bildungsroman balances wonder with harsh realities of genius and ambition."
+            },
+            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "The Sun Also Rises",
+                author: "Ernest Hemingway",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692653547i/196840591.jpg",
+                createdOn: "1725148800000",
+                _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                likes: [
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"
+                ],
+                comments: [],
+                summary: "American expatriates in post-WWI Europe drift through Paris cafes and Spanish bullfights, masking spiritual emptiness with alcohol and aimless adventure. Jake Barnes' impotence from war wounds symbolizes the Lost Generation's disillusionment. Hemingway's sparse prose captures existential despair beneath surface bravado."
+            },
+            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "The Brothers Karamazov",
+                author: "Fyodor Dostoevsky",
+                img: "https://images.penguinrandomhouse.com/cover/9780451530608",
+                createdOn: "1727827200000",
+                _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                likes: [
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
+                ],
+                comments: [
+                    "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
+                ],
+                summary: "Dostoevsky's final novel explores patricide through philosophical debates among four brothers: sensual Dmitri, intellectual Ivan, spiritual Alyosha, and cunning Smerdyakov. Their conflicts over faith, ethics, and free will culminate in courtroom drama. This Russian classic probes humanity's capacity for good and evil with psychological depth."
+            },
+            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "The Hitchhiker's Guide to the Galaxy",
+                author: "Douglas Adams",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1559986152i/386162.jpg",
+                createdOn: "1730419200000",
+                _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c"
+                ],
+                comments: [
+                    "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                    "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
+                ],
+                summary: "Seconds before Earth's demolition for interstellar highway, Arthur Dent escapes with alien researcher Ford Prefect. Their cosmic adventures introduce depressed robot Marvin, two-headed president Zaphod Beeblebrox, and the answer to life (42). Adams' satire blends absurd humor with philosophical inquiry about existence."
+            },
+            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "The Night Circus",
+                author: "Erin Morgenstern",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387124618i/9361589.jpg",
+                createdOn: "1733097600000",
+                _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                    "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f"
+                ],
+                comments: [
+                    "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
+                ],
+                summary: "Mysterious Le Cirque des Rêves appears without warning, featuring magical tents and ethereal performances. Behind its black-and-white spectacle, illusionists Celia and Marco compete in a deadly magical duel bound by mentors. Their growing love threatens the circus and all within it. Morgenstern crafts an atmospheric romance where magic has tangible costs."
+            },
+            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                title: "Educated",
+                author: "Tara Westover",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
+                createdOn: "1735689600000",
+                _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                likes: [
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a"
+                ],
+                comments: [
+                    "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                    "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
+                ],
+                summary: "Westover recounts her journey from Idaho survivalist family to Cambridge PhD, never attending school until age 17. Overcoming violent brother and distrustful parents, education becomes liberation from alternative facts. This memoir examines family loyalty versus self-invention with brutal honesty and lyrical insight."
+            },
             "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
                 _ownerId: "123e4567-e89b-12d3-a456-426614174000",
                 title: "The Chronicles of Narnia",
@@ -2057,6 +2242,84 @@
             }
         },
         comments: {
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
+                content: "The 'redrum' scene still terrifies me decades later. Masterclass in psychological tension.",
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b"
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                content: "The ghost metaphor for intergenerational trauma is devastatingly effective. Morrison's prose is transcendent.",
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c"
+            },
+            "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                content: "Found the non-linear structure challenging but rewarding. The last paragraph shattered me.",
+                _id: "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d"
+            },
+            "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e": {
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
+                content: "The sandworm ecology and spice politics create unparalleled world-building depth. Sci-fi at its best!",
+                _id: "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e"
+            },
+            "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f": {
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                content: "The 'Cool Girl' monologue should be required reading on gender performance. Terrifyingly sharp.",
+                _id: "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f"
+            },
+            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                content: "Kvothe's music-magic system feels fresh and emotionally resonant. The lute descriptions are magical.",
+                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"
+            },
+            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                content: "Sometimes the descriptions drag, but the frame story payoff makes it worthwhile.",
+                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
+            },
+            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                content: "The Grand Inquisitor chapter alone justifies the page count. Philosophical gold.",
+                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                content: "The Vogon poetry scene made me laugh out loud on public transit. Adams' wit is timeless.",
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                content: "Marvin the depressed robot is my spirit animal. Perfect satire of AI anxiety.",
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                content: "The ice garden descriptions are breathtaking. Wish the romance had more development though.",
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                content: "Her description of first hearing about the Holocaust broke me. Essential reading on education's power.",
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                content: "The tension between self-invention and family loyalty is handled with incredible nuance. Courageous writing.",
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
+            },
             "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
                 _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
                 bookId: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
