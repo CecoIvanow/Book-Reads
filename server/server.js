@@ -75,7 +75,7 @@
             const method = req.method;
             console.info(`<< ${req.method} ${req.url}`);
 
-            // Redirect fix for admin panel relative paths
+           
             if (req.url.slice(-6) == '/admin') {
                 res.writeHead(302, {
                     'Location': `http://${req.headers.host}/admin/`
@@ -91,7 +91,7 @@
             let result = '';
             let context;
 
-            // NOTE: the OPTIONS method results in undefined result and also it never processes plugins - keep this in mind
+           
             if (method == 'OPTIONS') {
                 Object.assign(headers, {
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
@@ -108,8 +108,8 @@
                         status = err.status || 400;
                         result = composeErrorObject(err.code || status, err.message);
                     } else {
-                        // Unhandled exception, this is due to an error in the service code - REST consumers should never have to encounter this;
-                        // If it happens, it must be debugged in a future version of the server
+                       
+                       
                         console.error(err);
                         status = 500;
                         result = composeErrorObject(500, 'Server Error');
@@ -147,8 +147,8 @@
                     result = await service(context, { method, tokens, query, body });
                 }
 
-                // NOTE: logout does not return a result
-                // in this case the content type header should be omitted, to allow checks on the client
+               
+               
                 if (result !== undefined) {
                     result = JSON.stringify(result);
                 } else {
@@ -180,7 +180,7 @@
             .reduce((p, [k, v]) => Object.assign(p, { [k]: decodeURIComponent(v.replace(/\+/g, " ")) }), {});
 
         let body;
-        // If req stream has ended body has been parsed
+       
         if (req.readableEnded) {
             body = req.body;
         } else {
@@ -341,7 +341,7 @@
             tokens = [context.params.collection, ...tokens];
             console.log('Request body:\n', body);
 
-            // TODO handle collisions, replacement
+           
             let responseData = data;
             for (let token of tokens) {
                 if (responseData.hasOwnProperty(token) == false) {
@@ -494,12 +494,12 @@
             let check = (a, b) => b;
             let acc = true;
             if (query.match(/ and /gi)) {
-                // inclusive
+               
                 clauses = query.split(/ and /gi);
                 check = (a, b) => a && b;
                 acc = true;
             } else if (query.match(/ or /gi)) {
-                // optional
+               
                 clauses = query.split(/ or /gi);
                 check = (a, b) => a || b;
                 acc = false;
@@ -533,7 +533,7 @@
             } else if (context.params.collection) {
                 responseData = context.storage.get(context.params.collection, tokens[0]);
             } else {
-                // Get list of collections
+               
                 return context.storage.get();
             }
 
@@ -544,7 +544,7 @@
                     .map(p => p.split(' ').filter(p => p != ''))
                     .map(([p, desc]) => ({ prop: p, desc: desc ? true : false }));
 
-                // Sorting priority is from first to last, therefore we sort from last to first
+               
                 for (let i = props.length - 1; i >= 0; i--) {
                     let { prop, desc } = props[i];
                     responseData.sort(({ [prop]: propA }, { [prop]: propB }) => {
@@ -840,7 +840,7 @@
     function createInstance(seedData = {}) {
         const collections = new Map();
 
-        // Initialize seed data from file    
+       
         for (let collectionName in seedData) {
             if (seedData.hasOwnProperty(collectionName)) {
                 const collection = new Map();
@@ -854,7 +854,7 @@
         }
 
 
-        // Manipulation
+       
 
         /**
          * Get entry by ID or list of all entries from collection or list of all collections
@@ -899,7 +899,7 @@
                 collections.set(collection, targetCollection);
             }
             let id = uuid$2();
-            // Make sure new ID does not match existing value
+           
             while (targetCollection.has(id)) {
                 id = uuid$2();
             }
@@ -986,13 +986,13 @@
             }
             const targetCollection = collections.get(collection);
             const result = [];
-            // Iterate entries of target collection and compare each property with the given query
+           
             for (let [key, entry] of [...targetCollection.entries()]) {
                 let match = true;
                 for (let prop in entry) {
                     if (query.hasOwnProperty(prop)) {
                         const targetValue = query[prop];
-                        // Perform lowercase search, if value is string
+                       
                         if (typeof targetValue === 'string' && typeof entry[prop] === 'string') {
                             if (targetValue.toLocaleLowerCase() !== entry[prop].toLocaleLowerCase()) {
                                 match = false;
@@ -1214,7 +1214,7 @@
         }, settings.rules);
 
         return function decorateContext(context, request) {
-            // special rules (evaluated at run-time)
+           
             const get = (collectionName, id) => {
                 return context.storage.get(collectionName, id);
             };
@@ -1246,7 +1246,7 @@
             }
 
             function applyPropRule(action, [prop, rule], user, data, newData) {
-                // NOTE: user needs to be in scope for eval to work on certain rules
+               
                 if (typeof rule == 'string') {
                     rule = !!eval(rule);
                 }
@@ -1281,19 +1281,19 @@
             let currentRule = ruleOrDefault(true, rules['*'][action]);
             let propRules = [];
 
-            // Top-level rules for the collection
+           
             const collectionRules = rules[collection];
             if (collectionRules !== undefined) {
-                // Top-level rule for the specific action for the collection
+               
                 currentRule = ruleOrDefault(currentRule, collectionRules[action]);
 
-                // Prop rules
+               
                 const allPropRules = collectionRules['*'];
                 if (allPropRules !== undefined) {
                     propRules = ruleOrDefault(propRules, getPropRule(allPropRules, action));
                 }
 
-                // Rules by record id 
+               
                 const recordRules = collectionRules[data._id];
                 if (recordRules !== undefined) {
                     currentRule = ruleOrDefault(currentRule, recordRules[action]);
@@ -1501,19 +1501,207 @@
     };
     var seedData = {
         books: {
+            "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                title: "The Chronicles of Narnia",
+                author: "C.S. Lewis",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1449868701i/11127.jpg",
+                createdOn: "1685577600000",
+                _id: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a" 
+                ],
+                comments: [
+                    "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
+                ],
+                summary: "Four siblings discover a magical wardrobe leading to Narnia, a frozen world under the White Witch's curse. With talking animals and mythical creatures, they join lion-god Aslan's struggle to reclaim the kingdom. This beloved allegorical series explores faith, sacrifice, and coming-of-age through seven interconnected fantasy adventures."
+            },
+            "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "Fahrenheit 451",
+                author: "Ray Bradbury",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1383718290i/13079982.jpg",
+                createdOn: "1688169600000",
+                _id: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                likes: [
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e" 
+                ],
+                comments: [
+                    "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                    "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
+                ],
+                summary: "In a dystopian future where firemen burn books to suppress dissenting ideas, Guy Montag begins questioning society after meeting free-thinking neighbors. His journey from enforcer to fugitive reveals the dangers of censorship and entertainment saturation. Bradbury's prescient vision explores memory, knowledge, and the power of literature in a screen-dominated world."
+            },
+            "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "The Picture of Dorian Gray",
+                author: "Oscar Wilde",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546103428i/5297.jpg",
+                createdOn: "1690848000000",
+                _id: "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d" 
+                ],
+                comments: [],
+                summary: "Handsome Dorian Gray wishes his portrait would age instead of him, enabling a life of hedonism without physical consequences. As his soul corrupts, the painting grotesquely transforms to reflect his sins. Wilde's philosophical novel examines aestheticism, morality, and the dangerous pursuit of eternal youth through sharp wit and Gothic horror."
+            },
+            "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                title: "Jane Eyre",
+                author: "Charlotte Brontë",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1557343311i/10210.jpg",
+                createdOn: "1693526400000",
+                _id: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                likes: [
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                    "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e" 
+                ],
+                comments: [
+                    "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
+                    "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
+                    "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f"
+                ],
+                summary: "Orphaned Jane Eyre becomes governess at Thornfield Hall, developing a complex relationship with the brooding Mr. Rochester. Her moral convictions are tested by dark secrets, social constraints, and unexpected revelations. This groundbreaking Victorian novel explores class, gender equality, and spiritual integrity through Jane's first-person narrative."
+            },
+            "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                title: "Wuthering Heights",
+                author: "Emily Brontë",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfw7MyU9SVnv6XPp6DUDQ98qhmCpYIY77Nqw&s",
+                createdOn: "1696118400000",
+                _id: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                likes: [
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f" 
+                ],
+                comments: [
+                    "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
+                ],
+                summary: "On the stormy Yorkshire moors, Heathcliff's obsessive love for Catherine Earnshaw fuels generations of vengeance. Told through layered narratives, this Gothic masterpiece explores destructive passion, social class, and the haunting power of landscape. Brontë's only novel revolutionized romance fiction with its raw emotional intensity and complex antihero."
+            },
+            "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "The Kite Runner",
+                author: "Khaled Hosseini",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579036753i/77203.jpg",
+                createdOn: "1698796800000",
+                _id: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                likes: [
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a" 
+                ],
+                comments: [
+                    "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                    "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
+                ],
+                summary: "Amir's childhood betrayal of loyal friend Hassan haunts him through Afghanistan's turbulent history - from monarchy to Taliban rule. Returning to Kabul years later, he seeks redemption in this powerful story of guilt, atonement, and the enduring bonds of friendship. Hosseini's debut humanizes Middle Eastern conflicts through intimate personal drama."
+            },
+            "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "Slaughterhouse-Five",
+                author: "Kurt Vonnegut",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1440319389i/4981.jpg",
+                createdOn: "1701388800000",
+                _id: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                likes: [
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                    "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" 
+                ],
+                comments: [
+                    "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
+                ],
+                summary: "Prisoner-of-war Billy Pilgrim becomes 'unstuck in time' after surviving the Dresden firebombing, experiencing his life out of sequence alongside alien encounters. Vonnegut's absurdist anti-war novel blends science fiction with autobiographical elements to process trauma. Famous for its refrain 'So it goes,' this postmodern classic questions free will and the senselessness of violence."
+            },
+            "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                title: "The Handmaid's Tale",
+                author: "Margaret Atwood",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1578028274i/38447.jpg",
+                createdOn: "1704067200000",
+                _id: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
+                likes: [
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                    "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                    "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                    "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c" 
+                ],
+                comments: [
+                    "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                    "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
+                ],
+                summary: "In theocratic Gilead (formerly USA), fertile 'handmaid' Offred serves as a reproductive vessel for powerful men. Her clandestine memories of family and freedom fuel resistance against a regime that controls women's bodies and language. Atwood's dystopian vision explores gender oppression, religious extremism, and the fragility of rights through harrowing first-person narration."
+            },
+            "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                title: "The Road",
+                author: "Cormac McCarthy",
+                img: "https://m.media-amazon.com/images/I/61kKUlUoQHL._UF894,1000_QL80_.jpg",
+                createdOn: "1706745600000",
+                _id: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
+                likes: [
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d" 
+                ],
+                comments: [
+                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
+                ],
+                summary: "A father and son traverse a post-apocalyptic America destroyed by an unspecified cataclysm. Carrying minimal supplies and a pistol, they face starvation, cannibal gangs, and fading hope while heading south. McCarthy's spare prose amplifies this devastating meditation on survival, morality, and paternal love in a world stripped of civilization."
+            },
+            "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                title: "One Hundred Years of Solitude",
+                author: "Gabriel García Márquez",
+                img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327881361i/320.jpg",
+                createdOn: "1709251200000",
+                _id: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
+                likes: [
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b" 
+                ],
+                comments: [
+                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                    "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
+                ],
+                summary: "The magical history of Macondo chronicles seven generations of the Buendía family, blending reality with fantastical elements. From founding to decline, their lives intertwine with civil wars, inventions, and prophecies in this seminal work of magical realism. Márquez explores cyclical time, political turmoil, and the solitude inherent in the human condition."
+            },
             "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8", // Peter
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Moby Dick",
                 author: "Herman Melville",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327940656i/153747.jpg",
-                createdOn: "1672531200000", // Jan 1, 2023
+                createdOn: "1672531200000",
                 _id: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
                 likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a", // George
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b", // Sophia
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Emma
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a", // Ava
-                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"  // James
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b" 
                 ],
                 comments: [
                     "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
@@ -1522,17 +1710,17 @@
                 summary: "The epic tale of Captain Ahab's obsessive quest to hunt the white whale Moby Dick, told through the eyes of sailor Ishmael. This masterpiece explores themes of revenge, fate, and man's struggle against nature, set against the backdrop of 19th-century whaling culture with rich symbolism and philosophical depth."
             },
             "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a", // George
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 title: "Frankenstein",
                 author: "Mary Shelley",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1381512375i/18490.jpg",
-                createdOn: "1675209600000", // Feb 1, 2023
+                createdOn: "1675209600000",
                 _id: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                 likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8", // Peter
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22", // Olivia
-                    "123e4567-e89b-12d3-a456-426614174000", // Noah
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"  // Harper
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e" 
                 ],
                 comments: [
                     "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
@@ -1542,16 +1730,16 @@
                 summary: "A young scientist's ambition leads him to create life from dead body parts, resulting in a creature rejected by its creator and society. This gothic novel explores themes of scientific ethics, parental responsibility, and the destructive consequences of prejudice and isolation."
             },
             "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
-                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b", // Sophia
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
                 title: "Crime and Punishment",
                 author: "Fyodor Dostoevsky",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144.jpg",
-                createdOn: "1677628800000", // Mar 1, 2023
+                createdOn: "1677628800000",
                 _id: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
                 likes: [
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d", // Liam
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Emma
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"  // Daniel
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f" 
                 ],
                 comments: [
                     "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
@@ -1559,19 +1747,19 @@
                 summary: "A destitute former student murders a pawnbroker, believing himself exempt from moral laws. As he navigates St. Petersburg's underworld, his guilt manifests in psychological torment. This psychological thriller explores morality, redemption, and the human capacity for rationalization in 19th-century Russia."
             },
             "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
-                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22", // Olivia
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
                 title: "The Odyssey",
                 author: "Homer",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1390173285i/1381.jpg",
-                createdOn: "1680307200000", // Apr 1, 2023
+                createdOn: "1680307200000",
                 _id: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                 likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8", // Peter
-                    "847ec027-f659-4086-8032-5173e2f9c93a", // George
-                    "123e4567-e89b-12d3-a456-426614174000", // Noah
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Emma
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a", // Ava
-                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d"  // Alexander
+                    "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "847ec027-f659-4086-8032-5173e2f9c93a",
+                    "123e4567-e89b-12d3-a456-426614174000",
+                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d" 
                 ],
                 comments: [
                     "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
@@ -1580,18 +1768,18 @@
                 summary: "The epic journey of Greek hero Odysseus as he struggles to return home after the Trojan War. Facing mythical creatures, vengeful gods, and treacherous seas over ten years, this foundational work explores themes of heroism, cunning versus strength, loyalty, and the meaning of homecoming."
             },
             "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
-                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Emma
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                 title: "Alice's Adventures in Wonderland",
                 author: "Lewis Carroll",
                 img: "https://m.media-amazon.com/images/I/81svZOFopwL._SY466_.jpg",
-                createdOn: "1682899200000", // May 1, 2023
+                createdOn: "1682899200000",
                 _id: "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
                 likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b", // Sophia
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22", // Olivia
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"  // Liam
+                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d" 
                 ],
-                comments: [], // No comments for this book
+                comments: [],
                 summary: "A young girl follows a white rabbit down a hole into a fantastical world where logic is inverted and absurdity reigns. Through encounters with iconic characters like the Mad Hatter and Cheshire Cat, this children's classic explores themes of identity, growth, and the subversion of Victorian social norms through surreal wordplay and symbolic imagery."
             },
             "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d": {
@@ -1869,50 +2057,146 @@
             }
         },
         comments: {
-            "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c": { // Moby Dick
-                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a", // Ava
+            "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
+                content: "Aslan's sacrifice scene still gives me chills decades after first reading. Timeless allegory!",
+                _id: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
+            },
+            "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                content: "Unsettling how accurately Bradbury predicted earbuds, wall-sized TVs, and shortened attention spans.",
+                _id: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f"
+            },
+            "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                content: "The mechanical hound terrified me more than any horror monster. Chilling commentary on technology.",
+                _id: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
+            },
+            "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                content: "Jane's 'I am no bird' declaration is one of literature's most powerful feminist moments. Iconic!",
+                _id: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d"
+            },
+            "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                content: "The madwoman in the attic trope hasn't aged well, but Jane's moral compass remains inspiring.",
+                _id: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e"
+            },
+            "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                content: "Rochester's flaws make him fascinating. Their dynamic was way ahead of its time.",
+                _id: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f"
+            },
+            "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                content: "Heathcliff and Cathy's toxic relationship is frustrating but impossible to look away from.",
+                _id: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
+            },
+            "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                content: "The pomegranate tree scene shattered me. Hosseini makes you feel every moment of guilt and redemption.",
+                _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
+            },
+            "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                content: "Amir's cowardice made me furious, which shows how effectively Hosseini crafts emotional stakes.",
+                _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
+            },
+            "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                content: "The Tralfamadorian sections are genius - dark humor making war's absurdity bearable.",
+                _id: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
+            },
+            "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
+                content: "The Latin phrase 'Nolite te bastardes carborundorum' gave me chills. Brilliant world-building.",
+                _id: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
+            },
+            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
+                content: "Offred's stolen butter as hand lotion - such small details make the oppression feel visceral.",
+                _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f"
+            },
+            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
+                content: "The historical notes ending reframes everything. Atwood reminds us all regimes eventually fall.",
+                _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
+            },
+            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
+                content: "McCarthy's minimalist style perfectly captures the bleakness. The canned peaches scene destroyed me.",
+                _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
+            },
+            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
+                content: "Rebecca eating earth! Remedios ascending! Magical realism at its most inventive.",
+                _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c"
+            },
+            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
+                content: "The cyclical structure makes rereads essential - new connections emerge every time.",
+                _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
+            },
+            "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c": {
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
                 bookId: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
                 content: "The whale hunting chapters dragged for me, but Ahab's obsession makes this worth reading.",
                 _id: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c"
             },
-            "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d": { // Moby Dick
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b", // James
+            "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
                 bookId: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
                 content: "Melville's prose is dense but rewarding. The final chase scene is one of literature's most thrilling sequences!",
                 _id: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d"
             },
-            "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e": { // Frankenstein
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8", // Peter
+            "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                 content: "Surprisingly modern themes about scientific responsibility. The creature's perspective chapters are heartbreaking.",
                 _id: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e"
             },
-            "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f": { // Frankenstein
-                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e", // Harper
+            "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
                 bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                 content: "The moral ambiguity here is fascinating - who's the real monster? Still relevant after 200 years.",
                 _id: "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f"
             },
-            "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a": { // Frankenstein
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000", // Noah
+            "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
                 bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                 content: "Expected horror but got profound philosophy instead. Victor's arrogance is infuriating though.",
                 _id: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
             },
-            "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b": { // Crime and Punishment
-                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Emma
+            "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                 bookId: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
                 content: "Raskolnikov's psychological unraveling is masterfully written. The police interrogation scenes are tense!",
                 _id: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
             },
-            "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c": { // The Odyssey
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a", // George
+            "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 bookId: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                 content: "The Cyclops encounter still gives me chills! Ancient but surprisingly accessible in good translation.",
                 _id: "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
             },
-            "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d": { // The Odyssey
-                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d", // Alexander
+            "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
                 bookId: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                 content: "Penelope's weaving trick is one of the smartest moves in classical literature. Timeless cleverness!",
                 _id: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
