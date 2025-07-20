@@ -35,20 +35,18 @@ export class Details implements OnInit, OnDestroy {
         const booksSub = this.bookService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
             this.cdr.detectChanges();
-        });
-        
-        const commentsIdsSub = this.bookService.getBookCommentsId(bookId).subscribe(data => {
-            data.forEach((value) => {
-                const commentsSub = this.bookService.getCommentWithOwner(value._id).subscribe(data => {
+
+            this.book?.comments.forEach((commentId) => {
+                console.log(commentId);
+                const commentsSub = this.bookService.getCommentWithOwner(commentId).subscribe(data => {
                     this.comments?.push(data)
                     this.cdr.detectChanges();
                 });
-
                 this.subscriptions?.add(commentsSub);
-            });
+            })
+
         });
 
         this.subscriptions?.add(booksSub);
-        this.subscriptions?.add(commentsIdsSub);
     }
 }
