@@ -4,8 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Book } from '../../models/index.js';
-import { finalize, forkJoin, Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { BooksService } from '../../books.service.js';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-catalog-page',
@@ -13,7 +14,8 @@ import { BooksService } from '../../books.service.js';
         MatCardModule,
         MatButtonModule,
         MatProgressSpinnerModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        RouterModule,
     ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss'
