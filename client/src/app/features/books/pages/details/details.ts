@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-details',
@@ -18,7 +19,10 @@ export class Details implements OnInit, OnDestroy {
 
     private subscriptions: Subscription = new Subscription();
 
-    constructor(private bookService: BooksService, private cdr: ChangeDetectorRef) {
+    constructor(
+        private bookService: BooksService,
+        private route: ActivatedRoute,
+        private cdr: ChangeDetectorRef) {
     }
 
     ngOnDestroy(): void {
@@ -26,12 +30,14 @@ export class Details implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        const booksSub = this.bookService.getBookWithOwner('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
+        const bookId = this.route.snapshot.params['bookId']
+
+        const booksSub = this.bookService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
             this.cdr.detectChanges();
         });
         
-        const commentsIdsSub = this.bookService.getBookCommentsId('c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f').subscribe(data => {
+        const commentsIdsSub = this.bookService.getBookCommentsId(bookId).subscribe(data => {
             data.forEach((value) => {
                 const commentsSub = this.bookService.getCommentWithOwner(value._id).subscribe(data => {
                     this.comments?.push(data)
