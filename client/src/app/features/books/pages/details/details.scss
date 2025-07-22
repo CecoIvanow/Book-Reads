@@ -152,9 +152,16 @@ mat-card-actions .user-actions {
     margin-top: 2rem;
 }
 
+.comments .comment-item + .comment-item {
+    margin-top: 1rem;
+}
+
+
+
 .book-details .comments .comment-item mat-card {
     width: 50%;
     margin: 0 auto;
+    background-color: transparent;
 }
 
 .comment-item mat-card mat-card-header {
