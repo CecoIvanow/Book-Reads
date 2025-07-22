@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,9 +16,12 @@ import { RouterModule } from '@angular/router';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         RouterModule,
+        
     ],
     templateUrl: './catalog.html',
-    styleUrl: './catalog.scss'
+    styleUrl: './catalog.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class Catalog implements OnInit, OnDestroy {
     protected booksCount: number = 0;
@@ -27,7 +30,7 @@ export class Catalog implements OnInit, OnDestroy {
     protected skipBooks: number = 0;
     protected pageSize: number = 10;
 
-    private subscriptions: Subscription | null = null;
+    private subscriptions = new Subscription();
 
     constructor(private booksService: BooksService, private cdr: ChangeDetectorRef) {
     }
@@ -43,7 +46,6 @@ export class Catalog implements OnInit, OnDestroy {
     }
     
     fetchBooks() {
-        this.subscriptions?.unsubscribe();
         const observables$ = forkJoin([
             this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
             this.booksService.getBooksCount(),
@@ -53,10 +55,11 @@ export class Catalog implements OnInit, OnDestroy {
             next: (data) => {
                 this.books = data[0];
                 this.booksCount = data[1];
+                this.cdr.markForCheck();
             },
             complete: () => {
                 this.isLoading = false;
-                this.cdr.detectChanges();
+                this.cdr.markForCheck();
             },
             
         }
