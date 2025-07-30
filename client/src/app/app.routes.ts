@@ -1,13 +1,10 @@
 import { Routes } from '@angular/router';
 
-import { Login } from './core/auth/pages/login/login.js';
-import { Register } from './core/auth/pages/register/register.js';
-import { Catalog } from './features/books/pages/catalog/catalog.js';
 import { Details } from './features/books/pages/details/details.js';
 
 export const routes: Routes = [
-    { path: 'login', component: Login },
-    { path: 'register', component: Register },
-    { path: 'catalog', component: Catalog },
-    { path: 'books/details/:bookId', component: Details },
+    { path: 'login', loadComponent: () => import('./core/auth/pages/login/login.js').then(c => c.Login) },
+    { path: 'register', loadComponent: () => import('./core/auth/pages/register/register.js').then(c => c.Register) },  
+    { path: 'catalog', loadComponent: () => import('./features/books/pages/catalog/catalog.js').then(c => c.Catalog) },
+    { path: 'books/details/:bookId', loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details) },
 ];
