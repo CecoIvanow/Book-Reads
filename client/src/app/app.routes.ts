@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { Details } from './features/books/pages/details/details.js';
-
 export const routes: Routes = [
     {
         path: '',
