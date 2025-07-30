@@ -4,8 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
-import { saveSessionToken } from '../../auth-storage.util.js';
 import { RouterModule } from '@angular/router';
+import { TokenAccessService } from '../../services/token-access.service.js';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 })
 export class Login {
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, protected tokenService: TokenAccessService) {
     }
 
     onLogin(e: Event) {
@@ -30,6 +30,6 @@ export class Login {
             password,
         }
 
-        this.authService.login(credentials).subscribe(data => saveSessionToken(data.accessToken));
+        this.authService.login(credentials).subscribe(data => this.tokenService.saveSessionToken(data.accessToken));
     }
 }
