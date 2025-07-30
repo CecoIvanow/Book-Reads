@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import path from 'path';
 
 export const routes: Routes = [
     {
@@ -26,4 +27,12 @@ export const routes: Routes = [
         loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details),
         pathMatch: 'full',
     },
+    {
+        path: '404',
+        loadComponent: () => import('./core/not-found/page/not-found/not-found.js').then(c => c.NotFound),
+    },
+    {
+        path: '**',
+        redirectTo: '404',
+    }
 ];
