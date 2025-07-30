@@ -4,6 +4,11 @@ import { Details } from './features/books/pages/details/details.js';
 
 export const routes: Routes = [
     {
+        path: '',
+        loadComponent: () => import('./core/home/pages/home/home.js').then(c => c.Home),
+        pathMatch: 'full',
+    },
+    {
         path: 'login',
         loadComponent: () => import('./core/auth/pages/login/login.js').then(c => c.Login),
         pathMatch: 'full',

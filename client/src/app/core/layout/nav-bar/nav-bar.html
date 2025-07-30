@@ -2,6 +2,7 @@
     <nav>
         <a href="#" class="logo"><h2>Book Reads</h2></a>
         <ul>
+            <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/catalog">Catalog</a></li>
             @if(this.tokenService.accessToken()) {
                 <li><a href="/books/create">Add new book</a></li>
