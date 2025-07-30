@@ -2,11 +2,15 @@
     <nav>
         <a href="#" class="logo"><h2>Book Reads</h2></a>
         <ul>
-            <li><a href="/books/create">Add new book</a></li>
             <li><a routerLink="/catalog">Catalog</a></li>
-            <li><a routerLink="/login">Login</a></li>
-            <li><a routerLink="/register">Register</a></li>
-            <li (click)="onLogout()"><a href="#">Logout</a></li>
+            @if(this.tokenService.accessToken()) {
+                <li><a href="/books/create">Add new book</a></li>
+                <li (click)="onLogout()"><a href="#">Logout</a></li>
+            }
+            @else {
+                <li><a routerLink="/login">Login</a></li>
+                <li><a routerLink="/register">Register</a></li>
+            }
         </ul>
     </nav>
 </section>

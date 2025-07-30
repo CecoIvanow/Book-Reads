@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { removeSessionToken } from '../../auth/auth-storage.util.js';
 import { RouterModule } from '@angular/router';
+import { TokenAccessService } from '../../auth/services/token-access.service.js';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +10,10 @@ import { RouterModule } from '@angular/router';
 })
 export class NavBar {
 
+    constructor(protected tokenService: TokenAccessService){
+    }
+
     onLogout(){
-        removeSessionToken();
+        this.tokenService.removeSessionToken();
     }
 }
