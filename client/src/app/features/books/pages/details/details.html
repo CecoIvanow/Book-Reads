@@ -1,7 +1,6 @@
 <div class="wrapper">
     <section class="section">
         <h1>Book Details</h1>
-
         <div class="content">
             <section class="book-cover">
                 <mat-card>
@@ -32,6 +31,18 @@
                 <section class="book-summary">
                     <h2>Summary:</h2>
                     <p>{{book?.summary}}</p>
+                </section>
+
+                <section class="comment-input">
+                    <form>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Share your thoughts...</mat-label>
+                            <input matInput type="text" name="comment">
+                        </mat-form-field>
+                        <div class="button-container">
+                            <button mat-raised-button color="primary" class="post-button">Post</button>
+                        </div>
+                    </form>
                 </section>
 
                 <section class="comments">

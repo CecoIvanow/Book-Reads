@@ -6,10 +6,17 @@ import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-details',
-    imports: [MatCardModule, MatButtonModule],
+    imports: [
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule
+    ],
     templateUrl: './details.html',
     styleUrl: './details.scss'
 })
