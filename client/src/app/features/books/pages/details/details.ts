@@ -37,7 +37,6 @@ export class Details implements OnInit, OnDestroy {
             this.cdr.detectChanges();
 
             this.book?.comments.forEach((commentId) => {
-                console.log(commentId);
                 const commentsSub = this.bookService.getCommentWithOwner(commentId).subscribe(data => {
                     this.comments?.push(data)
                     this.cdr.detectChanges();
