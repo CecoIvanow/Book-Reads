@@ -28,6 +28,11 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
+        path: 'books/add',
+        loadComponent: () => import('./features/books/pages/add/add.js').then(c => c.Add),
+        pathMatch: 'full',
+    },
+    {
         path: '404',
         loadComponent: () => import('./core/not-found/page/not-found/not-found.js').then(c => c.NotFound),
     },
