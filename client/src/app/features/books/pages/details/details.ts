@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UserSessionService } from '../../../../core/auth/services/index.js';
 
 @Component({
     selector: 'app-details',
@@ -29,7 +30,9 @@ export class Details implements OnInit, OnDestroy {
     constructor(
         private bookService: BooksService,
         private route: ActivatedRoute,
-        private cdr: ChangeDetectorRef) {
+        private cdr: ChangeDetectorRef,
+        protected userSession: UserSessionService,
+    ) {
     }
 
     ngOnDestroy(): void {

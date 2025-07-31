@@ -9,13 +9,17 @@
                     </div>
                     <mat-card-actions>
                         <section class="owner-actions">
-                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
-                            <button class="delete-button" matButton="filled">Delete</button>
+                            @if (userSession.userId() === book?.owner?._id) {
+                                <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
+                                <button class="delete-button" matButton="filled">Delete</button>
+                            }
                         </section>
                         <section class="user-actions">
                             <p>Likes: {{book?.likes?.length}}</p>
                             <div class="like-button-div">
-                                <button class="like-button" matButton="filled">Like</button>
+                                @if (userSession.userToken()) {
+                                    <button class="like-button" matButton="filled">Like</button>
+                                }
                             </div>
                         </section>
                     </mat-card-actions>
@@ -34,15 +38,17 @@
                 </section>
 
                 <section class="comment-input">
-                    <form>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Share your thoughts...</mat-label>
-                            <input matInput type="text" name="comment">
-                        </mat-form-field>
-                        <div class="button-container">
-                            <button mat-raised-button color="primary" class="post-button">Post</button>
-                        </div>
-                    </form>
+                    @if (userSession.userToken()) {
+                        <form>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Share your thoughts...</mat-label>
+                                <input matInput type="text" name="comment">
+                            </mat-form-field>
+                            <div class="button-container">
+                                <button mat-raised-button color="primary" class="post-button">Post</button>
+                            </div>
+                        </form>
+                    }
                 </section>
 
                 <section class="comments">
@@ -63,9 +69,10 @@
                                 </mat-card-content>
                                 <mat-card-actions>
                                     <section class="owner-actions">
-                                        <a class="edit-button" matButton="text"
-                                            [href]="'/books/edit/' + book?._id">Edit</a>
-                                        <button class="delete-button" matButton="filled">Delete</button>
+                                        @if (userSession.userId() === comment._ownerId) {
+                                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
+                                            <button class="delete-button" matButton="filled">Delete</button>
+                                        }
                                     </section>
                                 </mat-card-actions>
                             </mat-card>
