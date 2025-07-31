@@ -7,6 +7,8 @@ import { Book } from '../../models/index.js';
 import { forkJoin, Subscription } from 'rxjs';
 import { BooksService } from '../../books.service.js';
 import { RouterModule } from '@angular/router';
+import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
+import { log } from 'console';
 
 @Component({
     selector: 'app-catalog-page',
@@ -16,7 +18,7 @@ import { RouterModule } from '@angular/router';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         RouterModule,
-        
+
     ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss',
@@ -32,7 +34,7 @@ export class Catalog implements OnInit, OnDestroy {
 
     private subscriptions = new Subscription();
 
-    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef) {
+    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef, protected userSession: UserSessionService) {
     }
 
     ngOnInit() {
@@ -44,7 +46,7 @@ export class Catalog implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscriptions?.unsubscribe();
     }
-    
+
     fetchBooks() {
         const observables$ = forkJoin([
             this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
@@ -61,9 +63,9 @@ export class Catalog implements OnInit, OnDestroy {
                 this.isLoading = false;
                 this.cdr.markForCheck();
             },
-            
+
         }
-    );
+        );
 
         this.subscriptions?.add(sub);
     }

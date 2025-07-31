@@ -4,7 +4,7 @@
         <ul>
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/catalog">Catalog</a></li>
-            @if(this.userSession.sessionData() && this.userSession.sessionData() !== 'none') {
+            @if(this.userSession.userToken()) {
                 <li><a href="/books/add">Add new book</a></li>
                 <li (click)="onLogout()"><a href="#">Logout</a></li>
             }

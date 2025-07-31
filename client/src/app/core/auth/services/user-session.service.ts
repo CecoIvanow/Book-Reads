@@ -1,18 +1,19 @@
-import { Injectable, signal } from '@angular/core';
-import { TokenSignal, UserSessionData } from '../models/index.js';
+import { computed, Injectable, Signal, signal } from '@angular/core';
+import { AccessToken, TokenSignal, UserSessionData } from '../models/index.js';
 import { USER_SESSION_KEY } from '../auth.const.js';
+import { UUIDv4 } from '../../../shared/models/index.js';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserSessionService {
-    sessionData = signal<TokenSignal>(null);
+    private _sessionData = signal<TokenSignal>(null);
     private initPromise!: Promise<void>;
 
     constructor() {
-        if (this.sessionData() === null) {
+        if (this._sessionData() === null) {
             this.initPromise = new Promise<void>(resolve => {
-                this.sessionData.set(this.getAccessToken());
+                this._sessionData.set(this.getAccessToken());
                 resolve();
             })
         }
@@ -21,6 +22,18 @@ export class UserSessionService {
     async onInit() {
         return this.initPromise;
     }
+
+    userId: Signal<UUIDv4 | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.id : null;
+    })
+
+    userToken: Signal<AccessToken | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.token : null;
+    })
 
     private getAccessToken(): TokenSignal {
         if (typeof sessionStorage !== 'undefined') {
@@ -32,13 +45,15 @@ export class UserSessionService {
         return 'none';
     }
 
+    
+
     saveSessionToken(sessionData: UserSessionData) {
         sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(sessionData));
-        this.sessionData.set(sessionData);
+        this._sessionData.set(sessionData);
     }
     
     removeSessionToken() {
         sessionStorage.removeItem(USER_SESSION_KEY);
-        this.sessionData.set('none');
+        this._sessionData.set('none');
     }
 }
