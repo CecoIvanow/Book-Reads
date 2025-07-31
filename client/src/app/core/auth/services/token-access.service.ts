@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { AccessToken, TokenSignal } from '../models/index.js';
-import { TOKEN_KEY } from '../auth.const.js';
+import { TokenSignal, UserSessionData } from '../models/index.js';
+import { USER_SESSION_KEY } from '../auth.const.js';
 
 @Injectable({
     providedIn: 'root'
@@ -24,20 +24,21 @@ export class TokenAccessService {
 
     private getAccessToken(): TokenSignal {
         if (typeof sessionStorage !== 'undefined') {
-            return sessionStorage.getItem(TOKEN_KEY);
+            const data = sessionStorage.getItem(USER_SESSION_KEY);
+            
+            return data ? JSON.parse(data) : null;
         }
 
         return 'none';
     }
 
-    saveSessionToken(token: AccessToken) {
-        sessionStorage.setItem(TOKEN_KEY, token);
-        this.accessToken.set(token);
+    saveSessionToken(sessionData: UserSessionData) {
+        sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(sessionData));
+        this.accessToken.set(sessionData);
     }
-
+    
     removeSessionToken() {
-        sessionStorage.removeItem(TOKEN_KEY);
+        sessionStorage.removeItem(USER_SESSION_KEY);
         this.accessToken.set('none');
     }
-
 }
