@@ -1,12 +1,12 @@
 <section class="nav-bar">
     <nav>
-        <a href="#" class="logo"><h2>Book Reads</h2></a>
+        <a routerLink="/" class="logo"><h2>Book Reads</h2></a>
         <ul>
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/catalog">Catalog</a></li>
             @if(this.userSession.userToken()) {
-                <li><a href="/books/add">Add new book</a></li>
-                <li (click)="onLogout()"><a href="#">Logout</a></li>
+                <li><a routerLink="/books/add">Add new book</a></li>
+                <li (click)="onLogout()"><a routerLink="/">Logout</a></li>
             }
             @else {
                 <li><a routerLink="/login">Login</a></li>
