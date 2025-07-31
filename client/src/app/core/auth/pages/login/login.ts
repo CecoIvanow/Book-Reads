@@ -30,6 +30,6 @@ export class Login {
             password,
         }
 
-        this.authService.login(credentials).subscribe(data => this.tokenService.saveSessionToken(data.accessToken));
+        this.authService.login(credentials).subscribe(data => this.tokenService.saveSessionToken({ token: data.accessToken, id: data._id }));
     }
 }

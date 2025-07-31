@@ -36,6 +36,6 @@ export class Register {
             lastName
         }
 
-        this.authService.register(credentials).subscribe(data => this.tokenService.saveSessionToken(data.accessToken));
+        this.authService.register(credentials).subscribe(data => this.tokenService.saveSessionToken({ token: data.accessToken, id: data._id }));
     }
 }
