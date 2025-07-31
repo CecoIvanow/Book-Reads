@@ -2029,7 +2029,6 @@
                 _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
                 likes: [
                     "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22"
                 ],
                 comments: [
                     "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
@@ -2046,7 +2045,6 @@
                 _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
                 likes: [
                     "123e4567-e89b-12d3-a456-426614174000",
-                    "123e4567-e89b-12d3-a456-426614174000"
                 ],
                 comments: [
                     "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c",
@@ -2062,7 +2060,6 @@
                 createdOn: "1596240000000",
                 _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
                 likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                     "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                     "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"
                 ],
@@ -2131,7 +2128,6 @@
                 _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
                 likes: [
                     "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "35c62d76-8152-4626-8712-eeb96381bea8"
                 ],
                 comments: [
                     "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
@@ -2148,7 +2144,6 @@
                 _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
                 likes: [
                     "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "847ec027-f659-4086-8032-5173e2f9c93a"
                 ],
                 comments: [
                     "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
@@ -2182,7 +2177,6 @@
                 _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
                 likes: [
                     "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b"
                 ],
                 comments: [
                     "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c"
