@@ -1,13 +1,12 @@
-import { Injectable, OnInit, signal } from '@angular/core';
-import { AccessToken } from '../models/access-token.model.js';
+import { Injectable, signal } from '@angular/core';
+import { AccessToken, TokenSignal } from '../models/index.js';
 import { TOKEN_KEY } from '../auth.const.js';
-import { Subscription } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TokenAccessService {
-    accessToken = signal<AccessToken | null | 'none'>(null);
+    accessToken = signal<TokenSignal>(null);
     private initPromise!: Promise<void>;
 
     constructor() {
@@ -23,7 +22,7 @@ export class TokenAccessService {
         return this.initPromise;
     }
 
-    private getAccessToken(): AccessToken | null | 'none' {
+    private getAccessToken(): TokenSignal {
         if (typeof sessionStorage !== 'undefined') {
             return sessionStorage.getItem(TOKEN_KEY);
         }
