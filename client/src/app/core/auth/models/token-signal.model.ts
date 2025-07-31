@@ -1,3 +1,3 @@
-import { AccessToken } from "./access-token.model.js";
+import { UserSessionData } from "./user-session.model.js";
 
-export type TokenSignal = AccessToken | null | 'none';
+export type TokenSignal = UserSessionData | null | 'none';
