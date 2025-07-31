@@ -3,12 +3,12 @@ import { CanActivateFn, Router } from '@angular/router';
 import { UserSessionService } from './services/user-session.service.js';
 
 export const authGuard: CanActivateFn = async (route, state) => {
-    const tokenService = inject(UserSessionService);
+    const userSession = inject(UserSessionService);
     const router = inject(Router);
 
-    await tokenService.onInit();
+    await userSession.onInit();
 
-    const isUser = tokenService.sessionData();
+    const isUser = userSession.userToken();
 
     if (!isUser) {
         return router.createUrlTree(['/login']);
@@ -18,12 +18,12 @@ export const authGuard: CanActivateFn = async (route, state) => {
 };
 
 export const guestGuard: CanActivateFn = async (route, state) => {
-    const tokenService = inject(UserSessionService);
+    const userSession = inject(UserSessionService);
     const router = inject(Router);
 
-    await tokenService.onInit();
+    await userSession.onInit();
 
-    const isGuest = !tokenService.sessionData();
+    const isGuest = !userSession.userToken();
 
     if (!isGuest) {
         return router.createUrlTree(['/catalog']);
