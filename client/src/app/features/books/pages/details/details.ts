@@ -6,10 +6,18 @@ import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { UserSessionService } from '../../../../core/auth/services/index.js';
 
 @Component({
     selector: 'app-details',
-    imports: [MatCardModule, MatButtonModule],
+    imports: [
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule
+    ],
     templateUrl: './details.html',
     styleUrl: './details.scss'
 })
@@ -22,7 +30,9 @@ export class Details implements OnInit, OnDestroy {
     constructor(
         private bookService: BooksService,
         private route: ActivatedRoute,
-        private cdr: ChangeDetectorRef) {
+        private cdr: ChangeDetectorRef,
+        protected userSession: UserSessionService,
+    ) {
     }
 
     ngOnDestroy(): void {
@@ -37,7 +47,6 @@ export class Details implements OnInit, OnDestroy {
             this.cdr.detectChanges();
 
             this.book?.comments.forEach((commentId) => {
-                console.log(commentId);
                 const commentsSub = this.bookService.getCommentWithOwner(commentId).subscribe(data => {
                     this.comments?.push(data)
                     this.cdr.detectChanges();

@@ -1,4 +1,4 @@
-li{
+li {
     list-style: none;
 }
 
@@ -75,7 +75,7 @@ mat-card-actions .user-actions {
     margin-top: 1rem;
 }
 
-.user-actions p {
+user-actions p {
     font-size: 20px;
     font-weight: 500;
     width: 100%;
@@ -117,7 +117,7 @@ mat-card-actions .user-actions {
     font-size: 16px;
     color: gray;
     background-color: rgba(211, 211, 211, 0.45);
-    border-radius: 10px;    
+    border-radius: 10px;
     margin-top: 1.7rem;
 }
 
@@ -132,10 +132,21 @@ mat-card-actions .user-actions {
 }
 
 .book-details .book-summary {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     margin-top: 1.7rem;
+}
+
+.book-details .book-summary::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: -1.5rem;
+    width: 100%;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.214);
 }
 
 .book-summary h2 {
@@ -148,13 +159,69 @@ mat-card-actions .user-actions {
     color: rgba(0, 0, 0, 0.65);
 }
 
+.book-details .comment-input {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.comment-input form {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-input mat-form-field {
+    width: 100%;
+}
+
+.comment-input .mat-form-field-wrapper {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.comment-input .mat-form-field-outline {
+    display: none;
+}
+
+.comment-input .mat-form-field-infix {
+    padding: 1em;
+    border-top: 0;
+    width: 100%;
+}
+
+.comment-input .mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 0;
+}
+
+.comment-input .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.comment-input .post-button {
+    width: 85px;
+    height: 34px;
+    font-size: 13px;
+}
+
 .book-details .comments {
     margin-top: 2rem;
+}
+
+.comments .comment-item+.comment-item {
+    margin-top: 1rem;
 }
 
 .book-details .comments .comment-item mat-card {
     width: 50%;
     margin: 0 auto;
+    background-color: transparent;
 }
 
 .comment-item mat-card mat-card-header {

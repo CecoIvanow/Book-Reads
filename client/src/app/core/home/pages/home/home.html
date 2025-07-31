@@ -1,0 +1,57 @@
+<div class="wrapper">
+    <section class="home-section">
+        <h1>Welcome to Book Reads</h1>
+        <p class="subtitle">Your personal library manager</p>
+
+        <div class="actions">
+            <a routerLink="/books/add">
+                <button mat-raised-button color="primary">
+                    <mat-icon>add</mat-icon> Add New Book
+                </button>
+            </a>
+            <a routerLink="/catalog">
+                <button mat-stroked-button color="primary">
+                    <mat-icon>menu_book</mat-icon> Browse Catalog
+                </button>
+            </a>
+        </div>
+
+        <div class="features">
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="feature-icon">
+                        <mat-icon>library_books</mat-icon>
+                    </div>
+                    <mat-card-title>Organize Your Collection</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Catalog and manage all your books in one place</p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="feature-icon">
+                        <mat-icon>share</mat-icon>
+                    </div>
+                    <mat-card-title>Share With Community</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Discover new books and share your thoughts</p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="feature-icon">
+                        <mat-icon>favorite</mat-icon>
+                    </div>
+                    <mat-card-title>Track Your Favorites</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Like and comment on books you love</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </section>
+</div>

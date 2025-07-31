@@ -1,1 +1,1 @@
-export const TOKEN_KEY = 'accessToken';
+export const USER_SESSION_KEY = 'userSession'

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -7,6 +7,8 @@ import { Book } from '../../models/index.js';
 import { forkJoin, Subscription } from 'rxjs';
 import { BooksService } from '../../books.service.js';
 import { RouterModule } from '@angular/router';
+import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
+import { log } from 'console';
 
 @Component({
     selector: 'app-catalog-page',
@@ -16,9 +18,12 @@ import { RouterModule } from '@angular/router';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         RouterModule,
+
     ],
     templateUrl: './catalog.html',
-    styleUrl: './catalog.scss'
+    styleUrl: './catalog.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class Catalog implements OnInit, OnDestroy {
     protected booksCount: number = 0;
@@ -27,9 +32,9 @@ export class Catalog implements OnInit, OnDestroy {
     protected skipBooks: number = 0;
     protected pageSize: number = 10;
 
-    private subscriptions: Subscription | null = null;
+    private subscriptions = new Subscription();
 
-    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef) {
+    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef, protected userSession: UserSessionService) {
     }
 
     ngOnInit() {
@@ -41,9 +46,8 @@ export class Catalog implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscriptions?.unsubscribe();
     }
-    
+
     fetchBooks() {
-        this.subscriptions?.unsubscribe();
         const observables$ = forkJoin([
             this.booksService.getPaginatedBooks(this.skipBooks, this.pageSize),
             this.booksService.getBooksCount(),
@@ -53,14 +57,15 @@ export class Catalog implements OnInit, OnDestroy {
             next: (data) => {
                 this.books = data[0];
                 this.booksCount = data[1];
+                this.cdr.markForCheck();
             },
             complete: () => {
                 this.isLoading = false;
-                this.cdr.detectChanges();
+                this.cdr.markForCheck();
             },
-            
+
         }
-    );
+        );
 
         this.subscriptions?.add(sub);
     }
