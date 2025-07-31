@@ -6,13 +6,13 @@ import { USER_SESSION_KEY } from '../auth.const.js';
     providedIn: 'root'
 })
 export class UserSessionService {
-    userSession = signal<TokenSignal>(null);
+    sessionData = signal<TokenSignal>(null);
     private initPromise!: Promise<void>;
 
     constructor() {
-        if (this.userSession() === null) {
+        if (this.sessionData() === null) {
             this.initPromise = new Promise<void>(resolve => {
-                this.userSession.set(this.getAccessToken());
+                this.sessionData.set(this.getAccessToken());
                 resolve();
             })
         }
@@ -34,11 +34,11 @@ export class UserSessionService {
 
     saveSessionToken(sessionData: UserSessionData) {
         sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(sessionData));
-        this.userSession.set(sessionData);
+        this.sessionData.set(sessionData);
     }
     
     removeSessionToken() {
         sessionStorage.removeItem(USER_SESSION_KEY);
-        this.userSession.set('none');
+        this.sessionData.set('none');
     }
 }

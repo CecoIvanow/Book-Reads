@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TokenAccessService } from '../../auth/services/token-access.service.js';
+import { UserSessionService } from '../../auth/services/user-session.service.js';
 
 @Component({
-  selector: 'app-nav-bar',
-  imports: [RouterModule],
-  templateUrl: './nav-bar.html',
-  styleUrl: './nav-bar.scss'
+    selector: 'app-nav-bar',
+    imports: [RouterModule],
+    templateUrl: './nav-bar.html',
+    styleUrl: './nav-bar.scss'
 })
 export class NavBar {
 
-    constructor(protected tokenService: TokenAccessService){
+    constructor(protected userSession: UserSessionService) {
     }
 
-    onLogout(){
-        this.tokenService.removeSessionToken();
+    onLogout() {
+        this.userSession.removeSessionToken();
     }
 }

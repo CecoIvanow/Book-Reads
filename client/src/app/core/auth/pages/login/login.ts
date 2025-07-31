@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
 import { RouterModule } from '@angular/router';
-import { TokenAccessService } from '../../services/token-access.service.js';
+import { UserSessionService } from '../../services/user-session.service.js';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +15,7 @@ import { TokenAccessService } from '../../services/token-access.service.js';
 })
 export class Login {
 
-    constructor(private authService: AuthService, protected tokenService: TokenAccessService) {
+    constructor(private authService: AuthService, protected userSession: UserSessionService) {
     }
 
     onLogin(e: Event) {
@@ -30,6 +30,6 @@ export class Login {
             password,
         }
 
-        this.authService.login(credentials).subscribe(data => this.tokenService.saveSessionToken({ token: data.accessToken, id: data._id }));
+        this.authService.login(credentials).subscribe(data => this.userSession.saveSessionToken({ token: data.accessToken, id: data._id }));
     }
 }

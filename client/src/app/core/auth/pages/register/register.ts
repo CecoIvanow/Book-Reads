@@ -6,7 +6,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RegisterCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
 import { RouterModule } from '@angular/router';
-import { TokenAccessService } from '../../services/token-access.service.js';
+import { UserSessionService } from '../../services/user-session.service.js';
 
 @Component({
     selector: 'app-register',
@@ -17,7 +17,7 @@ import { TokenAccessService } from '../../services/token-access.service.js';
 
 export class Register {
 
-    constructor(private authService: AuthService, protected tokenService: TokenAccessService) {
+    constructor(private authService: AuthService, protected useSession: UserSessionService) {
     }
 
     async onRegister(e: Event) {
@@ -36,6 +36,6 @@ export class Register {
             lastName
         }
 
-        this.authService.register(credentials).subscribe(data => this.tokenService.saveSessionToken({ token: data.accessToken, id: data._id }));
+        this.authService.register(credentials).subscribe(data => this.useSession.saveSessionToken({ token: data.accessToken, id: data._id }));
     }
 }
