@@ -86,7 +86,7 @@ user-actions p {
     width: 100%;
 }
 
-.user-actions .like-button {
+.user-actions :is(.like-button, .unlike-button) {
     width: 100%;
 }
 

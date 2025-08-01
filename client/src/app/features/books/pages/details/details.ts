@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Book } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +25,8 @@ import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
 export class Details implements OnInit, OnDestroy {
     protected book!: Book;
     protected comments: CommentType[] = [];
+    protected isLiked = signal<boolean>(false);
+    protected likesCount = signal<number>(0);
 
     private subscriptions: Subscription = new Subscription();
 
@@ -35,6 +37,8 @@ export class Details implements OnInit, OnDestroy {
         private router: Router,
         protected userSession: UserSessionService,
     ) {
+        if (userSession.userId()) {
+        }
     }
 
     ngOnDestroy(): void {
@@ -43,31 +47,52 @@ export class Details implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const bookId = this.route.snapshot.params['bookId']
+        const userId = this.userSession.userId();
 
         const booksSub = this.booksService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
+            this.likesCount.set(this.book.likes.length);
+
+            if (userId && this.book.likes.includes(userId)) {
+                this.isLiked.set(true);
+            }
+
             this.cdr.detectChanges();
 
             this.book?.comments.forEach((commentId) => {
                 const commentsSub = this.booksService.getCommentWithOwner(commentId).subscribe(data => {
-                    this.comments?.push(data)
+                    this.comments.push(data)
                     this.cdr.detectChanges();
                 });
-                this.subscriptions?.add(commentsSub);
+                this.subscriptions.add(commentsSub);
             })
 
         });
 
-        this.subscriptions?.add(booksSub);
+        this.subscriptions.add(booksSub);
     }
 
-        onDelete(bookId: UUIDv4) {
-            const sub = this.booksService.deleteBook(bookId).subscribe({
-                next: () => {
-                    this.router.navigate(['/catalog']);
-                }
-            })
+    onDelete(bookId: UUIDv4): void {
+        const sub = this.booksService.deleteBook(bookId).subscribe({
+            next: () => {
+                this.router.navigate(['/catalog']);
+            }
+        })
+
+        this.subscriptions.add(sub);
+    }
+
+    onLike(): void {
+        const userId = this.userSession.userId() as string;
+
+        this.isLiked.set(true);
+        this.likesCount.update(count => count + 1);
+    }
     
-            this.subscriptions.add(sub);
-        }
+    onUnlike(): void {
+        const userId = this.userSession.userId() as string;
+        
+        this.isLiked.set(false);
+        this.likesCount.update(count => count - 1);
+    }
 }

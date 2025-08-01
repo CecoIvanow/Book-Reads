@@ -15,10 +15,14 @@
                             }
                         </section>
                         <section class="user-actions">
-                            <p>Likes: {{book.likes.length}}</p>
+                            <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
-                                    <button class="like-button" matButton="filled">Like</button>
+                                    @if (!isLiked()) {
+                                        <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
+                                    } @else {
+                                        <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
+                                    }
                                 }
                             </div>
                         </section>
