@@ -23,6 +23,7 @@ export const API_PATHS: ApiPaths = {
         ROOT: API_ROOTS.USERS,
         LOGIN: `${API_ROOTS.USERS}/login`,
         REGISTER: `${API_ROOTS.USERS}/register`,
+        LOGOUT: `${API_ROOTS.USERS}/logout`
     },
     COMMENTS: {
         WITH_OWNER: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}?load=${encodeURIComponent('owner=_ownerId:users')}`,

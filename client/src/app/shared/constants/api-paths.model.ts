@@ -26,6 +26,7 @@ type UserPaths = {
     ROOT: string,
     LOGIN: string,
     REGISTER: string,
+    LOGOUT: string
 }
 
 export type ApiPaths = {
