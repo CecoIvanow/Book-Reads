@@ -5,10 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
+import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
 
 @Component({
     selector: 'app-details',
@@ -22,15 +23,16 @@ import { UserSessionService } from '../../../../core/auth/services/index.js';
     styleUrl: './details.scss'
 })
 export class Details implements OnInit, OnDestroy {
-    protected book: Book | null = null;
+    protected book!: Book;
     protected comments: CommentType[] = [];
 
     private subscriptions: Subscription = new Subscription();
 
     constructor(
-        private bookService: BooksService,
+        private booksService: BooksService,
         private route: ActivatedRoute,
         private cdr: ChangeDetectorRef,
+        private router: Router,
         protected userSession: UserSessionService,
     ) {
     }
@@ -42,12 +44,12 @@ export class Details implements OnInit, OnDestroy {
     ngOnInit(): void {
         const bookId = this.route.snapshot.params['bookId']
 
-        const booksSub = this.bookService.getBookWithOwner(bookId).subscribe(data => {
+        const booksSub = this.booksService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
             this.cdr.detectChanges();
 
             this.book?.comments.forEach((commentId) => {
-                const commentsSub = this.bookService.getCommentWithOwner(commentId).subscribe(data => {
+                const commentsSub = this.booksService.getCommentWithOwner(commentId).subscribe(data => {
                     this.comments?.push(data)
                     this.cdr.detectChanges();
                 });
@@ -58,4 +60,14 @@ export class Details implements OnInit, OnDestroy {
 
         this.subscriptions?.add(booksSub);
     }
+
+        onDelete(bookId: UUIDv4) {
+            const sub = this.booksService.deleteBook(bookId).subscribe({
+                next: () => {
+                    this.router.navigate(['/catalog']);
+                }
+            })
+    
+            this.subscriptions.add(sub);
+        }
 }
