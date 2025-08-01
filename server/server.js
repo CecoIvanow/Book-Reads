@@ -75,7 +75,7 @@
             const method = req.method;
             console.info(`<< ${req.method} ${req.url}`);
 
-           
+
             if (req.url.slice(-6) == '/admin') {
                 res.writeHead(302, {
                     'Location': `http://${req.headers.host}/admin/`
@@ -91,7 +91,7 @@
             let result = '';
             let context;
 
-           
+
             if (method == 'OPTIONS') {
                 Object.assign(headers, {
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
@@ -108,8 +108,8 @@
                         status = err.status || 400;
                         result = composeErrorObject(err.code || status, err.message);
                     } else {
-                       
-                       
+
+
                         console.error(err);
                         status = 500;
                         result = composeErrorObject(500, 'Server Error');
@@ -147,8 +147,8 @@
                     result = await service(context, { method, tokens, query, body });
                 }
 
-               
-               
+
+
                 if (result !== undefined) {
                     result = JSON.stringify(result);
                 } else {
@@ -180,7 +180,7 @@
             .reduce((p, [k, v]) => Object.assign(p, { [k]: decodeURIComponent(v.replace(/\+/g, " ")) }), {});
 
         let body;
-       
+
         if (req.readableEnded) {
             body = req.body;
         } else {
@@ -341,7 +341,7 @@
             tokens = [context.params.collection, ...tokens];
             console.log('Request body:\n', body);
 
-           
+
             let responseData = data;
             for (let token of tokens) {
                 if (responseData.hasOwnProperty(token) == false) {
@@ -494,12 +494,12 @@
             let check = (a, b) => b;
             let acc = true;
             if (query.match(/ and /gi)) {
-               
+
                 clauses = query.split(/ and /gi);
                 check = (a, b) => a && b;
                 acc = true;
             } else if (query.match(/ or /gi)) {
-               
+
                 clauses = query.split(/ or /gi);
                 check = (a, b) => a || b;
                 acc = false;
@@ -533,7 +533,7 @@
             } else if (context.params.collection) {
                 responseData = context.storage.get(context.params.collection, tokens[0]);
             } else {
-               
+
                 return context.storage.get();
             }
 
@@ -544,7 +544,7 @@
                     .map(p => p.split(' ').filter(p => p != ''))
                     .map(([p, desc]) => ({ prop: p, desc: desc ? true : false }));
 
-               
+
                 for (let i = props.length - 1; i >= 0; i--) {
                     let { prop, desc } = props[i];
                     responseData.sort(({ [prop]: propA }, { [prop]: propB }) => {
@@ -840,7 +840,7 @@
     function createInstance(seedData = {}) {
         const collections = new Map();
 
-       
+
         for (let collectionName in seedData) {
             if (seedData.hasOwnProperty(collectionName)) {
                 const collection = new Map();
@@ -854,7 +854,7 @@
         }
 
 
-       
+
 
         /**
          * Get entry by ID or list of all entries from collection or list of all collections
@@ -899,7 +899,7 @@
                 collections.set(collection, targetCollection);
             }
             let id = uuid$2();
-           
+
             while (targetCollection.has(id)) {
                 id = uuid$2();
             }
@@ -986,13 +986,13 @@
             }
             const targetCollection = collections.get(collection);
             const result = [];
-           
+
             for (let [key, entry] of [...targetCollection.entries()]) {
                 let match = true;
                 for (let prop in entry) {
                     if (query.hasOwnProperty(prop)) {
                         const targetValue = query[prop];
-                       
+
                         if (typeof targetValue === 'string' && typeof entry[prop] === 'string') {
                             if (targetValue.toLocaleLowerCase() !== entry[prop].toLocaleLowerCase()) {
                                 match = false;
@@ -1214,7 +1214,7 @@
         }, settings.rules);
 
         return function decorateContext(context, request) {
-           
+
             const get = (collectionName, id) => {
                 return context.storage.get(collectionName, id);
             };
@@ -1246,7 +1246,7 @@
             }
 
             function applyPropRule(action, [prop, rule], user, data, newData) {
-               
+
                 if (typeof rule == 'string') {
                     rule = !!eval(rule);
                 }
@@ -1281,19 +1281,19 @@
             let currentRule = ruleOrDefault(true, rules['*'][action]);
             let propRules = [];
 
-           
+
             const collectionRules = rules[collection];
             if (collectionRules !== undefined) {
-               
+
                 currentRule = ruleOrDefault(currentRule, collectionRules[action]);
 
-               
+
                 const allPropRules = collectionRules['*'];
                 if (allPropRules !== undefined) {
                     propRules = ruleOrDefault(propRules, getPropRule(allPropRules, action));
                 }
 
-               
+
                 const recordRules = collectionRules[data._id];
                 if (recordRules !== undefined) {
                     currentRule = ruleOrDefault(currentRule, recordRules[action]);
@@ -1508,11 +1508,6 @@
                 img: "https://assets.blogs.bsu.edu/wp-content/uploads/sites/25/2020/03/09153737/shining.jpg",
                 createdOn: "1711929600000",
                 _id: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
-                likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
-                ],
                 comments: [
                     "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b"
                 ],
@@ -1525,12 +1520,6 @@
                 img: "https://m.media-amazon.com/images/I/51Qj9kPD4CL.jpg",
                 createdOn: "1714521600000",
                 _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "123e4567-e89b-12d3-a456-426614174000"
-                ],
                 comments: [
                     "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
                     "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d"
@@ -1544,13 +1533,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
                 createdOn: "1717200000000",
                 _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
-                ],
                 comments: [
                     "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e"
                 ],
@@ -1563,12 +1545,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554086139i/19288043.jpg",
                 createdOn: "1719792000000",
                 _id: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
-                ],
                 comments: [
                     "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f"
                 ],
@@ -1581,13 +1557,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1270352123i/186074.jpg",
                 createdOn: "1722470400000",
                 _id: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b"
-                ],
                 comments: [
                     "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
                     "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
@@ -1601,11 +1570,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692653547i/196840591.jpg",
                 createdOn: "1725148800000",
                 _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"
-                ],
                 comments: [],
                 summary: "American expatriates in post-WWI Europe drift through Paris cafes and Spanish bullfights, masking spiritual emptiness with alcohol and aimless adventure. Jake Barnes' impotence from war wounds symbolizes the Lost Generation's disillusionment. Hemingway's sparse prose captures existential despair beneath surface bravado."
             },
@@ -1616,11 +1580,6 @@
                 img: "https://images.penguinrandomhouse.com/cover/9780451530608",
                 createdOn: "1727827200000",
                 _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
-                ],
                 comments: [
                     "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
                 ],
@@ -1633,13 +1592,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1559986152i/386162.jpg",
                 createdOn: "1730419200000",
                 _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
-                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c"
-                ],
                 comments: [
                     "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
                     "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
@@ -1653,13 +1605,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387124618i/9361589.jpg",
                 createdOn: "1733097600000",
                 _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
-                    "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f"
-                ],
                 comments: [
                     "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
                 ],
@@ -1672,14 +1617,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
                 createdOn: "1735689600000",
                 _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a"
-                ],
                 comments: [
                     "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
                     "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
@@ -1693,12 +1630,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1449868701i/11127.jpg",
                 createdOn: "1685577600000",
                 _id: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a" 
-                ],
                 comments: [
                     "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
                 ],
@@ -1711,12 +1642,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1383718290i/13079982.jpg",
                 createdOn: "1688169600000",
                 _id: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e" 
-                ],
                 comments: [
                     "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
                     "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
@@ -1730,11 +1655,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546103428i/5297.jpg",
                 createdOn: "1690848000000",
                 _id: "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d" 
-                ],
                 comments: [],
                 summary: "Handsome Dorian Gray wishes his portrait would age instead of him, enabling a life of hedonism without physical consequences. As his soul corrupts, the painting grotesquely transforms to reflect his sins. Wilde's philosophical novel examines aestheticism, morality, and the dangerous pursuit of eternal youth through sharp wit and Gothic horror."
             },
@@ -1745,13 +1665,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1557343311i/10210.jpg",
                 createdOn: "1693526400000",
                 _id: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                    "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e" 
-                ],
                 comments: [
                     "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
                     "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
@@ -1766,11 +1679,6 @@
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfw7MyU9SVnv6XPp6DUDQ98qhmCpYIY77Nqw&s",
                 createdOn: "1696118400000",
                 _id: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f" 
-                ],
                 comments: [
                     "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
                 ],
@@ -1783,16 +1691,9 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579036753i/77203.jpg",
                 createdOn: "1698796800000",
                 _id: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a" 
-                ],
                 comments: [
                     "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                    "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
+                    "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0b"
                 ],
                 summary: "Amir's childhood betrayal of loyal friend Hassan haunts him through Afghanistan's turbulent history - from monarchy to Taliban rule. Returning to Kabul years later, he seeks redemption in this powerful story of guilt, atonement, and the enduring bonds of friendship. Hosseini's debut humanizes Middle Eastern conflicts through intimate personal drama."
             },
@@ -1803,12 +1704,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1440319389i/4981.jpg",
                 createdOn: "1701388800000",
                 _id: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
-                    "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b" 
-                ],
                 comments: [
                     "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
                 ],
@@ -1821,14 +1716,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1578028274i/38447.jpg",
                 createdOn: "1704067200000",
                 _id: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                    "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                    "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
-                    "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c" 
-                ],
                 comments: [
                     "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
                     "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
@@ -1843,11 +1730,6 @@
                 img: "https://m.media-amazon.com/images/I/61kKUlUoQHL._UF894,1000_QL80_.jpg",
                 createdOn: "1706745600000",
                 _id: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d" 
-                ],
                 comments: [
                     "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
                 ],
@@ -1860,14 +1742,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327881361i/320.jpg",
                 createdOn: "1709251200000",
                 _id: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
-                    "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b" 
-                ],
                 comments: [
                     "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
                     "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
@@ -1881,13 +1755,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327940656i/153747.jpg",
                 createdOn: "1672531200000",
                 _id: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b" 
-                ],
                 comments: [
                     "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                     "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d"
@@ -1901,12 +1768,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1381512375i/18490.jpg",
                 createdOn: "1675209600000",
                 _id: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e" 
-                ],
                 comments: [
                     "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                     "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
@@ -1921,11 +1782,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144.jpg",
                 createdOn: "1677628800000",
                 _id: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                likes: [
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f" 
-                ],
                 comments: [
                     "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
                 ],
@@ -1938,14 +1794,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1390173285i/1381.jpg",
                 createdOn: "1680307200000",
                 _id: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d" 
-                ],
                 comments: [
                     "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
                     "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
@@ -1959,11 +1807,6 @@
                 img: "https://m.media-amazon.com/images/I/81svZOFopwL._SY466_.jpg",
                 createdOn: "1682899200000",
                 _id: "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d" 
-                ],
                 comments: [],
                 summary: "A young girl follows a white rabbit down a hole into a fantastical world where logic is inverted and absurdity reigns. Through encounters with iconic characters like the Mad Hatter and Cheshire Cat, this children's classic explores themes of identity, growth, and the subversion of Victorian social norms through surreal wordplay and symbolic imagery."
             },
@@ -1974,11 +1817,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg",
                 createdOn: "1751236331451",
                 _id: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                    "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d"
-                ],
                 comments: [
                     "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5",
                     "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"
@@ -1992,11 +1830,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg",
                 createdOn: "1577884800000",
                 _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                    "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
-                    "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a"
-                ],
                 comments: [
                     "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
                     "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d"
@@ -2010,11 +1843,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1490528560i/4671.jpg",
                 createdOn: "1583020800000",
                 _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                    "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b"
-                ],
                 comments: [
                     "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c"
                 ],
@@ -2027,9 +1855,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320399351i/1885.jpg",
                 createdOn: "1585699200000",
                 _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                ],
                 comments: [
                     "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
                     "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
@@ -2043,9 +1868,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg",
                 createdOn: "1590969600000",
                 _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
-                likes: [
-                    "123e4567-e89b-12d3-a456-426614174000",
-                ],
                 comments: [
                     "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c",
                     "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a"
@@ -2059,10 +1881,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
                 createdOn: "1596240000000",
                 _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
-                likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"
-                ],
                 comments: [
                     "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
                     "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b"
@@ -2076,10 +1894,6 @@
                 img: "https://images.penguinrandomhouse.com/cover/9780452284241",
                 createdOn: "1601510400000",
                 _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
-                likes: [
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f"
-                ],
                 comments: [
                     "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
                     "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c"
@@ -2093,10 +1907,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1560816565i/48855.jpg",
                 createdOn: "1606780800000",
                 _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
-                ],
                 comments: [
                     "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e"
                 ],
@@ -2109,10 +1919,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1466865542i/18144590.jpg",
                 createdOn: "1612051200000",
                 _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
-                ],
                 comments: [
                     "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
                     "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f"
@@ -2126,9 +1932,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg",
                 createdOn: "1617321600000",
                 _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
-                likes: [
-                    "35c62d76-8152-4626-8712-eeb96381bea8",
-                ],
                 comments: [
                     "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
                     "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
@@ -2142,9 +1945,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522157426i/19063.jpg",
                 createdOn: "1622592000000",
                 _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
-                likes: [
-                    "847ec027-f659-4086-8032-5173e2f9c93a",
-                ],
                 comments: [
                     "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
                     "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a"
@@ -2158,10 +1958,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579621267i/968.jpg",
                 createdOn: "1627862400000",
                 _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
-                likes: [
-                    "123e4567-e89b-12d3-a456-426614174000",
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"
-                ],
                 comments: [
                     "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
                     "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b"
@@ -2175,9 +1971,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
                 createdOn: "1633132800000",
                 _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
-                likes: [
-                    "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                ],
                 comments: [
                     "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c"
                 ],
@@ -2190,10 +1983,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1575509280i/5129.jpg",
                 createdOn: "1638403200000",
                 _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
-                likes: [
-                    "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                    "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c"
-                ],
                 comments: [
                     "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
                     "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e"
@@ -2207,10 +1996,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
                 createdOn: "1643673600000",
                 _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
-                likes: [
-                    "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                    "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f"
-                ],
                 comments: [
                     "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
                     "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a"
@@ -2224,10 +2009,6 @@
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
                 createdOn: "1648944000000",
                 _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
-                likes: [
-                    "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                    "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a"
-                ],
                 comments: [
                     "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
                     "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d"
@@ -2362,11 +2143,11 @@
                 content: "The pomegranate tree scene shattered me. Hosseini makes you feel every moment of guilt and redemption.",
                 _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
             },
-            "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
+            "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0b": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 bookId: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
                 content: "Amir's cowardice made me furious, which shows how effectively Hosseini crafts emotional stakes.",
-                _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
+                _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0b"
             },
             "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
                 _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
@@ -2625,6 +2406,680 @@
                 bookId: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
                 content: "The scope of Middle-earth feels alive in every chapter. Epic in every sense!",
                 _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d"
+            }
+        },
+        likes: {
+            "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f": {
+                _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
+                _createdOn: 1717200000000 + 86400000 * 2
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                _createdOn: 1714521600000 + 86400000 * 5
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
+                _createdOn: 1711929600000 + 86400000 * 1
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
+                _createdOn: 1714521600000 + 86400000 * 3
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
+                _createdOn: 1717200000000 + 86400000 * 7
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
+                _createdOn: 1719792000000 + 86400000 * 4
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 6
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 2
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 8
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 1
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 9
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 5
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 3
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 7
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 4
+            },
+            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
+                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 6
+            },
+            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
+                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 2
+            },
+            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
+                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 8
+            },
+            "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f": {
+                _id: "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 9
+            },
+            "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a": {
+                _id: "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 1
+            },
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b",
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 6
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 3
+            },
+            "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d": {
+                _id: "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d",
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 7
+            },
+            "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e": {
+                _id: "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e",
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 4
+            },
+            "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f": {
+                _id: "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f",
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 5
+            },
+            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
+                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 8
+            },
+            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
+                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 1
+            },
+            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
+                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 7
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 3
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 9
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 4
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 6
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 2
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 8
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 5
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 7
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 1
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 9
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 3
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 4
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 6
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 2
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 8
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 5
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 7
+            },
+            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
+                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c",
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 2
+            },
+            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
+                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 1
+            },
+            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
+                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 3
+            },
+            "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f": {
+                _id: "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f",
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 7
+            },
+            "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a": {
+                _id: "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 4
+            },
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 5
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 6
+            },
+            "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d": {
+                _id: "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 8
+            },
+            "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e": {
+                _id: "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 1
+            },
+            "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f": {
+                _id: "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 2
+            },
+            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
+                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 3
+            },
+            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
+                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 4
+            },
+            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
+                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 5
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 6
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 7
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 8
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 9
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 1
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 2
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 3
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 4
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 5
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 6
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 7
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 8
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 9
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 5
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 1
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 2
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 3
+            },
+            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
+                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 4
+            },
+            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
+                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 5
+            },
+            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
+                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 6
+            },
+            "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f": {
+                _id: "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 7
+            },
+            "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a": {
+                _id: "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 8
+            },
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 9
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 1
+            },
+            "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d": {
+                _id: "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 2
+            },
+            "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e": {
+                _id: "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 3
+            },
+            "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f": {
+                _id: "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 4
+            },
+            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
+                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 5
+            },
+            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
+                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 6
+            },
+            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
+                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 7
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 8
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 9
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 1
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 2
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 3
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 4
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 5
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 6
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 7
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 8
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 9
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 1
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 2
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 3
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 4
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 5
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 6
+            },
+            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
+                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 7
+            },
+            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
+                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                _createdOn: 1733097600000 + 86400000 * 8
+            },
+            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
+                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                _createdOn: 1735689600000 + 86400000 * 9
+            },
+            "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f": {
+                _id: "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+                _createdOn: 1706745600000 + 86400000 * 1
+            },
+            "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a": {
+                _id: "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                _createdOn: 1709251200000 + 86400000 * 2
+            },
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                _createdOn: 1727827200000 + 86400000 * 3
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                _createdOn: 1730419200000 + 86400000 * 4
             }
         }
     };
