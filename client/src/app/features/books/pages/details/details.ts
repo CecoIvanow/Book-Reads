@@ -4,12 +4,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommentType } from '../../models/index.js';
 import { BooksService } from '../../books.service.js';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
+import { LikesService } from '../../likes.service.js';
 
 @Component({
     selector: 'app-details',
@@ -32,6 +33,7 @@ export class Details implements OnInit, OnDestroy {
 
     constructor(
         private booksService: BooksService,
+        private likesService: LikesService,
         private route: ActivatedRoute,
         private cdr: ChangeDetectorRef,
         private router: Router,
@@ -47,6 +49,10 @@ export class Details implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const bookId = this.route.snapshot.params['bookId']
+
+        const likesCountSub = this.likesService.getBookLikesCount(bookId).subscribe(data => {
+            this.likesCount.set(data);
+        });
 
         const booksSub = this.booksService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
@@ -64,6 +70,7 @@ export class Details implements OnInit, OnDestroy {
         });
 
         this.subscriptions.add(booksSub);
+        this.subscriptions.add(likesCountSub);
     }
 
     onDelete(): void {

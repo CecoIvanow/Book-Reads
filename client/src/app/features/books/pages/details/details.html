@@ -15,7 +15,7 @@
                             }
                         </section>
                         <section class="user-actions">
-                            <p>Likes: {{'WIP'}}</p>
+                            <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
                                     @if (!isLiked()) {
