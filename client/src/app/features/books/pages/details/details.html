@@ -5,17 +5,17 @@
             <section class="book-cover">
                 <mat-card>
                     <div class="media">
-                        <img mat-card-image [src]="book.img">
+                        <img mat-card-image [src]="book?.img">
                     </div>
                     <mat-card-actions>
                         <section class="owner-actions">
-                            @if (userSession.userId() === book.owner?._id) {
-                                <a class="edit-button" matButton="text" [href]="'/books/edit/' + book._id">Edit</a>
-                                <button class="delete-button" matButton="filled" (click)="onDelete(book._id)">Delete</button>
+                            @if (userSession.userId() === book?.owner?._id) {
+                                <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
+                                <button class="delete-button" matButton="filled" (click)="onDelete()">Delete</button>
                             }
                         </section>
                         <section class="user-actions">
-                            <p>Likes: {{likesCount()}}</p>
+                            <p>Likes: {{'WIP'}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
                                     @if (!isLiked()) {
@@ -32,13 +32,13 @@
 
             <section class="book-details">
                 <div>
-                    <h2 class="title">{{book.title}}</h2>
-                    <h3 class="author">by {{book.author}}</h3>
+                    <h2 class="title">{{book?.title}}</h2>
+                    <h3 class="author">by {{book?.author}}</h3>
                 </div>
-                <p class="added-by">Added by: {{book.owner?.firstName}} {{book.owner?.lastName}}</p>
+                <p class="added-by">Added by: {{book?.owner?.firstName}} {{book?.owner?.lastName}}</p>
                 <section class="book-summary">
                     <h2>Summary:</h2>
-                    <p>{{book.summary}}</p>
+                    <p>{{book?.summary}}</p>
                 </section>
 
                 <section class="comment-input">
@@ -74,7 +74,7 @@
                                 <mat-card-actions>
                                     <section class="owner-actions">
                                         @if (userSession.userId() === comment._ownerId) {
-                                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book._id">Edit</a>
+                                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
                                             <button class="delete-button" matButton="filled">Delete</button>
                                         }
                                     </section>

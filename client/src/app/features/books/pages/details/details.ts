@@ -23,7 +23,7 @@ import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
     styleUrl: './details.scss'
 })
 export class Details implements OnInit, OnDestroy {
-    protected book!: Book;
+    protected book: Book | null = null;
     protected comments: CommentType[] = [];
     protected isLiked = signal<boolean>(false);
     protected likesCount = signal<number>(0);
@@ -47,15 +47,9 @@ export class Details implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const bookId = this.route.snapshot.params['bookId']
-        const userId = this.userSession.userId();
 
         const booksSub = this.booksService.getBookWithOwner(bookId).subscribe(data => {
             this.book = data;
-            this.likesCount.set(this.book.likes.length);
-
-            if (userId && this.book.likes.includes(userId)) {
-                this.isLiked.set(true);
-            }
 
             this.cdr.detectChanges();
 
@@ -72,7 +66,9 @@ export class Details implements OnInit, OnDestroy {
         this.subscriptions.add(booksSub);
     }
 
-    onDelete(bookId: UUIDv4): void {
+    onDelete(): void {
+        const bookId = this.book?._id as string;
+
         const sub = this.booksService.deleteBook(bookId).subscribe({
             next: () => {
                 this.router.navigate(['/catalog']);
