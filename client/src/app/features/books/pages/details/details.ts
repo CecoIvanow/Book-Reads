@@ -48,14 +48,17 @@ export class Details implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        const bookId = this.route.snapshot.params['bookId']
+        const bookId = this.route.snapshot.params['bookId'];
 
-        const likesCountSub = this.likesService.getBookLikesCount(bookId).subscribe(data => {
-            this.likesCount.set(data);
-        });
+        const observables$ = forkJoin([
+            this.booksService.getBookWithOwner(bookId),
+            this.likesService.getBookLikesCount(bookId),
+        ])
 
-        const booksSub = this.booksService.getBookWithOwner(bookId).subscribe(data => {
-            this.book = data;
+        const sub = observables$.subscribe(data => {
+            this.likesCount.set(data[1]);
+
+            this.book = data[0];
 
             this.cdr.detectChanges();
 
@@ -67,10 +70,9 @@ export class Details implements OnInit, OnDestroy {
                 this.subscriptions.add(commentsSub);
             })
 
-        });
+        })
 
-        this.subscriptions.add(booksSub);
-        this.subscriptions.add(likesCountSub);
+        this.subscriptions.add(sub);
     }
 
     onDelete(): void {
