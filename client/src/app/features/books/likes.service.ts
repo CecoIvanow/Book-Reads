@@ -13,7 +13,7 @@ export class LikesService {
   constructor(private httpClient: HttpClient)
   {}
 
-  getBookLikesCount(bookId: UUIDv4): Observable<number> {
+  getLikesCount(bookId: UUIDv4): Observable<number> {
     const url = buildURL(API_PATHS.LIKES.OF_BOOK.COUNT(bookId));
 
     return this.httpClient.get<number>(url);

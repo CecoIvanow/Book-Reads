@@ -52,7 +52,7 @@ export class Details implements OnInit, OnDestroy {
 
         const observables$ = forkJoin([
             this.booksService.getBookWithOwner(bookId),
-            this.likesService.getBookLikesCount(bookId),
+            this.likesService.getLikesCount(bookId),
         ])
 
         const sub = observables$.subscribe(data => {
