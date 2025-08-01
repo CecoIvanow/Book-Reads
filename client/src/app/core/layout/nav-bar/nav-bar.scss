@@ -42,3 +42,11 @@ ul li:hover {
     transform: scale(1.1);
     transition: 0.2s ease-out;
 }
+
+#logout {
+    font-weight: 500;
+}
+
+#logout:hover {
+    cursor: pointer;
+}
