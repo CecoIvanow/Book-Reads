@@ -8,7 +8,7 @@ import { forkJoin, Subscription } from 'rxjs';
 import { BooksService } from '../../books.service.js';
 import { RouterModule } from '@angular/router';
 import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
-import { log } from 'console';
+import { UUIDv4 } from '../../../../shared/models/index.js';
 
 @Component({
     selector: 'app-catalog-page',
@@ -34,7 +34,11 @@ export class Catalog implements OnInit, OnDestroy {
 
     private subscriptions = new Subscription();
 
-    constructor(private booksService: BooksService, private cdr: ChangeDetectorRef, protected userSession: UserSessionService) {
+    constructor(
+        private booksService: BooksService,
+        private cdr: ChangeDetectorRef,
+        protected userSession: UserSessionService
+    ) {
     }
 
     ngOnInit() {
@@ -44,7 +48,7 @@ export class Catalog implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscriptions?.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     fetchBooks() {
@@ -67,12 +71,22 @@ export class Catalog implements OnInit, OnDestroy {
         }
         );
 
-        this.subscriptions?.add(sub);
+        this.subscriptions.add(sub);
     }
 
     onPageChange(e: PageEvent): void {
         this.pageSize = e.pageSize;
         this.skipBooks = e.pageIndex * this.pageSize;
         this.fetchBooks();
+    }
+
+    onDelete(bookId: UUIDv4) {
+        const sub = this.booksService.deleteBook(bookId).subscribe({
+            next: () => {
+                this.fetchBooks();
+            }
+        })
+
+        this.subscriptions.add(sub);
     }
 }

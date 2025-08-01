@@ -6,7 +6,7 @@
             <li><a routerLink="/catalog">Catalog</a></li>
             @if(this.userSession.userToken()) {
                 <li><a routerLink="/books/add">Add new book</a></li>
-                <li (click)="onLogout()"><a routerLink="/">Logout</a></li>
+                <li (click)="onLogout()" id="logout">Logout</li>
             }
             @else {
                 <li><a routerLink="/login">Login</a></li>

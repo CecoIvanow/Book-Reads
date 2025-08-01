@@ -8,7 +8,6 @@ export interface Book {
     img: string,
     createdOn: string,
     _id: UUIDv4,
-    likes: UUIDv4[],
     comments: UUIDv4[],
     summary: string,
     owner?: Owner

@@ -6,6 +6,7 @@ import { UUIDv4 } from '../../shared/models/index.js';
 import { buildURL } from '../../shared/utils/index.js';
 import { Book } from './models/index.js';
 import { CommentType } from './models/index.js';
+import { AccessToken } from '../../core/auth/models/index.js';
 
 
 @Injectable({
@@ -52,5 +53,15 @@ export class BooksService {
         const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
 
         return this.httpClient.get<CommentType>(url);
+    }
+
+    deleteBook(id: UUIDv4, userToken: AccessToken): Observable<unknown>{
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
+
+        return this.httpClient.delete(url, {
+            headers: {
+                'X-Authorization': userToken,
+            }
+        })
     }
 }

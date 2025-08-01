@@ -4,6 +4,7 @@ export type ApiRoots = {
     BOOKS: string,
     USERS: string,
     COMMENTS: string,
+    LIKES: string
 }
 
 type BookDetails = {
@@ -15,21 +16,29 @@ type CommentsPath = {
     WITH_OWNER: (commentId: UUIDv4) => string,
 }
 
-type BookPaths = {
+type BooksPaths = {
     ROOT: string,
     COUNT: string,
     DETAILS: BookDetails,
         PAGINATION: (skip: number, size: number) => string,
 }
 
-type UserPaths = {
+type UsersPaths = {
     ROOT: string,
     LOGIN: string,
     REGISTER: string,
+    LOGOUT: string
+}
+
+type LikesPaths = {
+    OF_BOOK: {
+        COUNT: (bookId: UUIDv4) => string,
+    }
 }
 
 export type ApiPaths = {
-    BOOKS: BookPaths,
-    USERS: UserPaths,
+    BOOKS: BooksPaths,
+    USERS: UsersPaths,
     COMMENTS: CommentsPath,
+    LIKES: LikesPaths
 }

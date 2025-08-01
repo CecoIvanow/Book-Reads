@@ -7,6 +7,7 @@ const API_ROOTS: ApiRoots = {
     COMMENTS: '/data/comments',
     BOOKS: '/data/books',
     USERS: '/users',
+    LIKES: '/data/likes',
 }
 
 export const API_PATHS: ApiPaths = {
@@ -23,8 +24,14 @@ export const API_PATHS: ApiPaths = {
         ROOT: API_ROOTS.USERS,
         LOGIN: `${API_ROOTS.USERS}/login`,
         REGISTER: `${API_ROOTS.USERS}/register`,
+        LOGOUT: `${API_ROOTS.USERS}/logout`
     },
     COMMENTS: {
         WITH_OWNER: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}?load=${encodeURIComponent('owner=_ownerId:users')}`,
+    },
+    LIKES: {
+        OF_BOOK: {
+            COUNT: (bookId: UUIDv4) => `${API_ROOTS.LIKES}?where=${encodeURIComponent(`bookId="${bookId}"`)}&count=true`,
+        }
     }
 }
