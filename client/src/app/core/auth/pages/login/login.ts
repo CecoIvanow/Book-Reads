@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginCredentials } from '../../models/index.js';
+import { AuthResponse, LoginCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../services/user-session.service.js';
 
 @Component({
@@ -15,7 +15,10 @@ import { UserSessionService } from '../../services/user-session.service.js';
 })
 export class Login {
 
-    constructor(private authService: AuthService, protected userSession: UserSessionService) {
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        protected userSession: UserSessionService) {
     }
 
     onLogin(e: Event) {
@@ -30,6 +33,15 @@ export class Login {
             password,
         }
 
-        this.authService.login(credentials).subscribe(data => this.userSession.saveSessionToken({ token: data.accessToken, id: data._id }));
+        this.authService.login(credentials).subscribe({
+            next: (data) => {
+                this.userSession.saveSessionToken({
+                    token: data.accessToken,
+                    id: data._id
+                });
+
+                this.router.navigate(['/']);
+            }
+        });
     }
 }
