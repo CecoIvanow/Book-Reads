@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { API_PATHS } from '../../shared/constants/index.js';
 import { UUIDv4 } from '../../shared/models/index.js';
 import { buildURL } from '../../shared/utils/index.js';
 import { Book } from './models/index.js';
 import { CommentType } from './models/index.js';
+import { UserSessionService } from '../../core/auth/services/user-session.service.js';
+import { AccessToken } from '../../core/auth/models/access-token.model.js';
 
 
 @Injectable({
@@ -15,7 +17,7 @@ export class BooksService {
     private defaultSkip: number = 0;
     private defaultSize: number = 10;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private userSession: UserSessionService) {
     }
 
     getAllBooks(): Observable<Book[]> {
@@ -52,5 +54,21 @@ export class BooksService {
         const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
 
         return this.httpClient.get<CommentType>(url);
+    }
+
+    deleteBook(id: UUIDv4): Observable<unknown>{
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
+
+        const token = this.userSession.userToken();
+
+        if (!token) {
+            return throwError(() => new Error('User not authenticated!'));
+        }
+
+        return this.httpClient.delete(url, {
+            headers: {
+                'X-Authorization': token,
+            }
+        })
     }
 }

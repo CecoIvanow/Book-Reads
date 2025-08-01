@@ -24,7 +24,7 @@
                     <mat-card-actions>
                         @if (userSession.userId() === book._ownerId) {
                             <a class="edit-button" matButton="text" [href]="'/books/edit/' + book._id">Edit</a>
-                            <button class="delete-button" matButton="filled">Delete</button>
+                            <button class="delete-button" matButton="filled" (click)="onDelete(book._id)">Delete</button>
                         }
                     </mat-card-actions>
                 </mat-card>
