@@ -77,8 +77,13 @@ export class Details implements OnInit, OnDestroy {
 
     onDelete(): void {
         const bookId = this.book?._id as string;
+        const userToken = this.userSession.userToken();
 
-        const sub = this.booksService.deleteBook(bookId).subscribe({
+        if (!userToken) {
+            return;
+        }
+
+        const sub = this.booksService.deleteBook(bookId, userToken).subscribe({
             next: () => {
                 this.router.navigate(['/catalog']);
             }
