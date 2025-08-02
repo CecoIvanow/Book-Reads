@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
+import { log } from 'console';
 
 @Component({
     selector: 'app-details',
@@ -28,6 +29,8 @@ export class Details implements OnInit, OnDestroy {
     protected comments = signal<CommentType[]>([]);
     protected userLikeId = signal<UUIDv4 | null>(null);
     protected likesCount = signal<number>(0);
+    protected clickedComemntEditId = signal<UUIDv4 | null>(null);
+    protected commentContent = signal<string | null>(null);
 
     private subscriptions: Subscription = new Subscription();
 
@@ -151,5 +154,10 @@ export class Details implements OnInit, OnDestroy {
                 this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
             }
         })
+    }
+
+    onCommentEditClick(commentId: UUIDv4, content: string): void {
+        this.clickedComemntEditId.set(commentId);
+        this.commentContent.set(content);
     }
 }
