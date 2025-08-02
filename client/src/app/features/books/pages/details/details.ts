@@ -71,7 +71,7 @@ export class Details implements OnInit, OnDestroy {
         this.subscriptions.add(sub);
     }
 
-    onDelete(): void {
+    onBookDelete(): void {
         const bookId = this.book?._id as string;
         const userToken = this.userSession.userToken();
 

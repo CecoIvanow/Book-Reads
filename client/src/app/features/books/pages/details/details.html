@@ -11,7 +11,7 @@
                         <section class="owner-actions">
                             @if (userSession.userId() === book?.owner?._id) {
                                 <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
-                                <button class="delete-button" matButton="filled" (click)="onDelete()">Delete</button>
+                                <button class="delete-button" matButton="filled" (click)="onBookDelete()">Delete</button>
                             }
                         </section>
                         <section class="user-actions">
