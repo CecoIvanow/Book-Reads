@@ -26,7 +26,6 @@ import { UUIDv4 } from '../../../../shared/models/index.js';
 export class Catalog implements OnInit, OnDestroy {
     protected booksCount = signal<number>(0);
     protected books = signal<Book[] | null>(null);
-    protected isLoading = signal<boolean>(false);
     protected skipBooks = signal<number>(0);
     protected pageSize = signal<number>(10);
 
@@ -39,8 +38,6 @@ export class Catalog implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.isLoading.set(true);
-
         this.fetchBooks();
     }
 
@@ -58,13 +55,8 @@ export class Catalog implements OnInit, OnDestroy {
             next: (data) => {
                 this.books.set(data[0]);
                 this.booksCount.set(data[1]);
-            },
-            complete: () => {
-                this.isLoading.set(false);
-            },
-
-        }
-        );
+            }
+        });
 
         this.subscriptions.add(sub);
     }
