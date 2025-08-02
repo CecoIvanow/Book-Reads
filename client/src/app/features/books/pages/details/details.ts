@@ -123,7 +123,7 @@ export class Details implements OnInit, OnDestroy {
         });
     }
 
-    onCommentSubmit(e: Event) {
+    onCommentSubmit(e: Event): void {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget as HTMLFormElement);
@@ -143,6 +143,13 @@ export class Details implements OnInit, OnDestroy {
                 ])
             }
         })
-        
+    }
+
+    onCommentDelete(commentId: UUIDv4): void {
+        this.commentsService.deleteComment(commentId).subscribe({
+            next: () => {
+                this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+            }
+        })
     }
 }

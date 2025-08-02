@@ -75,7 +75,7 @@
                                     <section class="owner-actions">
                                         @if (userSession.userId() === comment._ownerId) {
                                             <a class="edit-button" matButton="text" [href]="'/books/edit/' + book()?._id">Edit</a>
-                                            <button class="delete-button" matButton="filled">Delete</button>
+                                            <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
                                         }
                                     </section>
                                 </mat-card-actions>
