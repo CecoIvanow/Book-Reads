@@ -31,4 +31,12 @@ export class LikesService {
             }
         })
     }
+
+    hasBeenLiked(bookId: UUIDv4): Observable<Like[]> {
+        const userId = this.userSession.userId() as UUIDv4;
+
+        const url = buildURL(API_PATHS.LIKES.OF_BOOK.FROM_OWNER(bookId, userId));
+        
+        return this.httpClient.get<Like[]>(url);
+    }
 }

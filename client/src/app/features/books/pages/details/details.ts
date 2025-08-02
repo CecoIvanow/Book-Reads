@@ -50,12 +50,16 @@ export class Details implements OnInit, OnDestroy {
         const observables$ = forkJoin([
             this.booksService.getBookWithOwner(bookId),
             this.likesService.getLikesCount(bookId),
+            this.likesService.hasBeenLiked(bookId),
         ])
 
         const sub = observables$.subscribe(data => {
+            this.book = data[0];
             this.likesCount.set(data[1]);
 
-            this.book = data[0];
+            if (data[2].length > 0) {
+                this.isLiked.set(true);
+            }
 
             this.cdr.detectChanges();
 
@@ -98,15 +102,17 @@ export class Details implements OnInit, OnDestroy {
         
         this.isLiked.set(true);
         this.likesCount.update(count => count + 1);
-        this.likesService.addLike(bookId).subscribe({
-            error: (error) => {
-                console.error(error)
-            }
-        })
+        this.likesService.addLike(bookId).subscribe()
     }
     
     onUnlike(): void {
         const userId = this.userSession.userId() as string;
+
+        const bookId = this.book?._id;
+
+        if (!bookId) {
+            return;
+        }
         
         this.isLiked.set(false);
         this.likesCount.update(count => count - 1);
