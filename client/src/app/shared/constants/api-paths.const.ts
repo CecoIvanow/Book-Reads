@@ -36,5 +36,11 @@ export const API_PATHS: ApiPaths = {
         DETAILS: {
             ROOT: (likeId: UUIDv4) => `${API_ROOTS.LIKES}/${likeId}`,
         }
+    },
+    COMMENTS: {
+        ROOT: `${API_ROOTS.COMMENTS}`,
+        SPECIFIC: {
+            ROOT: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}`,
+        }
     }
 }

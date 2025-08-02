@@ -7,6 +7,13 @@ export type ApiRoots = {
     LIKES: string
 }
 
+type CommentPaths = {
+    ROOT: string,
+    SPECIFIC: {
+        ROOT: (commentId: UUIDv4) => string,
+    }
+}
+
 type BooksPaths = {
     ROOT: string,
     COUNT: string,
@@ -39,5 +46,6 @@ type LikesPaths = {
 export type ApiPaths = {
     BOOKS: BooksPaths,
     USERS: UsersPaths,
-    LIKES: LikesPaths
+    LIKES: LikesPaths,
+    COMMENTS: CommentPaths
 }

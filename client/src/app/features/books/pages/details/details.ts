@@ -3,7 +3,7 @@ import { Book } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommentType } from '../../models/index.js';
-import { BooksService, LikesService } from '../../services/index.js';
+import { BooksService, CommentsService, LikesService } from '../../services/index.js';
 import { forkJoin, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,6 +34,7 @@ export class Details implements OnInit, OnDestroy {
     constructor(
         private booksService: BooksService,
         private likesService: LikesService,
+        private commentsService: CommentsService,
         private route: ActivatedRoute,
         private router: Router,
         protected userSession: UserSessionService,
@@ -120,5 +121,28 @@ export class Details implements OnInit, OnDestroy {
                 this.likesCount.update(count => count + 1);
             }
         });
+    }
+
+    onCommentSubmit(e: Event) {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        const content = formData.get('content') as string;
+
+        const bookId = this.book()?._id;
+
+        if (!bookId) {
+            return;
+        }
+
+        this.commentsService.addComment(bookId, content).subscribe({
+            next: (newComment) => {
+                this.comments.update(prevComments => [
+                    newComment,
+                    ...prevComments
+                ])
+            }
+        })
+        
     }
 }
