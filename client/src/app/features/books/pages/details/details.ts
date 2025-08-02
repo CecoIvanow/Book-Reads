@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Book } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,8 +24,8 @@ import { FAKE_ID } from '../../../../shared/constants/index.js';
     styleUrl: './details.scss'
 })
 export class Details implements OnInit, OnDestroy {
-    protected book: Book | null = null;
-    protected comments: CommentType[] = [];
+    protected book = signal<Book | null>(null);
+    protected comments = signal<CommentType[]>([]);
     protected userLikeId = signal<UUIDv4 | null>(null);
     protected likesCount = signal<number>(0);
 
@@ -35,7 +35,6 @@ export class Details implements OnInit, OnDestroy {
         private booksService: BooksService,
         private likesService: LikesService,
         private route: ActivatedRoute,
-        private cdr: ChangeDetectorRef,
         private router: Router,
         protected userSession: UserSessionService,
     ) {
@@ -56,23 +55,21 @@ export class Details implements OnInit, OnDestroy {
         ])
 
         const sub = observables$.subscribe(data => {
-            this.book = data[0];
+            this.book.set(data[0]);
             this.likesCount.set(data[1]);
 
             if (data[2].length > 0) {
                 this.userLikeId.set(data[2][0]._id);
             }
 
-            this.comments = data[3];
-
-            this.cdr.detectChanges();
+            this.comments.set(data[3]);
         })
 
         this.subscriptions.add(sub);
     }
 
     onBookDelete(): void {
-        const bookId = this.book?._id as string;
+        const bookId = this.book()?._id as string;
         const userToken = this.userSession.userToken();
 
         if (!userToken) {
@@ -89,7 +86,7 @@ export class Details implements OnInit, OnDestroy {
     }
 
     onLike(): void {
-        const bookId = this.book?._id;
+        const bookId = this.book()?._id;
 
         if (!bookId || this.userLikeId() === FAKE_ID) {
             return;
