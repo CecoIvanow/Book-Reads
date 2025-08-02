@@ -1872,395 +1872,65 @@
             }
         },
         comments: {
-            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
-                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                bookId: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
-                content: "The 'redrum' scene still terrifies me decades later. Masterclass in psychological tension.",
-                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b"
+            "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",  // Peter
+                bookId: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",    // The Shining
+                content: "The psychological descent of Jack Torrance is terrifyingly realistic. King masterfully blends supernatural horror with real human fragility.",
+                _id: "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"
             },
-            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
-                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                content: "The ghost metaphor for intergenerational trauma is devastatingly effective. Morrison's prose is transcendent.",
-                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c"
+            "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",  // George
+                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",    // Beloved
+                content: "Morrison's exploration of intergenerational trauma through magical realism is hauntingly beautiful. Sethe's sacrifice left me speechless.",
+                _id: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"
             },
-            "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d": {
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
-                bookId: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                content: "Found the non-linear structure challenging but rewarding. The last paragraph shattered me.",
-                _id: "a5b6c7d8-e9f0-1a2b-3c4d-5e6f7a8b9c0d"
+            "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c": {
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",  // Sophia
+                bookId: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",    // Dune
+                content: "The world-building of Arrakis is unparalleled. Herbert's ecological and political systems feel terrifyingly plausible.",
+                _id: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c"
             },
-            "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e": {
-                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
-                bookId: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
-                content: "The sandworm ecology and spice politics create unparalleled world-building depth. Sci-fi at its best!",
-                _id: "b6c7d8e9-f0a1-2b3c-4d5e-6f7a8b9c0d1e"
+            "a4b5c6d7-e8f9-0a1b-2c3d-4e5f6a7b8c9d": {
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",  // Liam
+                bookId: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",    // Gone Girl
+                content: "The 'Cool Girl' monologue changed how I view relationship narratives. Flynn's twist redefined the psychological thriller genre.",
+                _id: "a4b5c6d7-e8f9-0a1b-2c3d-4e5f6a7b8c9d"
             },
-            "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f": {
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                bookId: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                content: "The 'Cool Girl' monologue should be required reading on gender performance. Terrifyingly sharp.",
-                _id: "c7d8e9f0-a1b2-3c4d-5e6f-7a8b9c0d1e2f"
+            "b5c6d7e8-f9a0-1b2c-3d4e-5f6a7b8c9d0e": {
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",  // Olivia
+                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",    // The Name of the Wind
+                content: "Kvothe's musical magic system feels refreshingly original. The scene in the Eolian still gives me chills!",
+                _id: "b5c6d7e8-f9a0-1b2c-3d4e-5f6a7b8c9d0e"
             },
-            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
-                content: "Kvothe's music-magic system feels fresh and emotionally resonant. The lute descriptions are magical.",
-                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"
+            "c6d7e8f9-a0b1-2c3d-4e5f-6a7b8c9d0e1f": {
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",  // Noah
+                bookId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",    // The Sun Also Rises
+                content: "Hemingway's portrayal of the Lost Generation's disillusionment feels painfully relevant today. The bullfighting scenes are visceral.",
+                _id: "c6d7e8f9-a0b1-2c3d-4e5f-6a7b8c9d0e1f"
             },
-            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
-                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
-                bookId: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
-                content: "Sometimes the descriptions drag, but the frame story payoff makes it worthwhile.",
-                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
+            "d7e8f9a0-b1c2-3d4e-5f6a-7b8c9d0e1f2a": {
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",  // Emma
+                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",    // The Brothers Karamazov
+                content: "The Grand Inquisitor chapter alone makes this essential reading. Dostoevsky's exploration of faith vs. freedom is monumental.",
+                _id: "d7e8f9a0-b1c2-3d4e-5f6a-7b8c9d0e1f2a"
             },
-            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
-                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
-                bookId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                content: "The Grand Inquisitor chapter alone justifies the page count. Philosophical gold.",
-                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
-            },
-            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
-                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                content: "The Vogon poetry scene made me laugh out loud on public transit. Adams' wit is timeless.",
-                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
-            },
-            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
-                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                content: "Marvin the depressed robot is my spirit animal. Perfect satire of AI anxiety.",
-                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
-            },
-            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
-                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
-                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                content: "The ice garden descriptions are breathtaking. Wish the romance had more development though.",
-                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
-            },
-            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
-                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                content: "Her description of first hearing about the Holocaust broke me. Essential reading on education's power.",
-                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"
-            },
-            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                content: "The tension between self-invention and family loyalty is handled with incredible nuance. Courageous writing.",
-                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
-            },
-            "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
-                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                bookId: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
-                content: "Aslan's sacrifice scene still gives me chills decades after first reading. Timeless allegory!",
-                _id: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
-            },
-            "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
-                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                bookId: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                content: "Unsettling how accurately Bradbury predicted earbuds, wall-sized TVs, and shortened attention spans.",
-                _id: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f"
-            },
-            "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
-                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
-                bookId: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
-                content: "The mechanical hound terrified me more than any horror monster. Chilling commentary on technology.",
-                _id: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
-            },
-            "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
-                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                content: "Jane's 'I am no bird' declaration is one of literature's most powerful feminist moments. Iconic!",
-                _id: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d"
-            },
-            "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
-                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
-                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                content: "The madwoman in the attic trope hasn't aged well, but Jane's moral compass remains inspiring.",
-                _id: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e"
-            },
-            "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                bookId: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
-                content: "Rochester's flaws make him fascinating. Their dynamic was way ahead of its time.",
-                _id: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f"
-            },
-            "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
-                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
-                bookId: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
-                content: "Heathcliff and Cathy's toxic relationship is frustrating but impossible to look away from.",
-                _id: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
-            },
-            "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
-                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
-                bookId: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
-                content: "The pomegranate tree scene shattered me. Hosseini makes you feel every moment of guilt and redemption.",
-                _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
-            },
-            "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0b": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                bookId: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
-                content: "Amir's cowardice made me furious, which shows how effectively Hosseini crafts emotional stakes.",
-                _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0b"
-            },
-            "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
-                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
-                bookId: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                content: "The Tralfamadorian sections are genius - dark humor making war's absurdity bearable.",
-                _id: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
-            },
-            "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e": {
-                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
-                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                content: "The Latin phrase 'Nolite te bastardes carborundorum' gave me chills. Brilliant world-building.",
-                _id: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e"
-            },
-            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
-                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
-                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                content: "Offred's stolen butter as hand lotion - such small details make the oppression feel visceral.",
-                _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f"
-            },
-            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
-                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                bookId: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                content: "The historical notes ending reframes everything. Atwood reminds us all regimes eventually fall.",
-                _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
-            },
-            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                bookId: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
-                content: "McCarthy's minimalist style perfectly captures the bleakness. The canned peaches scene destroyed me.",
-                _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
-            },
-            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
-                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
-                bookId: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
-                content: "Rebecca eating earth! Remedios ascending! Magical realism at its most inventive.",
-                _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c"
-            },
-            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
-                bookId: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
-                content: "The cyclical structure makes rereads essential - new connections emerge every time.",
-                _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
+            "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b": {
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",  // Michael
+                bookId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",    // The Hitchhiker's Guide
+                content: "The Vogon poetry scene is the funniest thing I've ever read. Adams' blend of absurdity and philosophy is genius.",
+                _id: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b"
             },
             "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c": {
-                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                bookId: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
-                content: "The whale hunting chapters dragged for me, but Ahab's obsession makes this worth reading.",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",  // Ava
+                bookId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",    // The Night Circus
+                content: "The clockmaker's creations live in my dreams. Morgenstern's sensory-rich descriptions make this world feel touchably real.",
                 _id: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c"
             },
             "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d": {
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                bookId: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
-                content: "Melville's prose is dense but rewarding. The final chase scene is one of literature's most thrilling sequences!",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",  // James
+                bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",    // Educated
+                content: "The scene with the scalpel demonstrates education's true power - not just knowledge, but reclaiming autonomy over one's body and mind.",
                 _id: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d"
-            },
-            "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
-                content: "Surprisingly modern themes about scientific responsibility. The creature's perspective chapters are heartbreaking.",
-                _id: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e"
-            },
-            "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f": {
-                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
-                bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
-                content: "The moral ambiguity here is fascinating - who's the real monster? Still relevant after 200 years.",
-                _id: "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f"
-            },
-            "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a": {
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
-                bookId: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
-                content: "Expected horror but got profound philosophy instead. Victor's arrogance is infuriating though.",
-                _id: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a"
-            },
-            "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b": {
-                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                bookId: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
-                content: "Raskolnikov's psychological unraveling is masterfully written. The police interrogation scenes are tense!",
-                _id: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b"
-            },
-            "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                bookId: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
-                content: "The Cyclops encounter still gives me chills! Ancient but surprisingly accessible in good translation.",
-                _id: "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c"
-            },
-            "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d": {
-                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
-                bookId: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
-                content: "Penelope's weaving trick is one of the smartest moves in classical literature. Timeless cleverness!",
-                _id: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d"
-            },
-            "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                bookId: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
-                content: "This book really shows the racial discrimination in America during the 30s, I loved the book.",
-                _id: "d7bd20b8-1ee1-4178-a8e7-0014f8f6afa5"
-            },
-            "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a": {
-                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                bookId: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-                content: "Chilling depiction of totalitarianism that feels more relevant every year.",
-                _id: "d8e9f0a1-b2c3-4d5e-6f7a-8b9c0d1e2f3a"
-            },
-            "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b": {
-                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                bookId: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
-                content: "Elizabeth Bennet remains one of literature's most compelling heroines.",
-                _id: "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b"
-            },
-            "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c": {
-                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                bookId: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
-                content: "Bilbo's journey sets the standard for fantasy adventures. Timeless!",
-                _id: "f0a1b2c3-d4e5-6f7a-8b9c-0d1e2f3a4b5c"
-            },
-            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
-                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                bookId: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
-                content: "The start of an incredible journey. Hogwarts feels like home.",
-                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
-            },
-            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
-                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                bookId: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
-                content: "A perfect allegory that remains terrifyingly accurate.",
-                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
-            },
-            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
-                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
-                bookId: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
-                content: "Simple yet profound. Changed how I view personal journeys.",
-                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
-            },
-            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
-                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                bookId: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
-                content: "Deceptively simple story with deep philosophical insights.",
-                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a"
-            },
-            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
-                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
-                bookId: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
-                content: "Death as narrator gives this WWII story unforgettable perspective.",
-                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b"
-            },
-            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                bookId: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
-                content: "The puzzles and historical references make this impossible to put down.",
-                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c"
-            },
-            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
-                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
-                bookId: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
-                content: "Scary how many predictions came true about society's direction.",
-                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d"
-            },
-            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
-                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-                bookId: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
-                content: "Holden's voice still resonates with teenage rebellion decades later.",
-                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e"
-            },
-            "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b": {
-                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
-                bookId: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
-                content: "Atticus Finch is the moral compass we all need. Powerful storytelling!",
-                _id: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"
-            },
-            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
-                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
-                bookId: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-                content: "The concept of thoughtcrime feels more real with each passing year.",
-                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d"
-            },
-            "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c": {
-                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
-                bookId: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
-                content: "Fitzgerald's critique of the American Dream is still relevant today.",
-                _id: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c"
-            },
-            "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f": {
-                _ownerId: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
-                bookId: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
-                content: "Mr. Darcy's character development is masterfully written.",
-                _id: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
-            },
-            "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a": {
-                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
-                bookId: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
-                content: "Gollum's character remains one of Tolkien's most fascinating creations.",
-                _id: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a"
-            },
-            "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b": {
-                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
-                bookId: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
-                content: "The world-building in this series sets the gold standard for fantasy.",
-                _id: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b"
-            },
-            "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c": {
-                _ownerId: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
-                bookId: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
-                content: "The parallels to real historical events make this especially chilling.",
-                _id: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c"
-            },
-            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
-                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
-                bookId: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
-                content: "Anne's voice feels timeless - her insights transcend her circumstances.",
-                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e"
-            },
-            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
-                _ownerId: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
-                bookId: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
-                content: "The simplicity of the storytelling carries profound wisdom about destiny.",
-                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f"
-            },
-            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
-                _ownerId: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
-                bookId: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
-                content: "The fox's secret is perhaps the most beautiful line in literature.",
-                _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
-            },
-            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
-                _ownerId: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
-                bookId: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
-                content: "Liesel's relationship with books during wartime is profoundly moving.",
-                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a"
-            },
-            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
-                _ownerId: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
-                bookId: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
-                content: "The symbology research felt authentic and added great depth to the mystery.",
-                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b"
-            },
-            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
-                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
-                bookId: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
-                content: "Katniss's resilience makes her an iconic heroine for our times.",
-                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c"
-            },
-            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
-                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
-                bookId: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
-                content: "The societal conditioning in this book is both fascinating and terrifying.",
-                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e"
-            },
-            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
-                _ownerId: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
-                bookId: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
-                content: "Holden's cynicism masks a deep vulnerability that makes him relatable.",
-                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a"
-            },
-            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
-                _ownerId: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
-                bookId: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
-                content: "The scope of Middle-earth feels alive in every chapter. Epic in every sense!",
-                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d"
             }
         },
         likes: {
