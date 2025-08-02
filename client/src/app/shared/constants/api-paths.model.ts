@@ -7,16 +7,14 @@ export type ApiRoots = {
     LIKES: string
 }
 
-type BookDetails = {
-    ROOT: (id: UUIDv4) => string,
-    WITH_OWNER: (id: UUIDv4) => string,
-    COMMENTS: (bookId: UUIDv4) => string,
-}
-
 type BooksPaths = {
     ROOT: string,
     COUNT: string,
-    DETAILS: BookDetails,
+    DETAILS: {
+        ROOT: (id: UUIDv4) => string,
+        WITH_OWNER: (id: UUIDv4) => string,
+        COMMENTS: (bookId: UUIDv4) => string,
+    },
     PAGINATION: (skip: number, size: number) => string,
 }
 
