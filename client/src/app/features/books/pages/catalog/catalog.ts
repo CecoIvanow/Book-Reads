@@ -81,7 +81,7 @@ export class Catalog implements OnInit, OnDestroy {
     }
 
     onDelete(bookId: UUIDv4) {
-        const sub = this.booksService.deleteBook(bookId).subscribe({
+        const sub = this.booksService.deleteBook(bookId, this.userSession.userToken() as string).subscribe({
             next: () => {
                 this.fetchBooks();
             }
