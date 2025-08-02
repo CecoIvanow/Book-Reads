@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_PATHS } from '../../shared/constants/index.js';
-import { UUIDv4 } from '../../shared/models/index.js';
-import { buildURL } from '../../shared/utils/index.js';
-import { Book } from './models/index.js';
-import { CommentType } from './models/index.js';
-import { AccessToken } from '../../core/auth/models/index.js';
+import { API_PATHS } from '../../../shared/constants/index.js';
+import { UUIDv4 } from '../../../shared/models/index.js';
+import { buildURL } from '../../../shared/utils/index.js';
+import { Book } from '../models/index.js';
+import { CommentType } from '../models/index.js';
+import { AccessToken } from '../../../core/auth/models/index.js';
 
 
 @Injectable({
@@ -55,7 +55,7 @@ export class BooksService {
         return this.httpClient.get<CommentType[]>(url);
     }
 
-    deleteBook(id: UUIDv4, userToken: AccessToken): Observable<unknown>{
+    deleteBook(id: UUIDv4, userToken: AccessToken): Observable<unknown> {
         const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
 
         return this.httpClient.delete(url, {

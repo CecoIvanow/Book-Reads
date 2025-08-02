@@ -3,13 +3,12 @@ import { Book } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommentType } from '../../models/index.js';
-import { BooksService } from '../../books.service.js';
+import { BooksService, LikesService } from '../../services/index.js';
 import { forkJoin, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
-import { LikesService } from '../../likes.service.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
 
@@ -95,7 +94,7 @@ export class Details implements OnInit, OnDestroy {
         if (!bookId || this.userLikeId() === FAKE_ID) {
             return;
         }
-        
+
         this.userLikeId.set(FAKE_ID);
         this.likesCount.update(count => count + 1);
         this.likesService.addLike(bookId).subscribe({
@@ -108,14 +107,14 @@ export class Details implements OnInit, OnDestroy {
             }
         });
     }
-    
+
     onUnlike(): void {
         const likeId = this.userLikeId();
 
         if (!likeId || likeId === FAKE_ID) {
             return;
         }
-        
+
         this.userLikeId.set(null);
         this.likesCount.update(count => count - 1);
         this.likesService.removeLike(likeId).subscribe({
@@ -123,6 +122,6 @@ export class Details implements OnInit, OnDestroy {
                 this.userLikeId.set(likeId);
                 this.likesCount.update(count => count + 1);
             }
-        });        
+        });
     }
 }

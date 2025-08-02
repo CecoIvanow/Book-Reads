@@ -5,9 +5,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Book } from '../../models/index.js';
 import { forkJoin, Subscription } from 'rxjs';
-import { BooksService } from '../../books.service.js';
+import { BooksService } from '../../services/index.js';
 import { RouterModule } from '@angular/router';
-import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
+import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 
 @Component({
