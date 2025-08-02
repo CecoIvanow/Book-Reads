@@ -51,6 +51,7 @@ export class Details implements OnInit, OnDestroy {
             this.booksService.getBookWithOwner(bookId),
             this.likesService.getLikesCount(bookId),
             this.likesService.hasBeenLiked(bookId),
+            this.booksService.getBookComments(bookId),
         ])
 
         const sub = observables$.subscribe(data => {
@@ -61,16 +62,9 @@ export class Details implements OnInit, OnDestroy {
                 this.isLiked.set(true);
             }
 
+            this.comments = data[3];
+
             this.cdr.detectChanges();
-
-            this.book?.comments.forEach((commentId) => {
-                const commentsSub = this.booksService.getCommentWithOwner(commentId).subscribe(data => {
-                    this.comments.push(data)
-                    this.cdr.detectChanges();
-                });
-                this.subscriptions.add(commentsSub);
-            })
-
         })
 
         this.subscriptions.add(sub);

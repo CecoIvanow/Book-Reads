@@ -49,10 +49,10 @@ export class BooksService {
         return this.httpClient.get<Book>(url);
     }
 
-    getCommentWithOwner(commentId: UUIDv4): Observable<CommentType> {
-        const url = buildURL(API_PATHS.COMMENTS.WITH_OWNER(commentId));
+    getBookComments(bookId: UUIDv4): Observable<CommentType[]> {
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.COMMENTS(bookId));
 
-        return this.httpClient.get<CommentType>(url);
+        return this.httpClient.get<CommentType[]>(url);
     }
 
     deleteBook(id: UUIDv4, userToken: AccessToken): Observable<unknown>{
