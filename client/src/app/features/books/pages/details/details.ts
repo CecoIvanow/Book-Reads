@@ -92,7 +92,7 @@ export class Details implements OnInit, OnDestroy {
     onLike(): void {
         const bookId = this.book?._id;
 
-        if (!bookId) {
+        if (!bookId || this.userLikeId() === FAKE_ID) {
             return;
         }
         
@@ -110,13 +110,19 @@ export class Details implements OnInit, OnDestroy {
     }
     
     onUnlike(): void {
-        const bookId = this.book?._id;
+        const likeId = this.userLikeId();
 
-        if (!bookId) {
+        if (!likeId || likeId === FAKE_ID) {
             return;
         }
         
         this.userLikeId.set(null);
         this.likesCount.update(count => count - 1);
+        this.likesService.removeLike(likeId).subscribe({
+            error: () => {
+                this.userLikeId.set(likeId);
+                this.likesCount.update(count => count + 1);
+            }
+        });        
     }
 }

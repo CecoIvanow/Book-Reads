@@ -39,4 +39,14 @@ export class LikesService {
         
         return this.httpClient.get<Like[]>(url);
     }
+
+    removeLike (likeId: UUIDv4): Observable<Like> {       
+        const url = buildURL(API_PATHS.LIKES.DETAILS.ROOT(likeId));
+
+        return this.httpClient.delete<Like>(url, {
+            headers: {
+                'X-Authorization': this.userSession.userToken() as string,
+            }
+        })
+    }
 }

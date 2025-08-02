@@ -32,6 +32,9 @@ type LikesPaths = {
     OF_BOOK: {
         COUNT: (bookId: UUIDv4) => string,
         FROM_OWNER: (bookId: UUIDv4, ownerId: UUIDv4) => string,
+    },
+    DETAILS: {
+        ROOT: (likeId: UUIDv4) => string,
     }
 }
 

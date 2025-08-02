@@ -20,7 +20,7 @@ export const API_PATHS: ApiPaths = {
             WITH_OWNER: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}?load=${encodeURIComponent('owner=_ownerId:users')}`,
             COMMENTS: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=${encodeURIComponent(`bookId="${bookId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`,
         },
-    },  
+    },
     USERS: {
         ROOT: API_ROOTS.USERS,
         LOGIN: `${API_ROOTS.USERS}/login`,
@@ -32,6 +32,9 @@ export const API_PATHS: ApiPaths = {
         OF_BOOK: {
             COUNT: (bookId: UUIDv4) => `${API_ROOTS.LIKES}?where=bookId${encodeURIComponent(`="${bookId}"`)}&count=true`,
             FROM_OWNER: (bookId: UUIDv4, ownerId: UUIDv4) => `${API_ROOTS.LIKES}?where=${encodeURIComponent(`bookId="${bookId}" AND _ownerId="${ownerId}"`)}`,
+        },
+        DETAILS: {
+            ROOT: (likeId: UUIDv4) => `${API_ROOTS.LIKES}/${likeId}`,
         }
     }
 }
