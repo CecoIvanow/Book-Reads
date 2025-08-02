@@ -31,6 +31,7 @@ type UsersPaths = {
 }
 
 type LikesPaths = {
+    ROOT: string,
     OF_BOOK: {
         COUNT: (bookId: UUIDv4) => string,
     }

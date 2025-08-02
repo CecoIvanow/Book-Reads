@@ -30,6 +30,7 @@ export const API_PATHS: ApiPaths = {
         WITH_OWNER: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}?load=${encodeURIComponent('owner=_ownerId:users')}`,
     },
     LIKES: {
+        ROOT: `${API_ROOTS.LIKES}`,
         OF_BOOK: {
             COUNT: (bookId: UUIDv4) => `${API_ROOTS.LIKES}?where=${encodeURIComponent(`bookId="${bookId}"`)}&count=true`,
         }

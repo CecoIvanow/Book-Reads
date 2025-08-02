@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
-import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
 import { LikesService } from '../../likes.service.js';
 
 @Component({
@@ -39,8 +38,6 @@ export class Details implements OnInit, OnDestroy {
         private router: Router,
         protected userSession: UserSessionService,
     ) {
-        if (userSession.userId()) {
-        }
     }
 
     ngOnDestroy(): void {
@@ -93,10 +90,19 @@ export class Details implements OnInit, OnDestroy {
     }
 
     onLike(): void {
-        const userId = this.userSession.userId() as string;
+        const bookId = this.book?._id;
 
+        if (!bookId) {
+            return;
+        }
+        
         this.isLiked.set(true);
         this.likesCount.update(count => count + 1);
+        this.likesService.addLike(bookId).subscribe({
+            error: (error) => {
+                console.error(error)
+            }
+        })
     }
     
     onUnlike(): void {

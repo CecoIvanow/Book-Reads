@@ -3,19 +3,32 @@ import { Injectable } from '@angular/core';
 import { buildURL } from '../../shared/utils/index.js';
 import { API_PATHS } from '../../shared/constants/index.js';
 import { UUIDv4 } from '../../shared/models/index.js';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { Like } from './models/index.js';
+import { UserSessionService } from '../../core/auth/services/index.js';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LikesService {
+    constructor(private httpClient: HttpClient, private userSession: UserSessionService) {
+    }
 
-  constructor(private httpClient: HttpClient)
-  {}
+    getLikesCount(bookId: UUIDv4): Observable<number> {
+        const url = buildURL(API_PATHS.LIKES.OF_BOOK.COUNT(bookId));
 
-  getLikesCount(bookId: UUIDv4): Observable<number> {
-    const url = buildURL(API_PATHS.LIKES.OF_BOOK.COUNT(bookId));
+        return this.httpClient.get<number>(url);
+    }
 
-    return this.httpClient.get<number>(url);
-  }
+    addLike(bookId: UUIDv4): Observable<Like> {
+        const url = buildURL(API_PATHS.LIKES.ROOT);
+
+        const body = { 'bookId': bookId };
+
+        return this.httpClient.post<Like>(url, body, {
+            headers: {
+                'X-Authorization': this.userSession.userToken() as string,
+            }
+        })
+    }
 }
