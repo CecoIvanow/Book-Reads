@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { LikesService } from '../../likes.service.js';
+import { UUIDv4 } from '../../../../shared/models/index.js';
+import { FAKE_ID } from '../../../../shared/constants/index.js';
 
 @Component({
     selector: 'app-details',
@@ -25,7 +27,7 @@ import { LikesService } from '../../likes.service.js';
 export class Details implements OnInit, OnDestroy {
     protected book: Book | null = null;
     protected comments: CommentType[] = [];
-    protected isLiked = signal<boolean>(false);
+    protected userLikeId = signal<UUIDv4 | null>(null);
     protected likesCount = signal<number>(0);
 
     private subscriptions: Subscription = new Subscription();
@@ -59,7 +61,7 @@ export class Details implements OnInit, OnDestroy {
             this.likesCount.set(data[1]);
 
             if (data[2].length > 0) {
-                this.isLiked.set(true);
+                this.userLikeId.set(data[2][0]._id);
             }
 
             this.comments = data[3];
@@ -94,21 +96,27 @@ export class Details implements OnInit, OnDestroy {
             return;
         }
         
-        this.isLiked.set(true);
+        this.userLikeId.set(FAKE_ID);
         this.likesCount.update(count => count + 1);
-        this.likesService.addLike(bookId).subscribe()
+        this.likesService.addLike(bookId).subscribe({
+            next: (data) => {
+                this.userLikeId.set(data._id);
+            },
+            error: () => {
+                this.userLikeId.set(null);
+                this.likesCount.update(count => count - 1);
+            }
+        });
     }
     
     onUnlike(): void {
-        const userId = this.userSession.userId() as string;
-
         const bookId = this.book?._id;
 
         if (!bookId) {
             return;
         }
         
-        this.isLiked.set(false);
+        this.userLikeId.set(null);
         this.likesCount.update(count => count - 1);
     }
 }

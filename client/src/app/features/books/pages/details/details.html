@@ -18,7 +18,7 @@
                             <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
-                                    @if (!isLiked()) {
+                                    @if (!userLikeId()) {
                                         <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
                                     } @else {
                                         <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
