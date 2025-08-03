@@ -3,14 +3,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Book } from '../../models/book.model.js';
 import { BooksService } from '../../services/books.service.js';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule ,RouterModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    RouterModule
+],
   templateUrl: './edit.html',
   styleUrl: './edit.scss'
 })
@@ -20,16 +26,17 @@ export class Edit implements OnInit, OnDestroy {
 
     private subscriptions = new Subscription();
 
-    constructor(private route: ActivatedRoute, private booksService: BooksService){
+    constructor(
+        private route: ActivatedRoute,
+        private booksService: BooksService,
+        private router: Router,
+    ){
     }
 
     ngOnInit(): void {
         const bookData: Book = this.route.snapshot.data['bookDetails'].at(0);
 
         this.book.set(bookData);
-
-        console.log(bookData);
-        
     }
 
     ngOnDestroy(): void {
@@ -67,5 +74,24 @@ export class Edit implements OnInit, OnDestroy {
         })
 
         this.subscriptions.add(sub);
+    }
+
+    onEditBookSubmit(e: Event): void {
+        e.preventDefault();
+
+        const bookId = this.route.snapshot.params['bookId']
+
+        const form = e.currentTarget as HTMLFormElement;
+        const formData = new FormData(form);
+        const bookObjectBody = Object.fromEntries(formData) as object;
+        const bookBody = bookObjectBody as Book;
+
+        this.booksService.updateBook(bookId, bookBody).subscribe({
+            next: (data: Book) => {
+                const bookId = data._id;
+                this.router.navigate([`/books/details/${bookId}`])
+            }
+        })
+
     }
 }

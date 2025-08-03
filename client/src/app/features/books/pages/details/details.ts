@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { BooksService, CommentsService, LikesService } from '../../services/index.js';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
@@ -17,7 +17,8 @@ import { FAKE_ID } from '../../../../shared/constants/index.js';
         MatCardModule,
         MatButtonModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        RouterModule,
     ],
     templateUrl: './details.html',
     styleUrl: './details.scss'

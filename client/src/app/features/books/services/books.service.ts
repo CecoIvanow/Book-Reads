@@ -82,4 +82,15 @@ export class BooksService {
             }
         })
     }
+
+    updateBook(bookId: UUIDv4, body: Book): Observable<Book> {
+        const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(bookId));
+        const userToken = this.userSession.userToken() as string;
+
+        return this.httpClient.patch<Book>(url, body, {
+            headers: {
+                'X-Authorization': userToken,
+            }
+        })
+    }
 }
