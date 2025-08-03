@@ -1,13 +1,15 @@
-import { ResolveFn } from '@angular/router';
+import { RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { BookPageDetails} from './models/index.js';
 import { inject } from '@angular/core';
 import { BooksService } from './services/books.service.js';
 import { LikesService } from './services/likes.service.js';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin, of } from 'rxjs';
 
-export const bookDetailsResolver: ResolveFn<BookPageDetails> = (route, state) => {
+
+export const bookDetailsResolver: ResolveFn<BookPageDetails | RedirectCommand> = (route, state) => {
     const booksService = inject(BooksService);
     const likesService = inject(LikesService);
+    const router = inject(Router);
 
     const bookId = route.params['bookId'];
 
@@ -16,5 +18,10 @@ export const bookDetailsResolver: ResolveFn<BookPageDetails> = (route, state) =>
         likesService.getLikesCount(bookId),
         likesService.hasBeenLiked(bookId),
         booksService.getBookComments(bookId),
-    ])
+    ]).pipe(
+        catchError(error => {
+            console.error(error)
+            return of(new RedirectCommand(router.parseUrl('/404')));
+        })
+    )
 };
