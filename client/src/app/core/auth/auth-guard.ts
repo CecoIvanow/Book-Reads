@@ -6,8 +6,6 @@ export const authGuard: CanActivateFn = async (route, state) => {
     const userSession = inject(UserSessionService);
     const router = inject(Router);
 
-    await userSession.onInit();
-
     const isUser = userSession.userToken();
 
     if (!isUser) {
@@ -20,8 +18,6 @@ export const authGuard: CanActivateFn = async (route, state) => {
 export const guestGuard: CanActivateFn = async (route, state) => {
     const userSession = inject(UserSessionService);
     const router = inject(Router);
-
-    await userSession.onInit();
 
     const isGuest = !userSession.userToken();
 

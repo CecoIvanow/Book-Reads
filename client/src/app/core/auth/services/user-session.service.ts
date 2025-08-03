@@ -8,19 +8,11 @@ import { UUIDv4 } from '../../../shared/models/index.js';
 })
 export class UserSessionService {
     private _sessionData = signal<TokenSignal>(null);
-    private initPromise!: Promise<void>;
 
     constructor() {
         if (this._sessionData() === null) {
-            this.initPromise = new Promise<void>(resolve => {
-                this._sessionData.set(this.getAccessToken());
-                resolve();
-            })
+            this._sessionData.set(this.getAccessToken());
         }
-    }
-
-    async onInit() {
-        return this.initPromise;
     }
 
     userId: Signal<UUIDv4 | null> = computed(() => {
