@@ -150,7 +150,16 @@ export class Details implements OnInit, OnDestroy {
 
         form.reset();
         this.commentsService.addComment(bookId, content).subscribe({
-            next: (newComment) => {
+            next: (respComment) => {
+                const newComment = respComment;
+                respComment.owner = {
+                    firstName: this.userSession.firstName() as string,
+                    lastName: this.userSession.lastName() as string,
+                    _id: this.userSession.userId() as string,
+                    email: this.userSession.email() as string,
+                    username: this.userSession.username() as string,
+                }
+
                 this.comments.update(prevComments => [
                     newComment,
                     ...prevComments
