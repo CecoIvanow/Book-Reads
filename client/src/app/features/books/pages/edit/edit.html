@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <section class="section">
+        <h1>Edit Book</h1>
+
+        <div class="content">
+            <section class="book-preview">
+                <mat-card>
+                    <div class="media">
+                        <img src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="Book cover preview">
+                    </div>
+                </mat-card>
+            </section>
+
+            <section class="edit-form">
+                <form class="book-form">
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Book Title</mat-label>
+                            <input matInput type="text" name="title" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Author</mat-label>
+                            <input matInput type="text" name="author" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Cover Image URL</mat-label>
+                            <input matInput type="url" name="img" required>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="outline" class="summary-field">
+                        <mat-label>Book Summary</mat-label>
+                        <textarea matInput name="summary" rows="6" required></textarea>
+                    </mat-form-field>
+
+                    <div class="form-actions">
+                        <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Cancel</button>
+                        <button mat-raised-button color="primary" type="submit">Save Changes</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
+</div>

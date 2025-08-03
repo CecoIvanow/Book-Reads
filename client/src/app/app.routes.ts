@@ -26,6 +26,12 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
+        path: 'books/add',
+        loadComponent: () => import('./features/books/pages/add/add.js').then(c => c.Add),
+        pathMatch: 'full',
+        canActivate: [authGuard],
+    },
+    {
         path: 'books/details/:bookId',
         loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details),
         pathMatch: 'full',
@@ -34,10 +40,13 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'books/add',
-        loadComponent: () => import('./features/books/pages/add/add.js').then(c => c.Add),
+        path: 'books/edit/:bookId',
+        loadComponent: () => import('./features/books/pages/edit/edit.js').then(c => c.Edit),
         pathMatch: 'full',
         canActivate: [authGuard],
+        resolve: {
+            bookDetails: bookDetailsResolver
+        }
     },
     {
         path: '404',
