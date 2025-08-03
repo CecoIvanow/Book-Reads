@@ -6,7 +6,7 @@
             <section class="book-preview">
                 <mat-card>
                     <div class="media">
-                        <img alt="Book cover preview">
+                        <img [src]="imagePreviewObjectUrl() || book()?.img" alt="Book cover preview">
                     </div>
                 </mat-card>
             </section>
@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Cover Image URL</mat-label>
-                            <input matInput type="url" name="img" [value]="book()?.img" required>
+                            <input matInput type="url" name="img" [value]="book()?.img" (input)="onImageUrlInput($event)" required>
                         </mat-form-field>
                     </div>
 
