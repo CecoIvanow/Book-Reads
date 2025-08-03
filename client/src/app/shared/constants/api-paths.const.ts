@@ -14,7 +14,7 @@ export const API_PATHS: ApiPaths = {
     BOOKS: {
         ROOT: API_ROOTS.BOOKS,
         COUNT: `${API_ROOTS.BOOKS}?count=true`,
-        PAGINATION: (skip: number, size: number) => `${API_ROOTS.BOOKS}?offset=${skip}&pageSize=${size}`,
+        PAGINATION: (skip: number, size: number) => `${API_ROOTS.BOOKS}?sortBy=${encodeURIComponent('_createdOn desc')}&offset=${skip}&pageSize=${size}`,
         DETAILS: {
             ROOT: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}`,
             WITH_OWNER: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}?load=${encodeURIComponent('owner=_ownerId:users')}`,
