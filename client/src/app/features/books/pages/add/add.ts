@@ -6,10 +6,12 @@ import { BooksService } from '../../services/books.service.js';
 import { Subscription } from 'rxjs';
 import { Book } from '../../models/book.model.js';
 import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-add',
-    imports: [MatInputModule, MatFormFieldModule, MatButtonModule],
+    imports: [MatInputModule, MatFormFieldModule, MatButtonModule, MatIcon],
     templateUrl: './add.html',
     styleUrl: './add.scss'
 })
