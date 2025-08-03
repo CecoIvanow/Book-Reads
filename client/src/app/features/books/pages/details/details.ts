@@ -128,7 +128,8 @@ export class Details implements OnInit, OnDestroy {
     onCommentSubmit(e: Event, commentId?: UUIDv4): void {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        const form = e.currentTarget as HTMLFormElement
+        const formData = new FormData(form);
         const content = formData.get('content') as string;
 
         const bookId = this.book()?._id;
@@ -156,10 +157,11 @@ export class Details implements OnInit, OnDestroy {
 
                 }
             })
-            
+
             return;
         }
 
+        form.reset();
         this.commentsService.addComment(bookId, content).subscribe({
             next: (newComment) => {
                 this.comments.update(prevComments => [
@@ -182,7 +184,7 @@ export class Details implements OnInit, OnDestroy {
         this.clickedComemntEditId.set(commentId);
         this.commentContent.set(content);
     }
-    
+
     onCommentContentChange(e: Event): void {
         const newContent = (e.currentTarget as HTMLInputElement).value
         console.log(newContent);
