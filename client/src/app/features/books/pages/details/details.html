@@ -71,28 +71,29 @@
                                 <mat-card-content>
                                     @if (clickedComemntEditId() !== comment._id) {
                                         <p>{{ comment.content }}</p>
+                                        <mat-card-actions>
+                                            <section class="owner-actions">
+                                                @if (userSession.userId() === comment._ownerId) {
+                                                    <button class="edit-button" matButton="text" (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
+                                                    <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
+                                                }
+                                            </section>
+                                        </mat-card-actions>
                                     } @else {
-                                    <form>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput type="text" name="content" [value]="commentContent()">
-                                        </mat-form-field>
-                                    </form>
+                                        <form (submit)="onCommentSubmit($event, comment._id)">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" name="content" [value]="commentContent()" (change)="onCommentContentChange($event)">
+                                            </mat-form-field>
+                                    
+                                            <mat-card-actions>
+                                                <section class="owner-actions">
+                                                    <button class="edit-button" matButton="text">Save</button>
+                                                    <button type="button" class="delete-button" matButton="filled" (click)="clickedComemntEditId.set(null);">Cancel</button>
+                                                </section>
+                                            </mat-card-actions>
+                                        </form>
                                     }
                                 </mat-card-content>
-
-                                <mat-card-actions>
-                                    <section class="owner-actions">
-                                        @if (userSession.userId() === comment._ownerId) {
-                                            @if(clickedComemntEditId() !== comment._id) {
-                                                <button class="edit-button" matButton="text" (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
-                                                <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
-                                            } @else {
-                                                <button class="edit-button" matButton="text">Save</button>
-                                                <button class="delete-button" matButton="filled">Cancel</button>
-                                            }
-                                        }
-                                    </section>
-                                </mat-card-actions>
                             </mat-card>
                         </li>
                         }

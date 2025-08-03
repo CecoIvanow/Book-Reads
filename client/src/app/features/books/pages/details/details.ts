@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
-import { log } from 'console';
 
 @Component({
     selector: 'app-details',
@@ -126,7 +125,7 @@ export class Details implements OnInit, OnDestroy {
         });
     }
 
-    onCommentSubmit(e: Event): void {
+    onCommentSubmit(e: Event, commentId?: UUIDv4): void {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget as HTMLFormElement);
@@ -135,6 +134,29 @@ export class Details implements OnInit, OnDestroy {
         const bookId = this.book()?._id;
 
         if (!bookId) {
+            return;
+        }
+
+        if (commentId) {
+            this.commentsService.updateComment(commentId, content).subscribe({
+                next: (updatedComment) => {
+                    this.comments.update(prevComments => prevComments.map((curComment) => {
+                        if (curComment._id === updatedComment._id) {
+                            const patchedComment = curComment;
+
+                            patchedComment.content = updatedComment.content;
+
+                            return patchedComment;
+                        }
+
+                        return curComment;
+                    }));
+
+                }
+            })
+
+            this.clickedComemntEditId.set(null);
+            
             return;
         }
 
@@ -159,5 +181,11 @@ export class Details implements OnInit, OnDestroy {
     onCommentEditClick(commentId: UUIDv4, content: string): void {
         this.clickedComemntEditId.set(commentId);
         this.commentContent.set(content);
+    }
+    
+    onCommentContentChange(e: Event): void {
+        const newContent = (e.currentTarget as HTMLInputElement).value
+
+        this.commentContent.set(newContent);
     }
 }
