@@ -904,7 +904,7 @@
                 id = uuid$2();
             }
 
-            record._createdOn = Date.now();
+            record.__createdOn = Date.now();
             targetCollection.set(id, record);
             return Object.assign(deepCopy(record), { _id: id });
         }
@@ -1020,7 +1020,7 @@
     function assignSystemProps(target, entry, ...rest) {
         const whitelist = [
             '_id',
-            '_createdOn',
+            '__createdOn',
             '_updatedOn',
             '_ownerId'
         ];
@@ -1040,7 +1040,7 @@
     function assignClean(target, entry, ...rest) {
         const blacklist = [
             '_id',
-            '_createdOn',
+            '__createdOn',
             '_updatedOn',
             '_ownerId'
         ];
@@ -1506,7 +1506,7 @@
                 title: "The Shining",
                 author: "Stephen King",
                 img: "https://assets.blogs.bsu.edu/wp-content/uploads/sites/25/2020/03/09153737/shining.jpg",
-                createdOn: "1711929600000",
+                _createdOn: "1711929600000",
                 _id: "d3e4f5a6-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
                 summary: "Struggling writer Jack Torrance becomes winter caretaker at the isolated Overlook Hotel, bringing his wife and psychic son Danny. As supernatural forces amplify Jack's instability, Danny's 'shining' abilities become their only hope. King's masterpiece explores addiction, family trauma, and haunted places through relentless psychological horror."
             },
@@ -1515,7 +1515,7 @@
                 title: "Beloved",
                 author: "Toni Morrison",
                 img: "https://m.media-amazon.com/images/I/51Qj9kPD4CL.jpg",
-                createdOn: "1714521600000",
+                _createdOn: "1714521600000",
                 _id: "e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
                 summary: "Former slave Sethe is haunted by her decision to kill her baby daughter rather than have her enslaved. When a mysterious young woman named Beloved appears, the family confronts suppressed memories of trauma. Morrison's ghost story explores slavery's psychological aftermath through poetic prose and magical realism."
             },
@@ -1524,7 +1524,7 @@
                 title: "Dune",
                 author: "Frank Herbert",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
-                createdOn: "1717200000000",
+                _createdOn: "1717200000000",
                 _id: "f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
                 summary: "On desert planet Arrakis, young Paul Atreides inherits stewardship of the universe's most valuable substance: spice. Betrayed by political rivals, he leads native Fremen in a revolution that fulfills ancient prophecies. Herbert's ecological epic blends politics, religion, and human evolution in a richly detailed sci-fi universe."
             },
@@ -1533,7 +1533,7 @@
                 title: "Gone Girl",
                 author: "Gillian Flynn",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554086139i/19288043.jpg",
-                createdOn: "1719792000000",
+                _createdOn: "1719792000000",
                 _id: "a6b7c8d9-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
                 summary: "On their fifth anniversary, Nick Dunne reports his wife Amy missing amid growing media frenzy. As police scrutiny intensifies, alternating narratives reveal disturbing truths about their marriage. Flynn's psychological thriller deconstructs modern relationships with razor-sharp twists and unreliable narrators."
             },
@@ -1542,7 +1542,7 @@
                 title: "The Name of the Wind",
                 author: "Patrick Rothfuss",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1270352123i/186074.jpg",
-                createdOn: "1722470400000",
+                _createdOn: "1722470400000",
                 _id: "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
                 summary: "Chronicler tracks down legendary hero Kvothe to record his true story: from childhood troupe tragedy to University magic student and beyond. Rothfuss reinvents fantasy tropes through lyrical storytelling, music-infused magic, and layered myths. This bildungsroman balances wonder with harsh realities of genius and ambition."
             },
@@ -1551,7 +1551,7 @@
                 title: "The Sun Also Rises",
                 author: "Ernest Hemingway",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692653547i/196840591.jpg",
-                createdOn: "1725148800000",
+                _createdOn: "1725148800000",
                 _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
                 summary: "American expatriates in post-WWI Europe drift through Paris cafes and Spanish bullfights, masking spiritual emptiness with alcohol and aimless adventure. Jake Barnes' impotence from war wounds symbolizes the Lost Generation's disillusionment. Hemingway's sparse prose captures existential despair beneath surface bravado."
             },
@@ -1560,7 +1560,7 @@
                 title: "The Brothers Karamazov",
                 author: "Fyodor Dostoevsky",
                 img: "https://images.penguinrandomhouse.com/cover/9780451530608",
-                createdOn: "1727827200000",
+                _createdOn: "1727827200000",
                 _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
                 summary: "Dostoevsky's final novel explores patricide through philosophical debates among four brothers: sensual Dmitri, intellectual Ivan, spiritual Alyosha, and cunning Smerdyakov. Their conflicts over faith, ethics, and free will culminate in courtroom drama. This Russian classic probes humanity's capacity for good and evil with psychological depth."
             },
@@ -1569,7 +1569,7 @@
                 title: "The Hitchhiker's Guide to the Galaxy",
                 author: "Douglas Adams",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1559986152i/386162.jpg",
-                createdOn: "1730419200000",
+                _createdOn: "1730419200000",
                 _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
                 summary: "Seconds before Earth's demolition for interstellar highway, Arthur Dent escapes with alien researcher Ford Prefect. Their cosmic adventures introduce depressed robot Marvin, two-headed president Zaphod Beeblebrox, and the answer to life (42). Adams' satire blends absurd humor with philosophical inquiry about existence."
             },
@@ -1578,7 +1578,7 @@
                 title: "The Night Circus",
                 author: "Erin Morgenstern",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387124618i/9361589.jpg",
-                createdOn: "1733097600000",
+                _createdOn: "1733097600000",
                 _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
                 summary: "Mysterious Le Cirque des Rêves appears without warning, featuring magical tents and ethereal performances. Behind its black-and-white spectacle, illusionists Celia and Marco compete in a deadly magical duel bound by mentors. Their growing love threatens the circus and all within it. Morgenstern crafts an atmospheric romance where magic has tangible costs."
             },
@@ -1587,7 +1587,7 @@
                 title: "Educated",
                 author: "Tara Westover",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
-                createdOn: "1735689600000",
+                _createdOn: "1735689600000",
                 _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
                 summary: "Westover recounts her journey from Idaho survivalist family to Cambridge PhD, never attending school until age 17. Overcoming violent brother and distrustful parents, education becomes liberation from alternative facts. This memoir examines family loyalty versus self-invention with brutal honesty and lyrical insight."
             },
@@ -1596,7 +1596,7 @@
                 title: "The Chronicles of Narnia",
                 author: "C.S. Lewis",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1449868701i/11127.jpg",
-                createdOn: "1685577600000",
+                _createdOn: "1685577600000",
                 _id: "3d4e5f6a-b7c8-9d0e-1f2a-3b4c5d6e7f8a",
                 summary: "Four siblings discover a magical wardrobe leading to Narnia, a frozen world under the White Witch's curse. With talking animals and mythical creatures, they join lion-god Aslan's struggle to reclaim the kingdom. This beloved allegorical series explores faith, sacrifice, and coming-of-age through seven interconnected fantasy adventures."
             },
@@ -1605,7 +1605,7 @@
                 title: "Fahrenheit 451",
                 author: "Ray Bradbury",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1383718290i/13079982.jpg",
-                createdOn: "1688169600000",
+                _createdOn: "1688169600000",
                 _id: "4e5f6a7b-c8d9-0e1f-2a3b-4c5d6e7f8a9b",
                 summary: "In a dystopian future where firemen burn books to suppress dissenting ideas, Guy Montag begins questioning society after meeting free-thinking neighbors. His journey from enforcer to fugitive reveals the dangers of censorship and entertainment saturation. Bradbury's prescient vision explores memory, knowledge, and the power of literature in a screen-dominated world."
             },
@@ -1614,7 +1614,7 @@
                 title: "The Picture of Dorian Gray",
                 author: "Oscar Wilde",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546103428i/5297.jpg",
-                createdOn: "1690848000000",
+                _createdOn: "1690848000000",
                 _id: "5f6a7b8c-d9e0-1f2a-3b4c-5d6e7f8a9b0c",
                 summary: "Handsome Dorian Gray wishes his portrait would age instead of him, enabling a life of hedonism without physical consequences. As his soul corrupts, the painting grotesquely transforms to reflect his sins. Wilde's philosophical novel examines aestheticism, morality, and the dangerous pursuit of eternal youth through sharp wit and Gothic horror."
             },
@@ -1623,7 +1623,7 @@
                 title: "Jane Eyre",
                 author: "Charlotte Brontë",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1557343311i/10210.jpg",
-                createdOn: "1693526400000",
+                _createdOn: "1693526400000",
                 _id: "6a7b8c9d-e0f1-2a3b-4c5d-6e7f8a9b0c1d",
                 summary: "Orphaned Jane Eyre becomes governess at Thornfield Hall, developing a complex relationship with the brooding Mr. Rochester. Her moral convictions are tested by dark secrets, social constraints, and unexpected revelations. This groundbreaking Victorian novel explores class, gender equality, and spiritual integrity through Jane's first-person narrative."
             },
@@ -1632,7 +1632,7 @@
                 title: "Wuthering Heights",
                 author: "Emily Brontë",
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfw7MyU9SVnv6XPp6DUDQ98qhmCpYIY77Nqw&s",
-                createdOn: "1696118400000",
+                _createdOn: "1696118400000",
                 _id: "7b8c9d0e-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
                 summary: "On the stormy Yorkshire moors, Heathcliff's obsessive love for Catherine Earnshaw fuels generations of vengeance. Told through layered narratives, this Gothic masterpiece explores destructive passion, social class, and the haunting power of landscape. Brontë's only novel revolutionized romance fiction with its raw emotional intensity and complex antihero."
             },
@@ -1641,7 +1641,7 @@
                 title: "The Kite Runner",
                 author: "Khaled Hosseini",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579036753i/77203.jpg",
-                createdOn: "1698796800000",
+                _createdOn: "1698796800000",
                 _id: "8c9d0e1f-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
                 summary: "Amir's childhood betrayal of loyal friend Hassan haunts him through Afghanistan's turbulent history - from monarchy to Taliban rule. Returning to Kabul years later, he seeks redemption in this powerful story of guilt, atonement, and the enduring bonds of friendship. Hosseini's debut humanizes Middle Eastern conflicts through intimate personal drama."
             },
@@ -1650,7 +1650,7 @@
                 title: "Slaughterhouse-Five",
                 author: "Kurt Vonnegut",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1440319389i/4981.jpg",
-                createdOn: "1701388800000",
+                _createdOn: "1701388800000",
                 _id: "9d0e1f2a-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
                 summary: "Prisoner-of-war Billy Pilgrim becomes 'unstuck in time' after surviving the Dresden firebombing, experiencing his life out of sequence alongside alien encounters. Vonnegut's absurdist anti-war novel blends science fiction with autobiographical elements to process trauma. Famous for its refrain 'So it goes,' this postmodern classic questions free will and the senselessness of violence."
             },
@@ -1659,7 +1659,7 @@
                 title: "The Handmaid's Tale",
                 author: "Margaret Atwood",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1578028274i/38447.jpg",
-                createdOn: "1704067200000",
+                _createdOn: "1704067200000",
                 _id: "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
                 summary: "In theocratic Gilead (formerly USA), fertile 'handmaid' Offred serves as a reproductive vessel for powerful men. Her clandestine memories of family and freedom fuel resistance against a regime that controls women's bodies and language. Atwood's dystopian vision explores gender oppression, religious extremism, and the fragility of rights through harrowing first-person narration."
             },
@@ -1668,7 +1668,7 @@
                 title: "The Road",
                 author: "Cormac McCarthy",
                 img: "https://m.media-amazon.com/images/I/61kKUlUoQHL._UF894,1000_QL80_.jpg",
-                createdOn: "1706745600000",
+                _createdOn: "1706745600000",
                 _id: "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                 summary: "A father and son traverse a post-apocalyptic America destroyed by an unspecified cataclysm. Carrying minimal supplies and a pistol, they face starvation, cannibal gangs, and fading hope while heading south. McCarthy's spare prose amplifies this devastating meditation on survival, morality, and paternal love in a world stripped of civilization."
             },
@@ -1677,7 +1677,7 @@
                 title: "One Hundred Years of Solitude",
                 author: "Gabriel García Márquez",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327881361i/320.jpg",
-                createdOn: "1709251200000",
+                _createdOn: "1709251200000",
                 _id: "c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
                 summary: "The magical history of Macondo chronicles seven generations of the Buendía family, blending reality with fantastical elements. From founding to decline, their lives intertwine with civil wars, inventions, and prophecies in this seminal work of magical realism. Márquez explores cyclical time, political turmoil, and the solitude inherent in the human condition."
             },
@@ -1686,7 +1686,7 @@
                 title: "Moby Dick",
                 author: "Herman Melville",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327940656i/153747.jpg",
-                createdOn: "1672531200000",
+                _createdOn: "1672531200000",
                 _id: "e8f9a0b1-c2d3-4e5f-6a7b-8c9d0e1f2a3b",
                 summary: "The epic tale of Captain Ahab's obsessive quest to hunt the white whale Moby Dick, told through the eyes of sailor Ishmael. This masterpiece explores themes of revenge, fate, and man's struggle against nature, set against the backdrop of 19th-century whaling culture with rich symbolism and philosophical depth."
             },
@@ -1695,7 +1695,7 @@
                 title: "Frankenstein",
                 author: "Mary Shelley",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1381512375i/18490.jpg",
-                createdOn: "1675209600000",
+                _createdOn: "1675209600000",
                 _id: "f9a0b1c2-d3e4-5f6a-7b8c-9d0e1f2a3b4c",
                 summary: "A young scientist's ambition leads him to create life from dead body parts, resulting in a creature rejected by its creator and society. This gothic novel explores themes of scientific ethics, parental responsibility, and the destructive consequences of prejudice and isolation."
             },
@@ -1704,7 +1704,7 @@
                 title: "Crime and Punishment",
                 author: "Fyodor Dostoevsky",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144.jpg",
-                createdOn: "1677628800000",
+                _createdOn: "1677628800000",
                 _id: "0a1b2c3d-e4f5-6a7b-8c9d-0e1f2a3b4c5d",
                 summary: "A destitute former student murders a pawnbroker, believing himself exempt from moral laws. As he navigates St. Petersburg's underworld, his guilt manifests in psychological torment. This psychological thriller explores morality, redemption, and the human capacity for rationalization in 19th-century Russia."
             },
@@ -1713,7 +1713,7 @@
                 title: "The Odyssey",
                 author: "Homer",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1390173285i/1381.jpg",
-                createdOn: "1680307200000",
+                _createdOn: "1680307200000",
                 _id: "1b2c3d4e-f5a6-7b8c-9d0e-1f2a3b4c5d6e",
                 summary: "The epic journey of Greek hero Odysseus as he struggles to return home after the Trojan War. Facing mythical creatures, vengeful gods, and treacherous seas over ten years, this foundational work explores themes of heroism, cunning versus strength, loyalty, and the meaning of homecoming."
             },
@@ -1722,7 +1722,7 @@
                 title: "Alice's Adventures in Wonderland",
                 author: "Lewis Carroll",
                 img: "https://m.media-amazon.com/images/I/81svZOFopwL._SY466_.jpg",
-                createdOn: "1682899200000",
+                _createdOn: "1682899200000",
                 _id: "2c3d4e5f-a6b7-8c9d-0e1f-2a3b4c5d6e7f",
                 summary: "A young girl follows a white rabbit down a hole into a fantastical world where logic is inverted and absurdity reigns. Through encounters with iconic characters like the Mad Hatter and Cheshire Cat, this children's classic explores themes of identity, growth, and the subversion of Victorian social norms through surreal wordplay and symbolic imagery."
             },
@@ -1731,7 +1731,7 @@
                 title: "To Kill a Mockingbird",
                 author: "Harper Lee",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg",
-                createdOn: "1751236331451",
+                _createdOn: "1751236331451",
                 _id: "fdd2faf9-c0f2-4c79-b799-9121ca0ad36d",
                 summary: "Set in 1930s Alabama, this Pulitzer Prize-winning novel follows young Scout Finch as her lawyer father Atticus defends Tom Robinson, a Black man falsely accused of raping a white woman. Through Scout's innocent perspective, the story explores themes of racial injustice, moral growth, and the loss of innocence in a deeply segregated society. The children's fascination with their reclusive neighbor Boo Radley provides a parallel narrative about prejudice and human kindness."
             },
@@ -1740,7 +1740,7 @@
                 title: "1984",
                 author: "George Orwell",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg",
-                createdOn: "1577884800000",
+                _createdOn: "1577884800000",
                 _id: "c7d3e8f9-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
                 summary: "In a dystopian future London, Winston Smith works for the totalitarian Party that controls every aspect of life through omnipresent surveillance and psychological manipulation. As Winston secretly rebels by keeping a diary and pursuing a forbidden relationship, he discovers the terrifying extent of the Party's power to rewrite history and control thought. The novel's concepts of Newspeak, doublethink, and Big Brother have become fundamental to discussions about government overreach and individual freedom."
             },
@@ -1749,7 +1749,7 @@
                 title: "The Great Gatsby",
                 author: "F. Scott Fitzgerald",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1490528560i/4671.jpg",
-                createdOn: "1583020800000",
+                _createdOn: "1583020800000",
                 _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
                 summary: "Narrated by Nick Carraway, this Jazz Age classic explores the mysterious millionaire Jay Gatsby and his obsessive pursuit of Daisy Buchanan, his lost love from years past. Through lavish parties at Gatsby's West Egg mansion and tense encounters in New York City, Fitzgerald reveals the hollow excess and moral decay beneath the glittering surface of the Roaring Twenties. The novel's exploration of the American Dream, class barriers, and romantic idealism culminates in a tragic confrontation that exposes the emptiness of wealth without purpose."
             },
@@ -1758,7 +1758,7 @@
                 title: "Pride and Prejudice",
                 author: "Jane Austen",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320399351i/1885.jpg",
-                createdOn: "1585699200000",
+                _createdOn: "1585699200000",
                 _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
                 summary: "The spirited Elizabeth Bennet navigates the complexities of social expectations and romantic entanglements in Regency England. Her initial dislike for the proud Mr. Darcy transforms through a series of misunderstandings, family crises, and revelations about true character. Austen's witty social commentary explores themes of marriage, class, reputation, and personal growth as Elizabeth learns to distinguish between superficial charm and genuine virtue."
             },
@@ -1767,7 +1767,7 @@
                 title: "The Hobbit",
                 author: "J.R.R. Tolkien",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg",
-                createdOn: "1590969600000",
+                _createdOn: "1590969600000",
                 _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
                 summary: "The comfortable life of Bilbo Baggins is disrupted when the wizard Gandalf recruits him as a 'burglar' for a quest to reclaim the Lonely Mountain from the dragon Smaug. Accompanied by thirteen dwarves led by Thorin Oakenshield, Bilbo journeys through treacherous lands, encountering trolls, elves, goblins, and the mysterious Gollum. Through these trials, the reluctant hobbit discovers unexpected courage, resourcefulness, and the corrupting power of treasure."
             },
@@ -1776,7 +1776,7 @@
                 title: "Harry Potter and the Sorcerer's Stone",
                 author: "J.K. Rowling",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
-                createdOn: "1596240000000",
+                _createdOn: "1596240000000",
                 _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
                 summary: "Harry Potter discovers on his eleventh birthday that he is a famous wizard, rescued from his neglectful Muggle relatives to attend Hogwarts School of Witchcraft and Wizardry. As he befriends Ron Weasley and Hermione Granger, Harry learns about his parents' murder by the dark wizard Voldemort and his own mysterious connection to the evil sorcerer. Their first year culminates in a quest to protect the Sorcerer's Stone from falling into Voldemort's hands, revealing hidden strengths and loyalties."
             },
@@ -1785,7 +1785,7 @@
                 title: "Animal Farm",
                 author: "George Orwell",
                 img: "https://images.penguinrandomhouse.com/cover/9780452284241",
-                createdOn: "1601510400000",
+                _createdOn: "1601510400000",
                 _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
                 summary: "When the mistreated animals of Manor Farm revolt against their human owner Mr. Jones, they establish an egalitarian society under the principles of Animalism. As the pigs Napoleon and Snowball vie for leadership, the revolution gradually corrupts into a new tyranny more oppressive than the original. Orwell's allegorical novella traces how ideals of equality become twisted through propaganda, rewritten history, and the consolidation of power by a ruling elite."
             },
@@ -1794,7 +1794,7 @@
                 title: "The Diary of a Young Girl",
                 author: "Anne Frank",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1560816565i/48855.jpg",
-                createdOn: "1606780800000",
+                _createdOn: "1606780800000",
                 _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
                 summary: "Discovered in the attic where she spent the last years of her life, Anne Frank's remarkable diary documents her experiences hiding with her family during the Nazi occupation of the Netherlands. Written between ages 13-15 while confined in the Secret Annex, the diary reveals Anne's thoughts on family dynamics, budding sexuality, human nature, and her aspirations to become a writer. This intimate account personalizes the Holocaust while showcasing the resilience of the human spirit under unimaginable circumstances."
             },
@@ -1803,7 +1803,7 @@
                 title: "The Alchemist",
                 author: "Paulo Coelho",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1466865542i/18144590.jpg",
-                createdOn: "1612051200000",
+                _createdOn: "1612051200000",
                 _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
                 summary: "Santiago, an Andalusian shepherd boy, embarks on a journey to Egypt after a recurring dream about treasure near the Pyramids. Along his odyssey across the Mediterranean and Sahara, he encounters a series of mentors who teach him to listen to his heart, recognize omens, and understand the Soul of the World. This allegorical novel explores themes of destiny, personal legend, and the idea that when you pursue your dreams, the universe conspires to help you achieve them."
             },
@@ -1812,7 +1812,7 @@
                 title: "The Little Prince",
                 author: "Antoine de Saint-Exupéry",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg",
-                createdOn: "1617321600000",
+                _createdOn: "1617321600000",
                 _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
                 summary: "After crash-landing in the Sahara Desert, a stranded pilot meets a curious little prince who has traveled from his tiny asteroid home. Through their conversations, the prince recounts his interstellar journey visiting various planets inhabited by symbolic adult characters representing vanity, greed, and narrow-mindedness. This poetic fable explores profound themes of love, loss, friendship, and the importance of seeing with the heart rather than just the eyes."
             },
@@ -1821,7 +1821,7 @@
                 title: "The Book Thief",
                 author: "Markus Zusak",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522157426i/19063.jpg",
-                createdOn: "1622592000000",
+                _createdOn: "1622592000000",
                 _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
                 summary: "Narrated by Death, this WWII novel follows Liesel Meminger, a young girl in Nazi Germany who finds solace by stealing books and sharing them with others. After being sent to live with foster parents in Munich, she forms powerful bonds with her accordion-playing foster father, her neighbor Rudy, and Max, the Jewish refugee hidden in their basement. Through the power of words and storytelling, Liesel preserves her humanity in a time of devastating cruelty and loss."
             },
@@ -1830,7 +1830,7 @@
                 title: "The Da Vinci Code",
                 author: "Dan Brown",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579621267i/968.jpg",
-                createdOn: "1627862400000",
+                _createdOn: "1627862400000",
                 _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
                 summary: "Harvard symbologist Robert Langdon finds himself embroiled in a murder investigation at the Louvre Museum after the curator is killed with mysterious symbols carved into his body. Teaming up with cryptologist Sophie Neveu, they uncover clues hidden in Da Vinci's paintings that lead to a centuries-old secret society protecting a religious secret that could shatter Christianity's foundations. Their breathless race through Paris and London pits them against a secret Catholic organization determined to silence them at any cost."
             },
@@ -1839,7 +1839,7 @@
                 title: "The Hunger Games",
                 author: "Suzanne Collins",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
-                createdOn: "1633132800000",
+                _createdOn: "1633132800000",
                 _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
                 summary: "In the dystopian nation of Panem, teenager Katniss Everdeen volunteers for the Hunger Games to save her younger sister from participating in the annual televised death match. Forced into an arena with 23 other tributes, Katniss must use her hunting skills and instincts to survive while navigating complex alliances and the Capitol's manipulative game-making. Her actions spark unexpected political consequences that challenge the Capitol's absolute control over the oppressed districts."
             },
@@ -1848,7 +1848,7 @@
                 title: "Brave New World",
                 author: "Aldous Huxley",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1575509280i/5129.jpg",
-                createdOn: "1638403200000",
+                _createdOn: "1638403200000",
                 _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
                 summary: "Set in a futuristic World State where humans are genetically engineered and conditioned for predetermined social roles, this dystopian novel explores a society obsessed with stability, pleasure, and consumption. When Bernard Marx brings John the Savage—a man born naturally outside this controlled system—from a reservation into London, his presence exposes the profound costs of this engineered utopia. The ensuing conflict questions the value of truth, art, suffering, and what it means to be truly human."
             },
@@ -1857,7 +1857,7 @@
                 title: "The Catcher in the Rye",
                 author: "J.D. Salinger",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg",
-                createdOn: "1643673600000",
+                _createdOn: "1643673600000",
                 _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
                 summary: "After being expelled from prep school, disillusioned teenager Holden Caulfield spends three days wandering New York City, reflecting on his encounters with teachers, classmates, and strangers. Through his distinctive cynical voice and recurring expressions of disgust for 'phonies,' Holden reveals his deep alienation and struggle with the transition to adulthood. His fantasy of being 'the catcher in the rye'—protecting children from falling off a cliff into adulthood—symbolizes his desire to preserve innocence in a world he finds corrupt and artificial."
             },
@@ -1866,7 +1866,7 @@
                 title: "The Lord of the Rings",
                 author: "J.R.R. Tolkien",
                 img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
-                createdOn: "1648944000000",
+                _createdOn: "1648944000000",
                 _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
                 summary: "In this epic fantasy trilogy, a young hobbit named Frodo Baggins inherits the One Ring, a powerful artifact created by the Dark Lord Sauron to dominate Middle-earth. Joined by a diverse fellowship including humans, elves, dwarves, and other hobbits, Frodo embarks on a perilous journey to Mount Doom to destroy the ring. Their quest becomes a sweeping battle between good and evil that explores themes of power, corruption, friendship, and sacrifice across richly imagined kingdoms and cultures."
             }
