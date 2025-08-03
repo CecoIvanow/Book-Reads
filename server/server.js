@@ -75,7 +75,7 @@
             const method = req.method;
             console.info(`<< ${req.method} ${req.url}`);
 
-
+            // Redirect fix for admin panel relative paths
             if (req.url.slice(-6) == '/admin') {
                 res.writeHead(302, {
                     'Location': `http://${req.headers.host}/admin/`
@@ -91,7 +91,7 @@
             let result = '';
             let context;
 
-
+            // NOTE: the OPTIONS method results in undefined result and also it never processes plugins - keep this in mind
             if (method == 'OPTIONS') {
                 Object.assign(headers, {
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
@@ -108,8 +108,8 @@
                         status = err.status || 400;
                         result = composeErrorObject(err.code || status, err.message);
                     } else {
-
-
+                        // Unhandled exception, this is due to an error in the service code - REST consumers should never have to encounter this;
+                        // If it happens, it must be debugged in a future version of the server
                         console.error(err);
                         status = 500;
                         result = composeErrorObject(500, 'Server Error');
@@ -147,8 +147,8 @@
                     result = await service(context, { method, tokens, query, body });
                 }
 
-
-
+                // NOTE: logout does not return a result
+                // in this case the content type header should be omitted, to allow checks on the client
                 if (result !== undefined) {
                     result = JSON.stringify(result);
                 } else {
@@ -180,7 +180,7 @@
             .reduce((p, [k, v]) => Object.assign(p, { [k]: decodeURIComponent(v.replace(/\+/g, " ")) }), {});
 
         let body;
-
+        // If req stream has ended body has been parsed
         if (req.readableEnded) {
             body = req.body;
         } else {
@@ -341,7 +341,7 @@
             tokens = [context.params.collection, ...tokens];
             console.log('Request body:\n', body);
 
-
+            // TODO handle collisions, replacement
             let responseData = data;
             for (let token of tokens) {
                 if (responseData.hasOwnProperty(token) == false) {
@@ -494,12 +494,12 @@
             let check = (a, b) => b;
             let acc = true;
             if (query.match(/ and /gi)) {
-
+                // inclusive
                 clauses = query.split(/ and /gi);
                 check = (a, b) => a && b;
                 acc = true;
             } else if (query.match(/ or /gi)) {
-
+                // optional
                 clauses = query.split(/ or /gi);
                 check = (a, b) => a || b;
                 acc = false;
@@ -533,7 +533,7 @@
             } else if (context.params.collection) {
                 responseData = context.storage.get(context.params.collection, tokens[0]);
             } else {
-
+                // Get list of collections
                 return context.storage.get();
             }
 
@@ -544,7 +544,7 @@
                     .map(p => p.split(' ').filter(p => p != ''))
                     .map(([p, desc]) => ({ prop: p, desc: desc ? true : false }));
 
-
+                // Sorting priority is from first to last, therefore we sort from last to first
                 for (let i = props.length - 1; i >= 0; i--) {
                     let { prop, desc } = props[i];
                     responseData.sort(({ [prop]: propA }, { [prop]: propB }) => {
@@ -840,7 +840,7 @@
     function createInstance(seedData = {}) {
         const collections = new Map();
 
-
+        // Initialize seed data from file    
         for (let collectionName in seedData) {
             if (seedData.hasOwnProperty(collectionName)) {
                 const collection = new Map();
@@ -854,7 +854,7 @@
         }
 
 
-
+        // Manipulation
 
         /**
          * Get entry by ID or list of all entries from collection or list of all collections
@@ -899,12 +899,12 @@
                 collections.set(collection, targetCollection);
             }
             let id = uuid$2();
-
+            // Make sure new ID does not match existing value
             while (targetCollection.has(id)) {
                 id = uuid$2();
             }
 
-            record.__createdOn = Date.now();
+            record._createdOn = Date.now();
             targetCollection.set(id, record);
             return Object.assign(deepCopy(record), { _id: id });
         }
@@ -986,13 +986,13 @@
             }
             const targetCollection = collections.get(collection);
             const result = [];
-
+            // Iterate entries of target collection and compare each property with the given query
             for (let [key, entry] of [...targetCollection.entries()]) {
                 let match = true;
                 for (let prop in entry) {
                     if (query.hasOwnProperty(prop)) {
                         const targetValue = query[prop];
-
+                        // Perform lowercase search, if value is string
                         if (typeof targetValue === 'string' && typeof entry[prop] === 'string') {
                             if (targetValue.toLocaleLowerCase() !== entry[prop].toLocaleLowerCase()) {
                                 match = false;
@@ -1020,7 +1020,7 @@
     function assignSystemProps(target, entry, ...rest) {
         const whitelist = [
             '_id',
-            '__createdOn',
+            '_createdOn',
             '_updatedOn',
             '_ownerId'
         ];
@@ -1040,7 +1040,7 @@
     function assignClean(target, entry, ...rest) {
         const blacklist = [
             '_id',
-            '__createdOn',
+            '_createdOn',
             '_updatedOn',
             '_ownerId'
         ];
@@ -1214,7 +1214,7 @@
         }, settings.rules);
 
         return function decorateContext(context, request) {
-
+            // special rules (evaluated at run-time)
             const get = (collectionName, id) => {
                 return context.storage.get(collectionName, id);
             };
@@ -1246,7 +1246,7 @@
             }
 
             function applyPropRule(action, [prop, rule], user, data, newData) {
-
+                // NOTE: user needs to be in scope for eval to work on certain rules
                 if (typeof rule == 'string') {
                     rule = !!eval(rule);
                 }
@@ -1281,19 +1281,19 @@
             let currentRule = ruleOrDefault(true, rules['*'][action]);
             let propRules = [];
 
-
+            // Top-level rules for the collection
             const collectionRules = rules[collection];
             if (collectionRules !== undefined) {
-
+                // Top-level rule for the specific action for the collection
                 currentRule = ruleOrDefault(currentRule, collectionRules[action]);
 
-
+                // Prop rules
                 const allPropRules = collectionRules['*'];
                 if (allPropRules !== undefined) {
                     propRules = ruleOrDefault(propRules, getPropRule(allPropRules, action));
                 }
 
-
+                // Rules by record id 
                 const recordRules = collectionRules[data._id];
                 if (recordRules !== undefined) {
                     currentRule = ruleOrDefault(currentRule, recordRules[action]);
