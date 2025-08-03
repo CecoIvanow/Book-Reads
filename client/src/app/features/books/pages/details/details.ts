@@ -138,6 +138,8 @@ export class Details implements OnInit, OnDestroy {
         }
 
         if (commentId) {
+            this.clickedComemntEditId.set(null);
+
             this.commentsService.updateComment(commentId, content).subscribe({
                 next: (updatedComment) => {
                     this.comments.update(prevComments => prevComments.map((curComment) => {
@@ -154,8 +156,6 @@ export class Details implements OnInit, OnDestroy {
 
                 }
             })
-
-            this.clickedComemntEditId.set(null);
             
             return;
         }
