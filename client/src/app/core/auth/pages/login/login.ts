@@ -37,7 +37,11 @@ export class Login {
             next: (data) => {
                 this.userSession.saveSessionToken({
                     token: data.accessToken,
-                    id: data._id
+                    id: data._id,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    username: data.username,
                 });
 
                 this.router.navigate(['/']);
