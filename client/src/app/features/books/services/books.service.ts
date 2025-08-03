@@ -64,4 +64,10 @@ export class BooksService {
             }
         })
     }
+
+    getImageBlob(imageUrl: string): Observable<Blob> {
+        return this.httpClient.get(imageUrl, {
+            responseType: 'blob'
+        })
+    }
 }
