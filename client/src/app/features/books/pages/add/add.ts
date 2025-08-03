@@ -75,4 +75,16 @@ export class Add implements OnDestroy {
         })
         
     }
+
+    onFormReset() {
+        const form = document.querySelector('.book-form') as HTMLFormElement;
+
+        form.reset();
+
+        const imageObjectUrl = this.imagePreviewObjectUrl();
+        if (imageObjectUrl) {
+            URL.revokeObjectURL(imageObjectUrl);
+            this.imagePreviewObjectUrl.set(null);
+        }
+    }
 }
