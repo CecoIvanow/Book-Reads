@@ -39,4 +39,18 @@ export class CommentsService {
             }
         })
     }
+
+    updateComment(commentId: UUIDv4, content: string): Observable<CommentType> {
+        const url = buildURL(API_PATHS.COMMENTS.SPECIFIC.ROOT(commentId));
+
+        const body = {
+            content,
+        }
+
+        return this.httpClient.patch<CommentType>(url, body, {
+            headers: {
+                'X-Authorization': this.userSession.userToken() as string,
+            }
+        })
+    }
 }
