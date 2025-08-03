@@ -1,11 +1,11 @@
 import { ResolveFn } from '@angular/router';
-import { Book, CommentType, Like } from './models/index.js';
+import { BookPageDetails} from './models/index.js';
 import { inject } from '@angular/core';
 import { BooksService } from './services/books.service.js';
 import { LikesService } from './services/likes.service.js';
 import { forkJoin } from 'rxjs';
 
-export const bookDetailsResolver: ResolveFn<[Book, number, Like[], CommentType[]]> = (route, state) => {
+export const bookDetailsResolver: ResolveFn<BookPageDetails> = (route, state) => {
     const booksService = inject(BooksService);
     const likesService = inject(LikesService);
 

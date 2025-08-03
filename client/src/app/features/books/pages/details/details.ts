@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { Book } from '../../models/index.js';
+import { Book, BookPageDetails, CommentType } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CommentType } from '../../models/index.js';
 import { BooksService, CommentsService, LikesService } from '../../services/index.js';
-import { forkJoin, Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
@@ -44,31 +43,19 @@ export class Details implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscriptions?.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     ngOnInit(): void {
-        const bookId = this.route.snapshot.params['bookId'];
+        const [bookData, totalLikesCount, likes, comments]: BookPageDetails = this.route.snapshot.data['bookDetails'];
 
-        const observables$ = forkJoin([
-            this.booksService.getBookWithOwner(bookId),
-            this.likesService.getLikesCount(bookId),
-            this.likesService.hasBeenLiked(bookId),
-            this.booksService.getBookComments(bookId),
-        ])
+        this.book.set(bookData);
+        this.likesCount.set(totalLikesCount);
+        this.comments.set([...comments].reverse());
 
-        const sub = observables$.subscribe(data => {
-            this.book.set(data[0]);
-            this.likesCount.set(data[1]);
-
-            if (data[2].length > 0) {
-                this.userLikeId.set(data[2][0]._id);
-            }
-
-            this.comments.set([...data[3]].reverse());
-        })
-
-        this.subscriptions.add(sub);
+        if (likes.length > 0) {
+            this.userLikeId.set(likes[0]._id);
+        }
     }
 
     onBookDelete(): void {
