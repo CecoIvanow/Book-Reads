@@ -7,6 +7,7 @@ import { buildURL } from '../../../shared/utils/index.js';
 import { Book } from '../models/index.js';
 import { CommentType } from '../models/index.js';
 import { AccessToken } from '../../../core/auth/models/index.js';
+import { UserSessionService } from '../../../core/auth/services/user-session.service.js';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class BooksService {
     private defaultSkip: number = 0;
     private defaultSize: number = 10;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private userSession: UserSessionService) {
     }
 
     getAllBooks(): Observable<Book[]> {
@@ -68,6 +69,17 @@ export class BooksService {
     getImageBlob(imageUrl: string): Observable<Blob> {
         return this.httpClient.get(imageUrl, {
             responseType: 'blob'
+        })
+    }
+
+    addBook(body: object): Observable<Book> {
+        const url = buildURL(API_PATHS.BOOKS.ROOT);
+        const userToken = this.userSession.userToken() as string;
+
+        return this.httpClient.post<Book>(url, body, {
+            headers: {
+                'X-Authorization': userToken,
+            }
         })
     }
 }

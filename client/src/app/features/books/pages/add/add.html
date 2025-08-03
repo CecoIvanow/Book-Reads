@@ -2,7 +2,7 @@
     <section class="create-section">
         <h1>Add New Book</h1>
 
-        <form class="book-form">
+        <form class="book-form" (submit)="onAddBookSubmit($event)">
             <div class="form-row">
                 <mat-form-field appearance="outline">
                     <mat-label>Book Title</mat-label>
@@ -24,7 +24,7 @@
 
             <mat-form-field appearance="outline" class="summary-field">
                 <mat-label>Book Summary</mat-label>
-                <textarea matInput name="summary" rows="6" required></textarea>
+                <textarea matInput type="text" name="summary" rows="6" required></textarea>
             </mat-form-field>
 
             @if (previewImageObjectUrl()) {
@@ -40,7 +40,7 @@
 
             <div class="form-actions">
                 <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Reset</button>
-                <button mat-raised-button color="primary" type="submit">Add Book</button>
+                <button mat-raised-button color="primary">Add Book</button>
             </div>
         </form>
     </section>
