@@ -82,7 +82,7 @@
                                     } @else {
                                         <form (submit)="onCommentSubmit($event, comment._id)">
                                             <mat-form-field appearance="outline">
-                                                <input matInput type="text" name="content" [value]="commentContent()" (change)="onCommentContentChange($event)">
+                                                <input matInput type="text" name="content" [value]="commentContent()" (input)="onCommentContentChange($event)">
                                             </mat-form-field>
                                     
                                             <mat-card-actions>

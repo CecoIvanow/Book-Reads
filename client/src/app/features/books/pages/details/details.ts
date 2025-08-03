@@ -65,7 +65,7 @@ export class Details implements OnInit, OnDestroy {
                 this.userLikeId.set(data[2][0]._id);
             }
 
-            this.comments.set(data[3].reverse());
+            this.comments.set([...data[3]].reverse());
         })
 
         this.subscriptions.add(sub);
@@ -185,6 +185,7 @@ export class Details implements OnInit, OnDestroy {
     
     onCommentContentChange(e: Event): void {
         const newContent = (e.currentTarget as HTMLInputElement).value
+        console.log(newContent);
 
         this.commentContent.set(newContent);
     }
