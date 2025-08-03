@@ -16,7 +16,7 @@ import { MatIcon } from '@angular/material/icon';
     styleUrl: './add.scss'
 })
 export class Add implements OnDestroy {
-    protected previewImageObjectUrl = signal<string | null>(null)
+    protected imagePreviewObjectUrl = signal<string | null>(null)
 
     private subscriptions = new Subscription();
 
@@ -24,11 +24,11 @@ export class Add implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        const imageObjectUrl = this.previewImageObjectUrl();
+        const imageObjectUrl = this.imagePreviewObjectUrl();
 
         if (imageObjectUrl) {
             URL.revokeObjectURL(imageObjectUrl);
-            this.previewImageObjectUrl.set(null);
+            this.imagePreviewObjectUrl.set(null);
         }
 
         this.subscriptions.unsubscribe();
@@ -39,6 +39,13 @@ export class Add implements OnDestroy {
         const urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
 
         if (!urlPattern.test(imageUrl)) {
+            const imageObjectUrl = this.imagePreviewObjectUrl();
+
+            if (imageObjectUrl) {
+                this.imagePreviewObjectUrl.set(null);
+                URL.revokeObjectURL(imageObjectUrl);
+            }
+
             return;
         }
 
@@ -46,7 +53,7 @@ export class Add implements OnDestroy {
             next: (blob: Blob) => {
                 const objectUrl = URL.createObjectURL(blob);
 
-                this.previewImageObjectUrl.set(objectUrl);
+                this.imagePreviewObjectUrl.set(objectUrl);
             }
         })
 

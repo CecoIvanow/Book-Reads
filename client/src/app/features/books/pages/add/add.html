@@ -43,9 +43,9 @@
                 <div class="preview-card">
                     <h3>Cover Preview</h3>
 
-                    @if (previewImageObjectUrl()) {
+                    @if (imagePreviewObjectUrl()) {
                     <div class="preview-image">
-                        <img [src]="previewImageObjectUrl()" alt="Book cover preview">
+                        <img [src]="imagePreviewObjectUrl()" alt="Book cover preview">
                     </div>
                     } @else {
                     <div class="preview-placeholder">
