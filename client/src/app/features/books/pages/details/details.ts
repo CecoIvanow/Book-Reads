@@ -47,14 +47,14 @@ export class Details implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        const [bookData, totalLikesCount, likes, comments]: BookPageDetails = this.route.snapshot.data['bookDetails'];
+        const [bookData, totalLikesCount, userLike, comments]: BookPageDetails = this.route.snapshot.data['bookDetails'];
 
         this.book.set(bookData);
         this.likesCount.set(totalLikesCount);
         this.comments.set([...comments].reverse());
 
-        if (likes.length > 0) {
-            this.userLikeId.set(likes[0]._id);
+        if (userLike.length !== 0) {
+            this.userLikeId.set(userLike[0]._id);
         }
     }
 
