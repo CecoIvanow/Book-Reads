@@ -1,46 +1,60 @@
 <div class="wrapper">
-    <section class="create-section">
+    <section class="section add-section">
         <h1>Add New Book</h1>
 
-        <form class="book-form">
-            <div class="form-row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Book Title</mat-label>
-                    <input matInput type="text" name="title" required>
-                </mat-form-field>
+        <div class="content">
+            <section class="form-container">
+                <form class="book-form" (submit)="onAddBookSubmit($event)">
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Book Title</mat-label>
+                            <input matInput type="text" name="title" required>
+                        </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Author</mat-label>
-                    <input matInput type="text" name="author" required>
-                </mat-form-field>
-            </div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Author</mat-label>
+                            <input matInput type="text" name="author" required>
+                        </mat-form-field>
+                    </div>
 
-            <div class="form-row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Cover Image URL</mat-label>
-                    <input matInput type="url" name="img" required>
-                </mat-form-field>
-            </div>
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Cover Image URL</mat-label>
+                            <input matInput type="url" name="img" required (input)="onImageUrlInput($event)">
+                            <mat-hint>Enter URL to see preview</mat-hint>
+                        </mat-form-field>
+                    </div>
 
-            <mat-form-field appearance="outline" class="summary-field">
-                <mat-label>Book Summary</mat-label>
-                <textarea matInput name="summary" rows="6" required></textarea>
-            </mat-form-field>
+                    <mat-form-field appearance="outline" class="summary-field">
+                        <mat-label>Book Summary</mat-label>
+                        <textarea matInput name="summary" rows="6" required></textarea>
+                    </mat-form-field>
 
-            <!-- <div class="form-preview">
-                <div class="preview-header">
+                    <div class="form-actions">
+                        <button mat-stroked-button color="primary" (click)="onFormReset()">Reset</button>
+                        <button mat-raised-button color="primary" class="add-button">
+                            <mat-icon>add</mat-icon> Add Book
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="preview-container">
+                <div class="preview-card">
                     <h3>Cover Preview</h3>
-                    <p>Image will appear here</p>
-                </div>
-                <div class="preview-image">
-                    <img src="" alt="Book cover preview" id="cover-preview">
-                </div>
-            </div> -->
 
-            <div class="form-actions">
-                <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Add Book</button>
-            </div>
-        </form>
+                    @if (imagePreviewObjectUrl()) {
+                    <div class="preview-image">
+                        <img [src]="imagePreviewObjectUrl()" alt="Book cover preview">
+                    </div>
+                    } @else {
+                    <div class="preview-placeholder">
+                        <mat-icon>image_search</mat-icon>
+                        <p>Image preview will appear here</p>
+                    </div>
+                    }
+                </div>
+            </section>
+        </div>
     </section>
 </div>

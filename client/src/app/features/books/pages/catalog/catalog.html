@@ -2,13 +2,13 @@
     <section class="catalog">
         <h1>Catalog</h1>
 
-        @if (isLoading) {
+        @if (!books()) {
         <div class="spinner">
             <mat-spinner></mat-spinner>
         </div>
         } @else {
         <ul>
-            @for (book of books; track book._id) {
+            @for (book of books(); track book._id) {
             <li>
                 <mat-card class="book-item">
                     <a [routerLink]="[`/books/details/${book._id}`]">
@@ -23,7 +23,7 @@
 
                     <mat-card-actions>
                         @if (userSession.userId() === book._ownerId) {
-                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book._id">Edit</a>
+                            <a class="edit-button" matButton="text" [routerLink]="[`/books/edit/${book._id}`]" >Edit</a>
                             <button class="delete-button" matButton="filled" (click)="onDelete(book._id)">Delete</button>
                         }
                     </mat-card-actions>
@@ -33,7 +33,7 @@
         </ul>
         }
 
-        <mat-paginator class="paginator" [length]="booksCount" [pageSize]="pageSize"
+        <mat-paginator class="paginator" [length]="booksCount()" [pageSize]="pageSize()"
             [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
         </mat-paginator>
     </section>

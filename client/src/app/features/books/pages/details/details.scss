@@ -95,6 +95,7 @@ user-actions p {
     flex-direction: column;
     padding: 0 5rem;
     gap: 1rem;
+    width: 100%;
 }
 
 .book-details .title {
@@ -236,6 +237,15 @@ user-actions p {
     margin: 0;
 }
 
-.comment-item mat-card mar-card-content {
-    margin: 0 auto;
+.comment-item mat-card mat-card-content form {
+    width: 100%;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field {
+    width: 100%;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field input {
+    width: 100%;
+    height: 2rem;
 }

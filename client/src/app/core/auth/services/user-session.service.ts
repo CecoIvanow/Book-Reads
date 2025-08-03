@@ -35,6 +35,30 @@ export class UserSessionService {
         return (curSession && curSession !== 'none') ? curSession.token : null;
     })
 
+    firstName: Signal<string | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.firstName : null;
+    })
+
+    lastName: Signal<string | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.lastName : null;
+    })
+
+    email: Signal<string | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.email : null;
+    })
+
+    username: Signal<string | null> = computed(() => {
+        const curSession = this._sessionData();
+
+        return (curSession && curSession !== 'none') ? curSession.username : null;
+    })
+
     private getAccessToken(): TokenSignal {
         if (typeof sessionStorage !== 'undefined') {
             const data = sessionStorage.getItem(USER_SESSION_KEY);
@@ -44,8 +68,6 @@ export class UserSessionService {
 
         return 'none';
     }
-
-    
 
     saveSessionToken(sessionData: UserSessionData) {
         sessionStorage.setItem(USER_SESSION_KEY, JSON.stringify(sessionData));

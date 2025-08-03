@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <section class="section">
+        <h1>Edit Book</h1>
+
+        <div class="content">
+            <section class="book-preview">
+                <mat-card>
+                    <div class="media">
+                        <img [src]="imagePreviewObjectUrl() || book()?.img" alt="Book cover preview">
+                    </div>
+                </mat-card>
+            </section>
+
+            <section class="edit-form">
+                <form class="book-form" (submit)="onEditBookSubmit($event)">
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Book Title</mat-label>
+                            <input matInput type="text" name="title" [value]="book()?.title" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Author</mat-label>
+                            <input matInput type="text" name="author" [value]="book()?.author" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Cover Image URL</mat-label>
+                            <input matInput type="url" name="img" [value]="book()?.img" (input)="onImageUrlInput($event)" required>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="outline" class="summary-field">
+                        <mat-label>Book Summary</mat-label>
+                        <textarea matInput name="summary" rows="6" [value]="book()?.summary" required></textarea>
+                    </mat-form-field>
+
+                    <div class="form-actions">
+                        <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Cancel</button>
+                        <button mat-raised-button type="submit" color="primary">Save Changes</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
+</div>

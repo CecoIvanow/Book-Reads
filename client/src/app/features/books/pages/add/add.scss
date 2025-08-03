@@ -2,35 +2,48 @@
     min-height: 100vh;
     width: 100%;
     padding: 100px 0 40px 0;
-    display: flex;
-    justify-content: center;
-    background-color: #f8f9fa;
 }
 
-.create-section {
+.section {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
-    max-width: 1000px;
-    min-width: 800px;
+    max-width: 1400px;
+    min-width: 1200px;
     background-color: whitesmoke;
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 25px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.116);
 }
 
-.create-section h1 {
+.add-section h1 {
     position: relative;
     width: fit-content;
-    margin: 0 auto 2.5rem auto;
-    font-size: 2.8rem;
+    margin-block-end: 3rem;
+    font-size: 2.5rem;
 }
 
-.create-section h1::before {
+.add-section h1::before {
     content: '';
     display: inline-block;
     position: absolute;
     width: 100%;
-    border-bottom: 3.5px solid #e8e0be;
+    border-bottom: 3.5px solid #4CAF50;
     bottom: -6px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.form-container {
+    flex: 1.2;
+}
+
+.preview-container {
+    flex: 0.8;
 }
 
 .book-form {
@@ -49,59 +62,94 @@
 }
 
 .summary-field textarea {
-    min-height: 150px;
+    min-height: 180px;
     resize: vertical;
 }
 
-.form-preview {
+.preview-card {
     background-color: white;
     border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.preview-header {
-    margin-bottom: 1.2rem;
+.preview-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.preview-header h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.preview-header p {
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 0.95rem;
+.preview-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 25px;
+    background-color: #4CAF50;
+    border-radius: 4px;
 }
 
 .preview-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
+    flex: 1;
+    background-color: #f8f9fa;
+    border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #e0e0e0;
 }
 
 .preview-image img {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 320px;
     object-fit: contain;
+}
+
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border: 1px dashed #C8E6C9;
+    color: #81C784;
+    padding: 2rem;
+    text-align: center;
+}
+
+.preview-placeholder mat-icon {
+    font-size: 3rem;
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: 1rem;
 }
 
 .form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
-.form-actions button {
-    padding: 0.6rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border-radius: 8px;
+.add-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 2.2rem;
+}
+
+.add-button mat-icon {
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {

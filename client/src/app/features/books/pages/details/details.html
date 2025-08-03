@@ -5,24 +5,24 @@
             <section class="book-cover">
                 <mat-card>
                     <div class="media">
-                        <img mat-card-image [src]="book?.img">
+                        <img mat-card-image [src]="book()?.img">
                     </div>
                     <mat-card-actions>
                         <section class="owner-actions">
-                            @if (userSession.userId() === book?.owner?._id) {
-                                <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
-                                <button class="delete-button" matButton="filled" (click)="onDelete()">Delete</button>
+                            @if (userSession.userId() === book()?.owner?._id) {
+                            <a class="edit-button" matButton="text" [routerLink]="[`/books/edit/${book()?._id}`]">Edit</a>
+                            <button class="delete-button" matButton="filled" (click)="onBookDelete()">Delete</button>
                             }
                         </section>
                         <section class="user-actions">
                             <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
-                                    @if (!isLiked()) {
-                                        <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
-                                    } @else {
-                                        <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
-                                    }
+                                @if (!userLikeId()) {
+                                <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
+                                } @else {
+                                <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
+                                }
                                 }
                             </div>
                         </section>
@@ -32,32 +32,32 @@
 
             <section class="book-details">
                 <div>
-                    <h2 class="title">{{book?.title}}</h2>
-                    <h3 class="author">by {{book?.author}}</h3>
+                    <h2 class="title">{{book()?.title}}</h2>
+                    <h3 class="author">by {{book()?.author}}</h3>
                 </div>
-                <p class="added-by">Added by: {{book?.owner?.firstName}} {{book?.owner?.lastName}}</p>
+                <p class="added-by">Added by: {{book()?.owner?.firstName}} {{book()?.owner?.lastName}}</p>
                 <section class="book-summary">
                     <h2>Summary:</h2>
-                    <p>{{book?.summary}}</p>
+                    <p>{{book()?.summary}}</p>
                 </section>
 
                 <section class="comment-input">
                     @if (userSession.userToken()) {
-                        <form>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Share your thoughts...</mat-label>
-                                <input matInput type="text" name="comment">
-                            </mat-form-field>
-                            <div class="button-container">
-                                <button mat-raised-button color="primary" class="post-button">Post</button>
-                            </div>
-                        </form>
+                    <form (submit)="onCommentSubmit($event)">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Share your thoughts...</mat-label>
+                            <input matInput type="text" name="content">
+                        </mat-form-field>
+                        <div class="button-container">
+                            <button mat-raised-button color="primary" class="post-button">Post</button>
+                        </div>
+                    </form>
                     }
                 </section>
 
                 <section class="comments">
                     <ul>
-                        @for (comment of comments; track comment._id) {
+                        @for (comment of comments(); track comment._id) {
                         <li class="comment-item">
                             <mat-card>
                                 <mat-card-header>
@@ -69,16 +69,31 @@
                                     </mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>
-                                    <p>{{comment.content}}</p>
+                                    @if (clickedComemntEditId() !== comment._id) {
+                                        <p>{{ comment.content }}</p>
+                                        <mat-card-actions>
+                                            <section class="owner-actions">
+                                                @if (userSession.userId() === comment._ownerId) {
+                                                    <button class="edit-button" matButton="text" (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
+                                                    <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
+                                                }
+                                            </section>
+                                        </mat-card-actions>
+                                    } @else {
+                                        <form (submit)="onCommentSubmit($event, comment._id)">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" name="content" [value]="commentContent()" (input)="onCommentContentChange($event)">
+                                            </mat-form-field>
+                                    
+                                            <mat-card-actions>
+                                                <section class="owner-actions">
+                                                    <button class="edit-button" matButton="text">Save</button>
+                                                    <button type="button" class="delete-button" matButton="filled" (click)="clickedComemntEditId.set(null);">Cancel</button>
+                                                </section>
+                                            </mat-card-actions>
+                                        </form>
+                                    }
                                 </mat-card-content>
-                                <mat-card-actions>
-                                    <section class="owner-actions">
-                                        @if (userSession.userId() === comment._ownerId) {
-                                            <a class="edit-button" matButton="text" [href]="'/books/edit/' + book?._id">Edit</a>
-                                            <button class="delete-button" matButton="filled">Delete</button>
-                                        }
-                                    </section>
-                                </mat-card-actions>
                             </mat-card>
                         </li>
                         }
