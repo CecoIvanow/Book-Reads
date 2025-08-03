@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard } from './core/auth/auth-guard.js';
+import { bookDetailsResolver } from './features/books/books.resolver.js';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,9 @@ export const routes: Routes = [
         path: 'books/details/:bookId',
         loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details),
         pathMatch: 'full',
+        resolve: {
+            bookDetails: bookDetailsResolver
+        }
     },
     {
         path: 'books/add',
