@@ -34,13 +34,11 @@ export class Login {
                 '',
                 [
                     Validators.required,
-                    Validators.email,
                 ]
             ],
             'password': ['',
                 [
                     Validators.required,
-                    Validators.minLength(4),
                 ]
             ],
         })
