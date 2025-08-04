@@ -1,15 +1,15 @@
 <div class="wrapper">
     <section>
         <h1>Login</h1>
-        <form (submit)="onLogin($event)">
+        <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput type="email" name="email" placeholder="email@example.com" required>
+                <input matInput type="email" formControlName="email" placeholder="email@example.com">
             </mat-form-field>
-
+            
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" name="password" required>
+                <input matInput type="password" formControlName="password">
             </mat-form-field>
 
             <button matButton="filled">Login</button>
