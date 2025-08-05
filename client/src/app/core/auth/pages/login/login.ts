@@ -30,16 +30,11 @@ export class Login {
         protected userSession: UserSessionService,
     ) {
         this.loginForm = formBuilder.group({
-            'email': [
-                '',
-                [
-                    Validators.required,
-                ]
+            'email': ['',
+                [Validators.required, Validators.email]
             ],
             'password': ['',
-                [
-                    Validators.required,
-                ]
+                [Validators.required]
             ],
         })
     }
