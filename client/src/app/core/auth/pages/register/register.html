@@ -42,9 +42,9 @@
                             <mat-error>
                                 Repeat password is missing!
                             </mat-error>
-                        }@else if(registerForm.get('rePass')?.hasError('minlength')) {
+                        }@else if (registerForm.get('rePass')?.hasError('passwordMismatch')) {
                             <mat-error>
-                                Min. password length: 4 chars!
+                                Passwords don't match!
                             </mat-error>
                         }
                     </mat-form-field>

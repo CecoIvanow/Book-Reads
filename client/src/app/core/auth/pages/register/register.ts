@@ -7,13 +7,13 @@ import { RegisterCredentials } from '../../models/index.js';
 import { AuthService } from '../../services/auth.service.js';
 import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../services/user-session.service.js';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-register',
     imports: [
         MatInputModule,
-        MatFormFieldModule, 
+        MatFormFieldModule,
         MatRadioModule,
         MatButtonModule,
         RouterModule,
@@ -50,8 +50,41 @@ export class Register {
             lastName: ['',
                 [Validators.required]
             ]
+        }, {
+            validators: this.passwordMatchValidator()
         })
     }
+
+
+    passwordMatchValidator(): ValidatorFn {
+        return (formGroup: AbstractControl) => {
+            const passwordControl = formGroup.get('password');
+            const rePassControl = formGroup.get('rePass');
+
+            if (!passwordControl || !rePassControl) {
+                return null;
+            }
+
+            const password = passwordControl.value;
+            const rePass = rePassControl.value;
+
+            if (password !== rePass) {
+                
+                rePassControl.setErrors({ passwordMismatch: true });
+                return { passwordMismatch: true };
+            } else {
+                if (rePassControl.errors?.['passwordMismatch']) {
+                    delete rePassControl.errors['passwordMismatch'];
+
+                    if (Object.keys(rePassControl.errors).length === 0) {
+                        rePassControl.setErrors(null);
+                    }
+                }
+                return null;
+            }
+        };
+    }
+
 
     async onRegister() {
         if (this.registerForm.invalid) {
