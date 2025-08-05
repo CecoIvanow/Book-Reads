@@ -7,6 +7,8 @@ import { AuthService } from '../../services/auth.service.js';
 import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../services/user-session.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +17,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
         MatFormFieldModule,
         MatButtonModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     templateUrl: './login.html',
     styleUrl: './login.scss',
@@ -27,6 +29,7 @@ export class Login {
         private router: Router,
         private authService: AuthService,
         private formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         protected userSession: UserSessionService,
     ) {
         this.loginForm = formBuilder.group({
@@ -61,6 +64,15 @@ export class Login {
                 });
 
                 this.router.navigate(['/']);
+            },
+            error: (error: HttpErrorResponse) => {
+                if (error.status === 403) {
+                    this._snackBar.open('Unable to login, invalid credentials!');
+
+                    setTimeout(() => {
+                        this._snackBar.dismiss();
+                    }, 5000)
+                }
             }
         });
     }
