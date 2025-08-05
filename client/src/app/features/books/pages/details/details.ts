@@ -122,7 +122,7 @@ export class Details implements OnInit, OnDestroy {
 
         const bookId = this.book()?._id;
 
-        if (!bookId) {
+        if (!bookId || !content) {
             return;
         }
 
