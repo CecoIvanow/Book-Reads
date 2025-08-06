@@ -4,34 +4,34 @@
 
         <div class="content">
             <section class="form-container">
-                <form class="book-form" (submit)="onAddBookSubmit($event)">
+            <form class="book-form" (ngSubmit)="onBookAddSubmit()" [formGroup]="bookAddForm">
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Book Title</mat-label>
-                            <input matInput type="text" name="title" required>
+                            <input matInput type="text" formControlName="title" required>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
                             <mat-label>Author</mat-label>
-                            <input matInput type="text" name="author" required>
+                            <input matInput type="text" formControlName="author" required>
                         </mat-form-field>
                     </div>
 
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Cover Image URL</mat-label>
-                            <input matInput type="url" name="img" required (input)="onImageUrlInput($event)">
+                            <input matInput type="url" formControlName="img" required (input)="onImageUrlInput()">
                             <mat-hint>Enter URL to see preview</mat-hint>
                         </mat-form-field>
                     </div>
 
                     <mat-form-field appearance="outline" class="summary-field">
                         <mat-label>Book Summary</mat-label>
-                        <textarea matInput name="summary" rows="6" required></textarea>
+                        <textarea matInput formControlName="summary" rows="6" required></textarea>
                     </mat-form-field>
 
                     <div class="form-actions">
-                        <button mat-stroked-button color="primary" (click)="onFormReset()">Reset</button>
+                        <a mat-stroked-button color="primary" routerLink="/catalog">Cancel</a>
                         <button mat-raised-button color="primary" class="add-button">
                             <mat-icon>add</mat-icon> Add Book
                         </button>
