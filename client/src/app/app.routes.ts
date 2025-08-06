@@ -43,7 +43,7 @@ export const routes: Routes = [
         path: 'books/edit/:bookId',
         loadComponent: () => import('./features/books/pages/edit/edit.js').then(c => c.Edit),
         pathMatch: 'full',
-        canActivate: [authGuard, ownerGuard],
+        canActivate: [ownerGuard],
         resolve: {
             bookDetails: bookDetailsResolver
         }
