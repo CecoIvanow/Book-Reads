@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, guestGuard } from './core/auth/auth-guard.js';
+import { authGuard, guestGuard, ownerGuard } from './core/auth/auth-guard.js';
 import { bookDetailsResolver } from './features/books/books.resolver.js';
 
 export const routes: Routes = [
@@ -43,7 +43,7 @@ export const routes: Routes = [
         path: 'books/edit/:bookId',
         loadComponent: () => import('./features/books/pages/edit/edit.js').then(c => c.Edit),
         pathMatch: 'full',
-        canActivate: [authGuard],
+        canActivate: [authGuard, ownerGuard],
         resolve: {
             bookDetails: bookDetailsResolver
         }
