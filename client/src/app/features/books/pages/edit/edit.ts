@@ -7,6 +7,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Book } from '../../models/book.model.js';
 import { BooksService } from '../../services/books.service.js';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -15,28 +16,44 @@ import { Subscription } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
 ],
   templateUrl: './edit.html',
   styleUrl: './edit.scss'
 })
-export class Edit implements OnInit, OnDestroy {
+export class Edit implements OnDestroy {
     protected book = signal<Book | null>(null);
     protected imagePreviewObjectUrl = signal<string | null>(null);
+    protected bookEditForm: FormGroup; 
 
+    private urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
     private subscriptions = new Subscription();
 
     constructor(
-        private route: ActivatedRoute,
-        private booksService: BooksService,
         private router: Router,
-    ){
-    }
-
-    ngOnInit(): void {
+        private route: ActivatedRoute,
+        private formBuilder: FormBuilder,
+        private booksService: BooksService,
+    ) {
         const bookData: Book = this.route.snapshot.data['bookDetails'].at(0);
-
         this.book.set(bookData);
+
+        this.bookEditForm = formBuilder.group({
+            title: [this.book()?.title, 
+                [Validators.required]
+            ],
+            author: [this.book()?.author,
+                [Validators.required]
+            ],
+            img: [this.book()?.img,
+                [Validators.required, Validators.pattern(this.urlPattern)]
+            ],
+            summary: [this.book()?.summary,
+                [Validators.required]
+            ],
+
+        })
     }
 
     ngOnDestroy(): void {
@@ -50,11 +67,10 @@ export class Edit implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    onImageUrlInput(e: Event): void {
-        const imageUrl = (e.currentTarget as HTMLInputElement).value;
-        const urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
+    onImageUrlInput(): void {
+        const imageUrl = this.bookEditForm.get('img')?.value;
 
-        if (!urlPattern.test(imageUrl)) {
+        if (!this.urlPattern.test(imageUrl)) {
             const imageObjectUrl = this.imagePreviewObjectUrl();
 
             if (imageObjectUrl) {
@@ -76,15 +92,13 @@ export class Edit implements OnInit, OnDestroy {
         this.subscriptions.add(sub);
     }
 
-    onEditBookSubmit(e: Event): void {
-        e.preventDefault();
+    onEditBookSubmit(): void {
+        if (this.bookEditForm.invalid) {
+            return;
+        }
 
-        const bookId = this.route.snapshot.params['bookId']
-
-        const form = e.currentTarget as HTMLFormElement;
-        const formData = new FormData(form);
-        const bookObjectBody = Object.fromEntries(formData) as object;
-        const bookBody = bookObjectBody as Book;
+        const bookId = this.route.snapshot.params['bookId'];
+        const bookBody = this.bookEditForm.value;
 
         this.booksService.updateBook(bookId, bookBody).subscribe({
             next: (data: Book) => {
