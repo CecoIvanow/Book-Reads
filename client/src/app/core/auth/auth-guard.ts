@@ -1,17 +1,16 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { UserSessionService } from './services/user-session.service.js';
-import { BooksService } from '../../features/books/services/books.service.js';
-import { UUIDv4 } from '../../shared/models/index.js';
+import { UserSessionService } from './services/index.js';
+import { BooksService } from '../../features/books/services/index.js';
 import { firstValueFrom } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
     const userSession = inject(UserSessionService);
     const router = inject(Router);
 
-    const isUser = userSession.userToken();
+    const userToken = userSession.userToken();
 
-    if (!isUser) {
+    if (!userToken) {
         return router.createUrlTree(['/login']);
     }
 
@@ -22,9 +21,9 @@ export const guestGuard: CanActivateFn = (route, state) => {
     const userSession = inject(UserSessionService);
     const router = inject(Router);
 
-    const isGuest = !userSession.userToken();
+    const userToken = userSession.userToken();
 
-    if (!isGuest) {
+    if (userToken) {
         return router.createUrlTree(['/catalog']);
     }
 
