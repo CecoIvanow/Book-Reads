@@ -60,7 +60,7 @@
                     </mat-form-field>
 
                     <div class="form-actions">
-                        <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Cancel</button>
+                        <a mat-stroked-button color="primary" [routerLink]="[`/books/details/${book()?._id}`]">Cancel</a>
                         <button mat-raised-button type="submit" color="primary">Save Changes</button>
                     </div>
                 </form>
