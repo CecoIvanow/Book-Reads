@@ -9,11 +9,23 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Book Title</mat-label>
                             <input matInput type="text" formControlName="title" required>
+
+                            @if (bookAddForm.get('title')?.hasError('required')) {
+                                <mat-error>
+                                    Book title is required!
+                                </mat-error>
+                            }
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
                             <mat-label>Author</mat-label>
                             <input matInput type="text" formControlName="author" required>
+
+                            @if (bookAddForm.get('author')?.hasError('required')) {
+                                <mat-error>
+                                    Book author is required!
+                                </mat-error>
+                            }
                         </mat-form-field>
                     </div>
 
@@ -22,12 +34,29 @@
                             <mat-label>Cover Image URL</mat-label>
                             <input matInput type="url" formControlName="img" required (input)="onImageUrlInput()">
                             <mat-hint>Enter URL to see preview</mat-hint>
+
+                            @if (bookAddForm.get('img')?.hasError('required')) {
+                                <mat-error>
+                                    Book cover image is required!
+                                </mat-error>
+                            }@else if (bookAddForm.get('img')?.hasError('pattern')) {
+                                <mat-error>
+                                    Invalid image url link!
+                                </mat-error>
+                            }
                         </mat-form-field>
+
                     </div>
 
                     <mat-form-field appearance="outline" class="summary-field">
                         <mat-label>Book Summary</mat-label>
                         <textarea matInput formControlName="summary" rows="6" required></textarea>
+
+                        @if (bookAddForm.get('summary')?.hasError('required')) {
+                            <mat-error>
+                                Book summary is required!
+                            </mat-error>
+                        }
                     </mat-form-field>
 
                     <div class="form-actions">
