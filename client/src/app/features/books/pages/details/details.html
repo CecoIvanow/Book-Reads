@@ -10,19 +10,19 @@
                     <mat-card-actions>
                         <section class="owner-actions">
                             @if (userSession.userId() === book()?.owner?._id) {
-                            <a class="edit-button" matButton="text" [routerLink]="[`/books/edit/${book()?._id}`]">Edit</a>
-                            <button class="delete-button" matButton="filled" (click)="onBookDelete()">Delete</button>
+                                <a class="edit-button" matButton="text" [routerLink]="[`/books/edit/${book()?._id}`]">Edit</a>
+                                <button class="delete-button" matButton="filled" (click)="onBookDelete()">Delete</button>
                             }
                         </section>
                         <section class="user-actions">
                             <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
-                                @if (!userLikeId()) {
-                                <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
-                                } @else {
-                                <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
-                                }
+                                    @if (!userLikeId()) {
+                                        <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
+                                        } @else {
+                                        <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
+                                    }
                                 }
                             </div>
                         </section>
@@ -43,15 +43,15 @@
 
                 <section class="comment-input">
                     @if (userSession.userToken()) {
-                    <form (submit)="onCommentSubmit($event)">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Share your thoughts...</mat-label>
-                            <input matInput type="text" name="content">
-                        </mat-form-field>
-                        <div class="button-container">
-                            <button mat-raised-button class="post-button">Post</button>
-                        </div>
-                    </form>
+                        <form (ngSubmit)="onCommentSubmit()" [formGroup]="commentForm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Share your thoughts...</mat-label>
+                                <input matInput type="text" formControlName="content">
+                            </mat-form-field>
+                            <div class="button-container">
+                                <button mat-raised-button class="post-button" type="submit">Post</button>
+                            </div>
+                        </form>
                     }
                 </section>
 
@@ -80,15 +80,15 @@
                                             </section>
                                         </mat-card-actions>
                                     } @else {
-                                        <form (submit)="onCommentSubmit($event, comment._id)">
+                                        <form (ngSubmit)="onCommentSubmit(comment._id)" [formGroup]="commentForm">
                                             <mat-form-field appearance="outline">
-                                                <input matInput type="text" name="content" [value]="commentContent()" (input)="onCommentContentChange($event)">
+                                                <input matInput type="text" formControlName="content">
                                             </mat-form-field>
                                     
                                             <mat-card-actions>
                                                 <section class="owner-actions">
-                                                    <button class="edit-button" matButton="text">Save</button>
-                                                    <button type="button" class="delete-button" matButton="filled" (click)="clickedComemntEditId.set(null);">Cancel</button>
+                                                    <button class="edit-button" matButton="text" type="submit">Save</button>
+                                                    <button type="button" class="delete-button" matButton="filled" (click)="clickedComemntEditId.set(null)">Cancel</button>
                                                 </section>
                                             </mat-card-actions>
                                         </form>
