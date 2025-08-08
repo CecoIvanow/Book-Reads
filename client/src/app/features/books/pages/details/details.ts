@@ -11,6 +11,7 @@ import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-details',
@@ -20,7 +21,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
         MatFormFieldModule,
         MatInputModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CommonModule,
     ],
     templateUrl: './details.html',
     styleUrl: './details.scss'

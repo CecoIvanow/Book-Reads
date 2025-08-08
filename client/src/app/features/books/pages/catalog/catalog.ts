@@ -9,6 +9,7 @@ import { BooksService } from '../../services/index.js';
 import { RouterModule } from '@angular/router';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-catalog-page',
@@ -18,6 +19,7 @@ import { UUIDv4 } from '../../../../shared/models/index.js';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         RouterModule,
+        CommonModule,
 
     ],
     templateUrl: './catalog.html',
