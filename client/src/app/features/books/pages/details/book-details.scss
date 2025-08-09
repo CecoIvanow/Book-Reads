@@ -8,6 +8,11 @@ h1 {
     margin-block-end: 3rem;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 h1::before {
     content: '';
     display: inline-block;
@@ -266,9 +271,11 @@ mat-card-actions .user-actions {
 }
 
 .comment-meta {
-    display: flex;
-    align-items: center;
     margin-bottom: 4px;
+}
+
+.comment-meta > a:hover {
+    text-decoration: underline;
 }
 
 .comment-author {
