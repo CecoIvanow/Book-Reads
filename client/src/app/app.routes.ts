@@ -49,7 +49,7 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'users/details',
+        path: 'users/details/:userId',
         loadComponent: () => import('./features/users/pages/user-details/user-details.js').then(c => c.UserDetails),
         pathMatch: 'full',
     },
