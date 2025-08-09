@@ -58,7 +58,7 @@ mat-card .media {
     overflow: hidden;
 }
 
-mat-card mat-card-actions :not(:is(.comment-actions)) {
+mat-card mat-card-actions:not(:is(.comment-actions)) {
     display: flex;
     flex-direction: column;
 }
