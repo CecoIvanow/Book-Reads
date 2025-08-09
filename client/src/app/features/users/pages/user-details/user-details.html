@@ -76,7 +76,7 @@
                                     <div class="comment-header-content">
                                         <div class="comment-meta">
                                             <span class="comment-author">{{comment.owner?.firstName}} {{comment.owner?.lastName}}</span>
-                                            <!-- <span class="comment-date">• {{comment.createdAt | date}}</span> -->
+                                            <span class="comment-date">• {{comment._createdOn | date}}</span>
                                         </div>
                                         <mat-card-subtitle class="comment-book">
                                             On <a [routerLink]="[`/books/details/${comment.bookId}`]">{{comment.book?.title}}</a>
