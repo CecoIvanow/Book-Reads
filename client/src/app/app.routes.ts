@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, guestGuard } from './core/auth/auth-guard.js';
+import { authGuard, guestGuard, ownerGuard } from './core/auth/auth-guard.js';
 import { bookDetailsResolver } from './features/books/books.resolver.js';
 
 export const routes: Routes = [
@@ -19,7 +19,7 @@ export const routes: Routes = [
         loadComponent: () => import('./core/auth/pages/register/register.js').then(c => c.Register),
         pathMatch: 'full',
         canActivate: [guestGuard],
-    },  
+    },
     {
         path: 'catalog',
         loadComponent: () => import('./features/books/pages/catalog/catalog.js').then(c => c.Catalog),
@@ -33,7 +33,7 @@ export const routes: Routes = [
     },
     {
         path: 'books/details/:bookId',
-        loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details),
+        loadComponent: () => import('./features/books/pages/details/book-details.js').then(c => c.BookDetails),
         pathMatch: 'full',
         resolve: {
             bookDetails: bookDetailsResolver
@@ -43,10 +43,15 @@ export const routes: Routes = [
         path: 'books/edit/:bookId',
         loadComponent: () => import('./features/books/pages/edit/edit.js').then(c => c.Edit),
         pathMatch: 'full',
-        canActivate: [authGuard],
+        canActivate: [ownerGuard],
         resolve: {
             bookDetails: bookDetailsResolver
         }
+    },
+    {
+        path: 'users/details/:userId',
+        loadComponent: () => import('./features/users/pages/user-details/user-details.js').then(c => c.UserDetails),
+        pathMatch: 'full',
     },
     {
         path: '404',

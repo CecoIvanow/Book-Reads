@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-details',
@@ -19,28 +21,36 @@ import { FAKE_ID } from '../../../../shared/constants/index.js';
         MatFormFieldModule,
         MatInputModule,
         RouterModule,
+        ReactiveFormsModule,
+        CommonModule,
     ],
-    templateUrl: './details.html',
-    styleUrl: './details.scss'
+    templateUrl: './book-details.html',
+    styleUrl: './book-details.scss'
 })
-export class Details implements OnInit, OnDestroy {
+export class BookDetails implements OnInit, OnDestroy {
     protected book = signal<Book | null>(null);
     protected comments = signal<CommentType[]>([]);
     protected userLikeId = signal<UUIDv4 | null>(null);
     protected likesCount = signal<number>(0);
     protected clickedComemntEditId = signal<UUIDv4 | null>(null);
-    protected commentContent = signal<string | null>(null);
+    protected commentForm: FormGroup;
 
     private subscriptions: Subscription = new Subscription();
 
     constructor(
+        private commentsService: CommentsService,
         private booksService: BooksService,
         private likesService: LikesService,
-        private commentsService: CommentsService,
+        private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         protected userSession: UserSessionService,
     ) {
+        this.commentForm = formBuilder.group({
+            content: ['',
+                []
+            ]
+        })
     }
 
     ngOnDestroy(): void {
@@ -113,16 +123,11 @@ export class Details implements OnInit, OnDestroy {
         });
     }
 
-    onCommentSubmit(e: Event, commentId?: UUIDv4): void {
-        e.preventDefault();
-
-        const form = e.currentTarget as HTMLFormElement
-        const formData = new FormData(form);
-        const content = formData.get('content') as string;
-
+    onCommentSubmit(commentId?: UUIDv4): void {
+        const content = this.commentForm.get('content')?.value;
         const bookId = this.book()?._id;
 
-        if (!bookId) {
+        if (!bookId || !content) {
             return;
         }
 
@@ -149,7 +154,7 @@ export class Details implements OnInit, OnDestroy {
             return;
         }
 
-        form.reset();
+        this.commentForm.reset();
         this.commentsService.addComment(bookId, content).subscribe({
             next: (respComment) => {
                 const newComment = respComment;
@@ -179,13 +184,9 @@ export class Details implements OnInit, OnDestroy {
 
     onCommentEditClick(commentId: UUIDv4, content: string): void {
         this.clickedComemntEditId.set(commentId);
-        this.commentContent.set(content);
-    }
+        
+        console.log(content);
 
-    onCommentContentChange(e: Event): void {
-        const newContent = (e.currentTarget as HTMLInputElement).value
-        console.log(newContent);
-
-        this.commentContent.set(newContent);
+        this.commentForm.get('content')?.setValue(content);
     }
 }

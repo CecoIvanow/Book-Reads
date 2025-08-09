@@ -1,15 +1,31 @@
 <div class="wrapper">
     <section>
         <h1>Login</h1>
-        <form (submit)="onLogin($event)">
+        <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput type="email" name="email" placeholder="email@example.com" required>
+                <input matInput type="email" formControlName="email" placeholder="email@example.com" required>
+
+                @if(loginForm.get('email')?.hasError('required')) {
+                    <mat-error>
+                        Email is missing!
+                    </mat-error>
+                }@else if(loginForm.get('email')?.hasError('email')) {
+                    <mat-error>
+                        Incorrect email format!
+                    </mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" name="password" required>
+                <input matInput type="password" formControlName="password">
+
+                @if(loginForm.get('password')?.hasError('required')) {
+                    <mat-error>
+                        Password is missing!
+                    </mat-error>
+                }
             </mat-form-field>
 
             <button matButton="filled">Login</button>

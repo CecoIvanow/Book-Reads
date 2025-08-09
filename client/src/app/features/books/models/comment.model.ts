@@ -1,4 +1,5 @@
 import { UUIDv4 } from "../../../shared/models/index.js"
+import { Book } from "./book.model.js"
 import { Owner } from "./owner.model.js"
 
 export type CommentType = {
@@ -6,5 +7,7 @@ export type CommentType = {
     bookId: UUIDv4,
     content: string,
     _id: UUIDv4,
-    owner?: Owner
+    _createdOn?: Date,
+    owner?: Owner,
+    book?: Book
 }

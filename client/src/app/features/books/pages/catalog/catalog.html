@@ -16,8 +16,8 @@
                             <img [src]="book.img">
                         </div>
                         <mat-card-title-group>
-                            <mat-card-title class="book-title">{{book.title}}</mat-card-title>
-                            <mat-card-subtitle class="book-author">{{book.author}}</mat-card-subtitle>
+                            <mat-card-title class="book-title">{{book.title | titlecase}}</mat-card-title>
+                            <mat-card-subtitle class="book-author">{{book.author | titlecase}}</mat-card-subtitle>
                         </mat-card-title-group>
                     </a>
 

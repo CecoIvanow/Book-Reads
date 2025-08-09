@@ -48,6 +48,7 @@ form .input-fields {
 .input-fields :is(.left-side, .right-side) {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 form button {

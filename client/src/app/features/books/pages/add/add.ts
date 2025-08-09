@@ -2,25 +2,52 @@ import { Component, OnDestroy, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BooksService } from '../../services/books.service.js';
+import { BooksService } from '../../services/index.js';
 import { Subscription } from 'rxjs';
-import { Book } from '../../models/book.model.js';
-import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
+import { Book } from '../../models/index.js';
+import { Router, RouterModule } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-add',
-    imports: [MatInputModule, MatFormFieldModule, MatButtonModule, MatIcon],
+    imports: [
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatIcon,
+        ReactiveFormsModule,
+        RouterModule,
+    ],
     templateUrl: './add.html',
     styleUrl: './add.scss'
 })
 export class Add implements OnDestroy {
-    protected imagePreviewObjectUrl = signal<string | null>(null)
+    protected imagePreviewObjectUrl = signal<string | null>(null);
+    protected bookAddForm: FormGroup;
 
+    private urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
     private subscriptions = new Subscription();
 
-    constructor(private booksService: BooksService, private router: Router) {
+    constructor(
+        private booksService: BooksService,
+        private router: Router,
+        private formBuilder: FormBuilder
+    ) {
+        this.bookAddForm = formBuilder.group({
+            title: ['',
+                [Validators.required]
+            ],
+            author: ['',
+                [Validators.required]
+            ],
+            img: ['',
+                [Validators.required, Validators.pattern(this.urlPattern)]
+            ],
+            summary: ['',
+                [Validators.required]
+            ],
+        })
     }
 
     ngOnDestroy(): void {
@@ -34,11 +61,10 @@ export class Add implements OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    onImageUrlInput(e: Event): void {
-        const imageUrl = (e.currentTarget as HTMLInputElement).value;
-        const urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
-
-        if (!urlPattern.test(imageUrl)) {
+    onImageUrlInput(): void {
+        const imageUrl = this.bookAddForm.get('img')?.value as string;
+        
+        if (!this.urlPattern.test(imageUrl)) {
             const imageObjectUrl = this.imagePreviewObjectUrl();
 
             if (imageObjectUrl) {
@@ -60,12 +86,12 @@ export class Add implements OnDestroy {
         this.subscriptions.add(sub);
     }
 
-    onAddBookSubmit(e: Event): void {
-        e.preventDefault();
+    onBookAddSubmit(): void {
+        if (this.bookAddForm.invalid) {
+            return;
+        }
 
-        const form = e.currentTarget as HTMLFormElement;
-        const formData = new FormData(form);
-        const bookBody = Object.fromEntries(formData) as object;
+        const bookBody = this.bookAddForm.value;
 
         this.booksService.addBook(bookBody).subscribe({
             next: (data: Book) => {
@@ -74,17 +100,5 @@ export class Add implements OnDestroy {
             }
         })
         
-    }
-
-    onFormReset() {
-        const form = document.querySelector('.book-form') as HTMLFormElement;
-
-        form.reset();
-
-        const imageObjectUrl = this.imagePreviewObjectUrl();
-        if (imageObjectUrl) {
-            URL.revokeObjectURL(imageObjectUrl);
-            this.imagePreviewObjectUrl.set(null);
-        }
     }
 }

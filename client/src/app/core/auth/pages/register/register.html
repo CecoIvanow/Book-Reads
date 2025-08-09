@@ -1,33 +1,75 @@
 <div class="wrapper">
     <section>
         <h1>Register</h1>
-        <form (submit)="onRegister($event)">
+        <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
             <div class="input-fields">
                 <div class="left-side">
                     <mat-form-field appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input matInput type="email" name="email" placeholder="email@example.com" required>
+                        <input matInput type="email" formControlName="email" placeholder="email@example.com" required>
+
+                        @if(registerForm.get('email')?.hasError('required')) {
+                            <mat-error>
+                                Email is missing!
+                            </mat-error>
+                        }@else if(registerForm.get('email')?.hasError('pattern')) {
+                            <mat-error>
+                                Incorrect email format!
+                            </mat-error>
+                        }
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput type="password" name="password" required>
+                        <input matInput type="password" formControlName="password" required>
+
+                        @if(registerForm.get('password')?.hasError('required')) {
+                            <mat-error>
+                                Password is missing!
+                            </mat-error>
+                        }@else if(registerForm.get('password')?.hasError('minlength')) {
+                            <mat-error>
+                                Min. password length: 4 chars!
+                            </mat-error>
+                        }
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Repeat Password</mat-label>
-                        <input matInput type="password" name="rePass" required>
+                        <input matInput type="password" formControlName="rePass" required>
+
+                        @if(registerForm.get('rePass')?.hasError('required')) {
+                            <mat-error>
+                                Repeat password is missing!
+                            </mat-error>
+                        }@else if (registerForm.get('rePass')?.hasError('passwordMismatch')) {
+                            <mat-error>
+                                Passwords don't match!
+                            </mat-error>
+                        }
                     </mat-form-field>
                 </div>
                 <div class="right-side">
                     <mat-form-field appearance="outline">
                         <mat-label>First name</mat-label>
-                        <input matInput type="text" name="firstName" required>
+                        <input matInput type="text" formControlName="firstName" required>
+
+                        @if(registerForm.get('firstName')?.hasError('required')) {
+                            <mat-error>
+                                First name is missing!
+                            </mat-error>
+                        }
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Last name</mat-label>
-                        <input matInput type="text" name="lastName" required>
+                        <input matInput type="text" formControlName="lastName" required>
+
+                        @if(registerForm.get('lastName')?.hasError('required')) {
+                            <mat-error>
+                                Last name is missing!
+                            </mat-error>
+                        }
                     </mat-form-field>
                 </div>
             </div>

@@ -93,4 +93,10 @@ export class BooksService {
             }
         })
     }
+
+    getBooksFromOwner(userId: UUIDv4): Observable<Book[]> {
+        const url = buildURL(API_PATHS.BOOKS.ALL.FROM_OWNER(userId));
+
+        return this.httpClient.get<Book[]>(url);
+    }
 }

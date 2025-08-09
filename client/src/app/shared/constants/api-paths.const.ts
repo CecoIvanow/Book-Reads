@@ -20,12 +20,16 @@ export const API_PATHS: ApiPaths = {
             WITH_OWNER: (id: UUIDv4) => `${API_ROOTS.BOOKS}/${id}?load=${encodeURIComponent('owner=_ownerId:users')}`,
             COMMENTS: (bookId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=${encodeURIComponent(`bookId="${bookId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`,
         },
+        ALL: {
+            FROM_OWNER: (userId: UUIDv4) => `${API_ROOTS.BOOKS}?where=${encodeURIComponent(`_ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`
+        }
     },
     USERS: {
         ROOT: API_ROOTS.USERS,
         LOGIN: `${API_ROOTS.USERS}/login`,
         REGISTER: `${API_ROOTS.USERS}/register`,
-        LOGOUT: `${API_ROOTS.USERS}/logout`
+        LOGOUT: `${API_ROOTS.USERS}/logout`,
+
     },
     LIKES: {
         ROOT: `${API_ROOTS.LIKES}`,
@@ -41,6 +45,9 @@ export const API_PATHS: ApiPaths = {
         ROOT: `${API_ROOTS.COMMENTS}`,
         SPECIFIC: {
             ROOT: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}`,
+        },
+        ALL: {
+            FROM_OWNER: (userId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=${encodeURIComponent(`_ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users,book=bookId:books`)}`
         }
     }
 }

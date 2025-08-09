@@ -12,34 +12,56 @@
             </section>
 
             <section class="edit-form">
-                <form class="book-form" (submit)="onEditBookSubmit($event)">
+                <form class="book-form" (ngSubmit)="onEditBookSubmit()" [formGroup]="bookEditForm">
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Book Title</mat-label>
-                            <input matInput type="text" name="title" [value]="book()?.title" required>
+                            <input matInput type="text" formControlName="title" required>
+
+                            @if (bookEditForm.get('title')?.hasError('required')) {
+                                <mat-error>
+                                    Book title is required!
+                                </mat-error>
+                            }
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
                             <mat-label>Author</mat-label>
-                            <input matInput type="text" name="author" [value]="book()?.author" required>
+                            <input matInput type="text" formControlName="author" required>
+
+                            @if (bookEditForm.get('author')?.hasError('required')) {
+                            <mat-error>
+                                Book author is required!
+                            </mat-error>
+                            }
                         </mat-form-field>
                     </div>
 
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Cover Image URL</mat-label>
-                            <input matInput type="url" name="img" [value]="book()?.img" (input)="onImageUrlInput($event)" required>
+                            <input matInput type="url" formControlName="img" (input)="onImageUrlInput()" required>
+
+                            @if (bookEditForm.get('img')?.hasError('required')) {
+                            <mat-error>
+                                Book cover image is required!
+                            </mat-error>
+                            }@else if (bookEditForm.get('img')?.hasError('pattern')) {
+                            <mat-error>
+                                Invalid image url link!
+                            </mat-error>
+                            }
                         </mat-form-field>
                     </div>
 
                     <mat-form-field appearance="outline" class="summary-field">
                         <mat-label>Book Summary</mat-label>
-                        <textarea matInput name="summary" rows="6" [value]="book()?.summary" required></textarea>
+                        <textarea matInput formControlName="summary" rows="6" required></textarea>
                     </mat-form-field>
 
                     <div class="form-actions">
-                        <button mat-stroked-button color="primary" type="button" routerLink="/catalog">Cancel</button>
-                        <button mat-raised-button type="submit" color="primary">Save Changes</button>
+                        <a mat-stroked-button [routerLink]="[`/books/details/${book()?._id}`]">Cancel</a>
+                        <button mat-raised-button type="submit" >Save Changes</button>
                     </div>
                 </form>
             </section>
