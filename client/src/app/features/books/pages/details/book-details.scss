@@ -135,6 +135,10 @@ user-actions p {
     color: gray;
 }
 
+.book-details .added-by > a:hover {
+    text-decoration: underline;
+}
+
 .book-details .added-by::after {
     content: '';
     display: inline-block;
