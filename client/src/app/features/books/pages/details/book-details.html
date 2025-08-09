@@ -35,7 +35,9 @@
                     <h2 class="title">{{book()?.title | titlecase}}</h2>
                     <h3 class="author">by {{book()?.author | titlecase}}</h3>
                 </div>
-                <p class="added-by">Added by: {{book()?.owner?.firstName | titlecase}} {{book()?.owner?.lastName | titlecase}}</p>
+                <p class="added-by">Added by: 
+                    <a [routerLink]="[`/users/details/{book()?._ownerId}`]">{{book()?.owner?.firstName | titlecase}} {{book()?.owner?.lastName | titlecase}}</a>
+                </p>
                 <section class="book-summary">
                     <h2>Summary:</h2>
                     <p>{{book()?.summary}}</p>
