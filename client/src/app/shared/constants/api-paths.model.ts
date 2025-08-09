@@ -22,6 +22,9 @@ type BooksPaths = {
         WITH_OWNER: (id: UUIDv4) => string,
         COMMENTS: (bookId: UUIDv4) => string,
     },
+    ALL: {
+        FROM_OWNER: (userId: UUIDv4) => string,
+    }
     PAGINATION: (skip: number, size: number) => string,
 }
 
