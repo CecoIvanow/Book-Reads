@@ -44,5 +44,12 @@ export class UserDetails implements OnInit {
                 this.booksCount.set(books.length);
             }
         })
+
+        this.commentsService.getCommentsFromOwner(userId).subscribe({
+            next: (comments) => {              
+                this.userComments.set(comments);
+                this.commentsCount.set(comments.length);
+            }
+        })
     }
 }
