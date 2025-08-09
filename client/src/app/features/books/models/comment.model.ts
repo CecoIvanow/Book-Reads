@@ -6,5 +6,6 @@ export type CommentType = {
     bookId: UUIDv4,
     content: string,
     _id: UUIDv4,
-    owner?: Owner
+    _createdAt?: Date,
+    owner?: Owner,
 }
