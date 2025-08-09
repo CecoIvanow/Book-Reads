@@ -49,6 +49,11 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'users/details',
+        loadComponent: () => import('./features/users/pages/user-details/user-details.js').then(c => c.UserDetails),
+        pathMatch: 'full',
+    },
+    {
         path: '404',
         loadComponent: () => import('./core/not-found/page/not-found/not-found.js').then(c => c.NotFound),
     },

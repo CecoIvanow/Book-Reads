@@ -1,0 +1,87 @@
+<div class="wrapper">
+    <section class="section">
+        <div class="user-header">
+            <div class="user-avatar">
+                <img src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"
+                    alt="User avatar">
+            </div>
+            <div class="user-info">
+                <!-- <h1>{{user()?.firstName}} {{user()?.lastName}}</h1>
+                <p>Member since {{user()?._createdAt | date}}</p> -->
+                <h1>John Doe</h1>
+                <p>Member since 08.08.2025</p>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <mat-icon>menu_book</mat-icon>
+                        <span>{{booksCount()}} Books Added</span>
+                    </div>
+                    <div class="stat-item">
+                        <mat-icon>comment</mat-icon>
+                        <span>{{commentsCount()}} Comments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-content">
+            <section class="user-books">
+                <h2>Added Books</h2>
+                @if (userBooks().length === 0) {
+                <div class="empty-section">
+                    <mat-icon>auto_stories</mat-icon>
+                    <p>No books added yet</p>
+                </div>
+                } @else {
+                <ul>
+                    @for (book of userBooks(); track book._id) {
+                    <li>
+                        <mat-card class="book-item">
+                            <a [routerLink]="[`/books/details/${book._id}`]">
+                                <div class="media">
+                                    <img [src]="book.img">
+                                </div>
+                                <mat-card-title-group>
+                                    <mat-card-title class="book-title">{{book.title}}</mat-card-title>
+                                    <mat-card-subtitle class="book-author">{{book.author}}</mat-card-subtitle>
+                                </mat-card-title-group>
+                            </a>
+                        </mat-card>
+                    </li>
+                    }
+                </ul>
+                }
+            </section>
+
+            <section class="user-comments">
+                <h2>Recent Comments</h2>
+                @if (userComments.length === 0) {
+                <div class="empty-section">
+                    <mat-icon>forum</mat-icon>
+                    <p>No comments yet</p>
+                </div>
+                } @else {
+                <ul>
+                    @for (comment of userComments(); track comment._id) {
+                    <li class="comment-item">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-subtitle>
+                                    <!-- On <a [routerLink]="[`/books/details/${comment.book?._id}`]">{{comment.book?.title}}</a> -->
+                                    On <a [routerLink]="[`/books/details/${comment.bookId}`]">Book Title Holder</a>
+                                </mat-card-subtitle>
+                                <mat-card-subtitle class="comment-date">
+                                    {{comment._createdAt | date}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>{{comment.content}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </li>
+                    }
+                </ul>
+                }
+            </section>
+        </div>
+    </section>
+</div>
