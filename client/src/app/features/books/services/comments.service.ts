@@ -53,4 +53,10 @@ export class CommentsService {
             }
         })
     }
+
+    getCommentsFromOwner(userId: UUIDv4): Observable<CommentType[]>{
+        const url = buildURL(API_PATHS.COMMENTS.ALL.FROM_OWNER(userId));
+
+        return this.httpClient.get<CommentType[]>(url);
+    }
 }

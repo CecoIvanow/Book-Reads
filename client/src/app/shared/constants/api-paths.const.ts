@@ -45,6 +45,9 @@ export const API_PATHS: ApiPaths = {
         ROOT: `${API_ROOTS.COMMENTS}`,
         SPECIFIC: {
             ROOT: (commentId: UUIDv4) => `${API_ROOTS.COMMENTS}/${commentId}`,
+        },
+        ALL: {
+            FROM_OWNER: (userId: UUIDv4) => `${API_ROOTS.COMMENTS}?where=${encodeURIComponent(`_ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`
         }
     }
 }

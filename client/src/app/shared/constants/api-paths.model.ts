@@ -11,6 +11,9 @@ type CommentPaths = {
     ROOT: string,
     SPECIFIC: {
         ROOT: (commentId: UUIDv4) => string,
+    },
+    ALL: {
+        FROM_OWNER: (userId: UUIDv4) => string,
     }
 }
 
