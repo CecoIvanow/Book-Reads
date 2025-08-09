@@ -19,7 +19,7 @@ export const routes: Routes = [
         loadComponent: () => import('./core/auth/pages/register/register.js').then(c => c.Register),
         pathMatch: 'full',
         canActivate: [guestGuard],
-    },  
+    },
     {
         path: 'catalog',
         loadComponent: () => import('./features/books/pages/catalog/catalog.js').then(c => c.Catalog),
@@ -33,7 +33,7 @@ export const routes: Routes = [
     },
     {
         path: 'books/details/:bookId',
-        loadComponent: () => import('./features/books/pages/details/details.js').then(c => c.Details),
+        loadComponent: () => import('./features/books/pages/details/book-details.js').then(c => c.BookDetails),
         pathMatch: 'full',
         resolve: {
             bookDetails: bookDetailsResolver

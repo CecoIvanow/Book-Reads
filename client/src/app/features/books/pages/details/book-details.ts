@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -24,10 +24,10 @@ import { CommonModule } from '@angular/common';
         ReactiveFormsModule,
         CommonModule,
     ],
-    templateUrl: './details.html',
-    styleUrl: './details.scss'
+    templateUrl: './book-details.html',
+    styleUrl: './book-details.scss'
 })
-export class Details implements OnInit, OnDestroy {
+export class BookDetails implements OnInit, OnDestroy {
     protected book = signal<Book | null>(null);
     protected comments = signal<CommentType[]>([]);
     protected userLikeId = signal<UUIDv4 | null>(null);
