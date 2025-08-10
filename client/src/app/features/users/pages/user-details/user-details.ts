@@ -4,9 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
-import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
+import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { MatButtonModule } from '@angular/material/button';
 import { UserPageDetails } from '../../user-book-details.model.js';
+import { UUIDv4 } from '../../../../shared/models/index.js';
+import { CommentsService } from '../../../books/services/comments.service.js';
 
 @Component({
     selector: 'app-user-details',
@@ -29,6 +31,7 @@ export class UserDetails implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private commentsService: CommentsService,
         protected userSession: UserSessionService,
     ) {
     }
@@ -44,5 +47,13 @@ export class UserDetails implements OnInit {
         this.commentsCount.set(userComments.length);
 
         this.user.set(userData);
+    }
+
+    onCommentDelete(commentId: UUIDv4): void {
+        this.commentsService.deleteComment(commentId).subscribe({
+            next: () => {
+                this.userComments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+            }
+        })
     }
 }

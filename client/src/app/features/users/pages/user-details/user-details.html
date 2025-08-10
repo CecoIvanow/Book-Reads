@@ -92,7 +92,7 @@
                                 <mat-card-actions class="comment-actions">
                                     @if (userSession.userId() === comment._ownerId) {
                                         <button class="edit-button" matButton="text">Edit</button>
-                                        <button class="delete-button" matButton="filled">Delete</button>
+                                        <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
                                     }
                                 </mat-card-actions>
                             </mat-card>
