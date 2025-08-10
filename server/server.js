@@ -2004,7 +2004,154 @@
                 bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
                 _createdOn: 1735689600000 + 172800000
             }
-        }
+        },
+        users: {
+            "35c62d76-8152-4626-8712-eeb96381bea8": {
+                email: "peter@abv.bg",
+                username: "Peter",
+                firstName: 'Peter',
+                lastName: 'Ivanov'
+            },
+            "847ec027-f659-4086-8032-5173e2f9c93a": {
+                email: "george@abv.bg",
+                username: "George",
+                firstName: 'George',
+                lastName: 'Vladimirov'
+            },
+            "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
+                email: "admin@abv.bg",
+                username: "Admin",
+                hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
+                firstName: 'Admin',
+                lastName: 'Admin'
+            },
+            "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b": {
+                email: "sophia@abv.bg",
+                username: "Sophia",
+                firstName: 'Sophia',
+                lastName: 'Petrova'
+            },
+            "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d": {
+                email: "liam@abv.bg",
+                username: "Liam",
+                firstName: 'Liam',
+                lastName: 'Johnson'
+            },
+            "aa11bb22-cc33-dd44-ee55-ff66aa11bb22": {
+                email: "olivia@abv.bg",
+                username: "Olivia",
+                firstName: 'Olivia',
+                lastName: 'Williams'
+            },
+            "123e4567-e89b-12d3-a456-426614174000": {
+                email: "noah@abv.bg",
+                username: "Noah",
+                firstName: 'Noah',
+                lastName: 'Brown'
+            },
+            "f47ac10b-58cc-4372-a567-0e02b2c3d479": {
+                email: "emma@abv.bg",
+                username: "Emma",
+                firstName: 'Emma',
+                lastName: 'Davis'
+            },
+            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
+                email: "michael@abv.bg",
+                username: "Michael",
+                firstName: 'Michael',
+                lastName: 'Wilson'
+            },
+            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
+                email: "ava@abv.bg",
+                username: "Ava",
+                firstName: 'Ava',
+                lastName: 'Miller'
+            },
+            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
+                email: "james@abv.bg",
+                username: "James",
+                firstName: 'James',
+                lastName: 'Taylor'
+            },
+            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
+                email: "isabella@abv.bg",
+                username: "Isabella",
+                firstName: 'Isabella',
+                lastName: 'Anderson'
+            },
+            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
+                email: "benjamin@abv.bg",
+                username: "Benjamin",
+                firstName: 'Benjamin',
+                lastName: 'Thomas'
+            },
+            "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e": {
+                email: "mia@abv.bg",
+                username: "Mia",
+                firstName: 'Mia',
+                lastName: 'Jackson'
+            },
+            "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f": {
+                email: "william@abv.bg",
+                username: "William",
+                firstName: 'William',
+                lastName: 'White'
+            },
+            "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a": {
+                email: "charlotte@abv.bg",
+                username: "Charlotte",
+                firstName: 'Charlotte',
+                lastName: 'Harris'
+            },
+            "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b": {
+                email: "ethan@abv.bg",
+                username: "Ethan",
+                firstName: 'Ethan',
+                lastName: 'Martin'
+            },
+            "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c": {
+                email: "amelia@abv.bg",
+                username: "Amelia",
+                firstName: 'Amelia',
+                lastName: 'Thompson'
+            },
+            "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d": {
+                email: "alexander@abv.bg",
+                username: "Alexander",
+                firstName: 'Alexander',
+                lastName: 'Garcia'
+            },
+            "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e": {
+                email: "harper@abv.bg",
+                username: "Harper",
+                firstName: 'Harper',
+                lastName: 'Martinez'
+            },
+            "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f": {
+                email: "daniel@abv.bg",
+                username: "Daniel",
+                firstName: 'Daniel',
+                lastName: 'Robinson'
+            },
+            "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a": {
+                email: "abigail@abv.bg",
+                username: "Abigail",
+                firstName: 'Abigail',
+                lastName: 'Clark'
+            },
+            "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b": {
+                email: "matthew@abv.bg",
+                username: "Matthew",
+                firstName: 'Matthew',
+                lastName: 'Rodriguez'
+            },
+            "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c": {
+                email: "ella@abv.bg",
+                username: "Ella",
+                firstName: 'Ella',
+                lastName: 'Lewis'
+            }
+        },
     };
     var rules$1 = {
         users: {
