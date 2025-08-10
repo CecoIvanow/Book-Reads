@@ -2003,154 +2003,153 @@
                 _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
                 bookId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
                 _createdOn: 1735689600000 + 172800000
+            },
+            "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d": {
+                _id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                bookId: "",
+                _createdOn: 0
+            },
+            "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e": {
+                _id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                bookId: "",
+                _createdOn: 0
+            },
+            "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f": {
+                _id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                bookId: "",
+                _createdOn: 0
+            },
+            "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a": {
+                _id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+                _ownerId: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b",
+                bookId: "",
+                _createdOn: 0
+            },
+            "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b": {
+                _id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+                _ownerId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                bookId: "",
+                _createdOn: 0
+            },
+            "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c": {
+                _id: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+                _ownerId: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22",
+                bookId: "",
+                _createdOn: 0
+            },
+            "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d": {
+                _id: "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+                _ownerId: "123e4567-e89b-12d3-a456-426614174000",
+                bookId: "",
+                _createdOn: 0
+            },
+            "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e": {
+                _id: "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+                _ownerId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                bookId: "",
+                _createdOn: 0
+            },
+            "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f": {
+                _id: "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+                _ownerId: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+                bookId: "",
+                _createdOn: 0
+            },
+            "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a": {
+                _id: "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+                _ownerId: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a",
+                bookId: "",
+                _createdOn: 0
+            },
+            "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b": {
+                _id: "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+                _ownerId: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+                bookId: "",
+                _createdOn: 0
+            },
+            "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c": {
+                _id: "f2a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c",
+                _ownerId: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+                bookId: "",
+                _createdOn: 0
+            },
+            "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d": {
+                _id: "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+                _ownerId: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d",
+                bookId: "",
+                _createdOn: 0
+            },
+            "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e": {
+                _id: "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e",
+                _ownerId: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e",
+                bookId: "",
+                _createdOn: 0
+            },
+            "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f": {
+                _id: "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f",
+                _ownerId: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f",
+                bookId: "",
+                _createdOn: 0
+            },
+            "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a": {
+                _id: "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a",
+                _ownerId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+                bookId: "",
+                _createdOn: 0
+            },
+            "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b": {
+                _id: "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b",
+                _ownerId: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b",
+                bookId: "",
+                _createdOn: 0
+            },
+            "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c": {
+                _id: "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c",
+                _ownerId: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c",
+                bookId: "",
+                _createdOn: 0
+            },
+            "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d": {
+                _id: "a9b0c1d2-e3f4-5a6b-7c8d-9e0f1a2b3c4d",
+                _ownerId: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d",
+                bookId: "",
+                _createdOn: 0
+            },
+            "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e": {
+                _id: "b0c1d2e3-f4a5-6b7c-8d9e-0f1a2b3c4d5e",
+                _ownerId: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+                bookId: "",
+                _createdOn: 0
+            },
+            "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f": {
+                _id: "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f",
+                _ownerId: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f",
+                bookId: "",
+                _createdOn: 0
+            },
+            "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a": {
+                _id: "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+                _ownerId: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a",
+                bookId: "",
+                _createdOn: 0
+            },
+            "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b": {
+                _id: "e3f4a5b6-c7d8-9e0f-1a2b-3c4d5e6f7a8b",
+                _ownerId: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b",
+                bookId: "",
+                _createdOn: 0
+            },
+            "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c": {
+                _id: "f4a5b6c7-d8e9-0f1a-2b3c-4d5e6f7a8b9c",
+                _ownerId: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c",
+                bookId: "",
+                _createdOn: 0
             }
-        },
-        users: {
-            "35c62d76-8152-4626-8712-eeb96381bea8": {
-                email: "peter@abv.bg",
-                firstName: 'Peter',
-                lastName: 'Ivanov',
-                _id: "35c62d76-8152-4626-8712-eeb96381bea8"
-            },
-            "847ec027-f659-4086-8032-5173e2f9c93a": {
-                email: "george@abv.bg",
-                firstName: 'George',
-                lastName: 'Vladimirov',
-                _id: "847ec027-f659-4086-8032-5173e2f9c93a"
-            },
-            "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
-                email: "admin@abv.bg",
-                firstName: 'Admin',
-                lastName: 'Admin',
-                _id: "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
-            },
-            "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b": {
-                email: "sophia@abv.bg",
-                firstName: 'Sophia',
-                lastName: 'Petrova',
-                _id: "9f8e7d6c-5a4b-3c2d-1e0f-9f8e7d6c5a4b"
-            },
-            "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d": {
-                email: "liam@abv.bg",
-                firstName: 'Liam',
-                lastName: 'Johnson',
-                _id: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"
-            },
-            "aa11bb22-cc33-dd44-ee55-ff66aa11bb22": {
-                email: "olivia@abv.bg",
-                firstName: 'Olivia',
-                lastName: 'Williams',
-                _id: "aa11bb22-cc33-dd44-ee55-ff66aa11bb22"
-            },
-            "123e4567-e89b-12d3-a456-426614174000": {
-                email: "noah@abv.bg",
-                firstName: 'Noah',
-                lastName: 'Brown',
-                _id: "123e4567-e89b-12d3-a456-426614174000"
-            },
-            "f47ac10b-58cc-4372-a567-0e02b2c3d479": {
-                email: "emma@abv.bg",
-                firstName: 'Emma',
-                lastName: 'Davis',
-                _id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
-            },
-            "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f": {
-                email: "michael@abv.bg",
-                firstName: 'Michael',
-                lastName: 'Wilson',
-                _id: "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f"
-            },
-            "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a": {
-                email: "ava@abv.bg",
-                firstName: 'Ava',
-                lastName: 'Miller',
-                _id: "d9e0f1a2-b3c4-5d6e-7f8a-9b0c1d2e3f4a"
-            },
-            "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b": {
-                email: "james@abv.bg",
-                firstName: 'James',
-                lastName: 'Taylor',
-                _id: "e0f1a2b3-c4d5-6e7f-8a9b-0c1d2e3f4a5b"
-            },
-            "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c": {
-                email: "isabella@abv.bg",
-                firstName: 'Isabella',
-                lastName: 'Anderson',
-                _id: "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c"
-            },
-            "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d": {
-                email: "benjamin@abv.bg",
-                firstName: 'Benjamin',
-                lastName: 'Thomas',
-                _id: "a2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d"
-            },
-            "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e": {
-                email: "mia@abv.bg",
-                firstName: 'Mia',
-                lastName: 'Jackson',
-                _id: "b3c4d5e6-f7a8-9b0c-1d2e-3f4a5b6c7d8e"
-            },
-            "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f": {
-                email: "william@abv.bg",
-                firstName: 'William',
-                lastName: 'White',
-                _id: "c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f"
-            },
-            "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a": {
-                email: "charlotte@abv.bg",
-                firstName: 'Charlotte',
-                lastName: 'Harris',
-                _id: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a"
-            },
-            "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b": {
-                email: "ethan@abv.bg",
-                firstName: 'Ethan',
-                lastName: 'Martin',
-                _id: "e6f7a8b9-c0d1-2e3f-4a5b-6c7d8e9f0a1b"
-            },
-            "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c": {
-                email: "amelia@abv.bg",
-                firstName: 'Amelia',
-                lastName: 'Thompson',
-                _id: "f7a8b9c0-d1e2-3f4a-5b6c-7d8e9f0a1b2c"
-            },
-            "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d": {
-                email: "alexander@abv.bg",
-                firstName: 'Alexander',
-                lastName: 'Garcia',
-                _id: "a8b9c0d1-e2f3-4a5b-6c7d-8e9f0a1b2c3d"
-            },
-            "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e": {
-                email: "harper@abv.bg",
-                firstName: 'Harper',
-                lastName: 'Martinez',
-                _id: "b9c0d1e2-f3a4-5b6c-7d8e-9f0a1b2c3d4e"
-            },
-            "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f": {
-                email: "daniel@abv.bg",
-                firstName: 'Daniel',
-                lastName: 'Robinson',
-                _id: "c0d1e2f3-a4b5-6c7d-8e9f-0a1b2c3d4e5f"
-            },
-            "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a": {
-                email: "abigail@abv.bg",
-                firstName: 'Abigail',
-                lastName: 'Clark',
-                _id: "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a"
-            },
-            "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b": {
-                email: "matthew@abv.bg",
-                firstName: 'Matthew',
-                lastName: 'Rodriguez',
-                _id: "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"
-            },
-            "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c": {
-                email: "ella@abv.bg",
-                firstName: 'Ella',
-                lastName: 'Lewis',
-                _id: "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c"
-            }
-        },
+
+        }
     };
     var rules$1 = {
         users: {
