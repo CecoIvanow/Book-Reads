@@ -35,6 +35,7 @@ export const API_PATHS: ApiPaths = {
     },
     LIKES: {
         ROOT: `${API_ROOTS.LIKES}`,
+        USER_DATA: (userId: UUIDv4) => `${API_ROOTS.LIKES}?where=${encodeURIComponent(`bookId="" AND _ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`,
         OF_BOOK: {
             COUNT: (bookId: UUIDv4) => `${API_ROOTS.LIKES}?where=bookId${encodeURIComponent(`="${bookId}"`)}&count=true`,
             FROM_OWNER: (bookId: UUIDv4, ownerId: UUIDv4) => `${API_ROOTS.LIKES}?where=${encodeURIComponent(`bookId="${bookId}" AND _ownerId="${ownerId}"`)}`,

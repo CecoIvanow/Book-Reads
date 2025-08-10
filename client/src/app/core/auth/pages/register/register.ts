@@ -9,7 +9,6 @@ import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../services/user-session.service.js';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { UsersServices } from '../../../../features/users/users.services.js';
-import { Owner } from '../../../../features/books/models/owner.model.js';
 
 @Component({
     selector: 'app-register',
@@ -34,7 +33,6 @@ export class Register {
         private router: Router,
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        private userService: UsersServices,
         protected userSession: UserSessionService
     ) {
         this.registerForm = formBuilder.group({
@@ -115,15 +113,5 @@ export class Register {
                 this.router.navigate(['/']);
             }
         });
-
-        const userId = this.userSession.userId() as string;
-        const userData: Owner = {
-            email: this.registerForm.value.email as string,
-            firstName: this.registerForm.value.firstName as string,
-            lastName: this.registerForm.value.lastName as string,
-            _id: userId,
-        }
-
-        this.userService.addUser(userId, userData).subscribe();
     }
 }
