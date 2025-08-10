@@ -33,7 +33,8 @@ export class Register {
         private router: Router,
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        protected userSession: UserSessionService
+        private usersService: UsersServices,
+        protected userSession: UserSessionService,
     ) {
         this.registerForm = formBuilder.group({
             email: ['',
@@ -109,6 +110,8 @@ export class Register {
                     email: data.email,
                     username: data.username,
                 })
+
+                this.usersService.addUserEmptyLike(data.accessToken).subscribe();
 
                 this.router.navigate(['/']);
             }
