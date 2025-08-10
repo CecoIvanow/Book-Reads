@@ -4,7 +4,7 @@ Book Reads is an Angular-based web application that serves as a personal library
 
 ## Features
 
-- **Book Catalog**: Browse books with pagination and search
+- **Book Catalog**: Browse books with pagination
 - **Book Management**: Add, edit, and delete books
 - **Social Interaction**: Like books and post comments
 - **User Profiles**: View user activity including added books and comments
