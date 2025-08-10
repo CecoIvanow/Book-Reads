@@ -6,7 +6,7 @@ export const BASE_API_URL = 'http://localhost:3030';
 const API_ROOTS: ApiRoots = {
     COMMENTS: '/data/comments',
     BOOKS: '/data/books',
-    USERS: '/users',
+    AUTH: '/users',
     LIKES: '/data/likes',
 }
 
@@ -24,12 +24,12 @@ export const API_PATHS: ApiPaths = {
             FROM_OWNER: (userId: UUIDv4) => `${API_ROOTS.BOOKS}?where=${encodeURIComponent(`_ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`
         }
     },
-    USERS: {
-        LOGIN: `${API_ROOTS.USERS}/login`,
-        REGISTER: `${API_ROOTS.USERS}/register`,
-        LOGOUT: `${API_ROOTS.USERS}/logout`,
+    AUTH: {
+        LOGIN: `${API_ROOTS.AUTH}/login`,
+        REGISTER: `${API_ROOTS.AUTH}/register`,
+        LOGOUT: `${API_ROOTS.AUTH}/logout`,
         DETAILS: {
-            ROOT: (userId) => `${API_ROOTS.USERS}/${userId}`,
+            ROOT: (userId) => `${API_ROOTS.AUTH}/${userId}`,
         }
 
     },

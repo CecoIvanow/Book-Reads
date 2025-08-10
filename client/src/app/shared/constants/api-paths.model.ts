@@ -2,7 +2,7 @@ import { UUIDv4 } from "../models/index.js"
 
 export type ApiRoots = {
     BOOKS: string,
-    USERS: string,
+    AUTH: string,
     COMMENTS: string,
     LIKES: string
 }
@@ -31,7 +31,7 @@ type BooksPaths = {
     PAGINATION: (skip: number, size: number) => string,
 }
 
-type UsersPaths = {
+type AuthPaths = {
     LOGIN: string,
     REGISTER: string,
     LOGOUT: string,
@@ -53,7 +53,7 @@ type LikesPaths = {
 
 export type ApiPaths = {
     BOOKS: BooksPaths,
-    USERS: UsersPaths,
+    AUTH: AuthPaths,
     LIKES: LikesPaths,
     COMMENTS: CommentPaths
 }
