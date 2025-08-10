@@ -350,3 +350,11 @@ a {
 .comment-item mat-card mat-card-content form mat-form-field .mat-form-field-outline {
     display: none;
 }
+
+mat-card-content form mat-form-field {
+    width: 100%;
+}
+
+mat-card-content form mat-form-field input {
+    width: 100%;
+}

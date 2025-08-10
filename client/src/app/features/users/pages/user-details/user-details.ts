@@ -55,7 +55,7 @@ export class UserDetails implements OnInit {
         })
     }
 
-    ngOnInit(): void | RedirectCommand {
+    ngOnInit(): void {
         const [userBooks, userComments, userEmptyLike]: UserPageDetails = this.route.snapshot.data['userDetails'];
         const userData = userEmptyLike.at(0)?.owner as Owner;
 
