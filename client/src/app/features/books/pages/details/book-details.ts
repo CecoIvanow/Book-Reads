@@ -12,6 +12,8 @@ import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 
 @Component({
     selector: 'app-details',
@@ -43,11 +45,15 @@ export class BookDetails implements OnInit, OnDestroy {
         private likesService: LikesService,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
+        private dialog: MatDialog,
         private router: Router,
         protected userSession: UserSessionService,
     ) {
         this.commentForm = formBuilder.group({
             content: ['',
+                []
+            ],
+            'create-content': ['',
                 []
             ]
         })
@@ -77,13 +83,23 @@ export class BookDetails implements OnInit, OnDestroy {
             return;
         }
 
-        const sub = this.booksService.deleteBook(bookId, userToken).subscribe({
-            next: () => {
-                this.router.navigate(['/catalog']);
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Book',
+                message: 'Are you sure you want to delete this book?',
             }
-        })
+        });
 
-        this.subscriptions.add(sub);
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.booksService.deleteBook(bookId).subscribe({
+                    next: () => {
+                        this.router.navigate(['/catalog']);
+                    }
+                });
+            };
+        });
+
     }
 
     onLike(): void {
@@ -124,15 +140,16 @@ export class BookDetails implements OnInit, OnDestroy {
     }
 
     onCommentSubmit(commentId?: UUIDv4): void {
-        const content = this.commentForm.get('content')?.value;
+        const newCommentContent = this.commentForm.get('create-content')?.value;
         const bookId = this.book()?._id;
 
-        if (!bookId || !content) {
+        if (!bookId || !newCommentContent) {
             return;
         }
 
+        this.clickedComemntEditId.set(null);
         if (commentId) {
-            this.clickedComemntEditId.set(null);
+        const content = this.commentForm.get('content')?.value;
 
             this.commentsService.updateComment(commentId, content).subscribe({
                 next: (updatedComment) => {
@@ -155,7 +172,7 @@ export class BookDetails implements OnInit, OnDestroy {
         }
 
         this.commentForm.reset();
-        this.commentsService.addComment(bookId, content).subscribe({
+        this.commentsService.addComment(bookId, newCommentContent).subscribe({
             next: (respComment) => {
                 const newComment = respComment;
                 respComment.owner = {
@@ -175,17 +192,27 @@ export class BookDetails implements OnInit, OnDestroy {
     }
 
     onCommentDelete(commentId: UUIDv4): void {
-        this.commentsService.deleteComment(commentId).subscribe({
-            next: () => {
-                this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Comment',
+                message: 'Are you sure you want to delete this comment?',
             }
-        })
+        });
+
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.commentsService.deleteComment(commentId).subscribe({
+                    next: () => {
+                        this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+                    }
+                });
+            };
+        });
     }
 
     onCommentEditClick(commentId: UUIDv4, content: string): void {
         this.clickedComemntEditId.set(commentId);
-        
-        console.log(content);
 
         this.commentForm.get('content')?.setValue(content);
     }

@@ -1,8 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../auth/services/user-session.service.js';
 import { AuthService } from '../../auth/services/index.js';
-import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-nav-bar',

@@ -13,19 +13,19 @@ export class AuthService {
     }
 
     login(body: LoginCredentials): Observable<AuthResponse> {
-        const url = buildURL(API_PATHS.USERS.LOGIN);
+        const url = buildURL(API_PATHS.AUTH.LOGIN);
 
         return this.httpClient.post<AuthResponse>(url, body)
     }
 
     register(body: RegisterCredentials): Observable<AuthResponse> {
-        const url = buildURL(API_PATHS.USERS.REGISTER);
+        const url = buildURL(API_PATHS.AUTH.REGISTER);
 
         return this.httpClient.post<AuthResponse>(url, body);
     }
 
     logout(token: AccessToken): Observable<undefined> {
-        const url = buildURL(API_PATHS.USERS.LOGOUT);
+        const url = buildURL(API_PATHS.AUTH.LOGOUT);
 
         return this.httpClient.get<undefined>(url, {
             headers: {

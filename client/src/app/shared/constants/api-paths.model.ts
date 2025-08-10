@@ -2,7 +2,7 @@ import { UUIDv4 } from "../models/index.js"
 
 export type ApiRoots = {
     BOOKS: string,
-    USERS: string,
+    AUTH: string,
     COMMENTS: string,
     LIKES: string
 }
@@ -31,15 +31,18 @@ type BooksPaths = {
     PAGINATION: (skip: number, size: number) => string,
 }
 
-type UsersPaths = {
-    ROOT: string,
+type AuthPaths = {
     LOGIN: string,
     REGISTER: string,
-    LOGOUT: string
+    LOGOUT: string,
+    DETAILS: {
+        ROOT: (userId: UUIDv4) => string
+    }
 }
 
 type LikesPaths = {
     ROOT: string,
+    USER_DATA: (userId: UUIDv4) => string,
     OF_BOOK: {
         COUNT: (bookId: UUIDv4) => string,
         FROM_OWNER: (bookId: UUIDv4, ownerId: UUIDv4) => string,
@@ -51,7 +54,7 @@ type LikesPaths = {
 
 export type ApiPaths = {
     BOOKS: BooksPaths,
-    USERS: UsersPaths,
+    AUTH: AuthPaths,
     LIKES: LikesPaths,
     COMMENTS: CommentPaths
 }

@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 
 @Component({
     selector: 'app-catalog-page',
@@ -34,8 +36,9 @@ export class Catalog implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
 
     constructor(
+        private dialog: MatDialog,
         private booksService: BooksService,
-        protected userSession: UserSessionService
+        protected userSession: UserSessionService,
     ) {
     }
 
@@ -70,12 +73,21 @@ export class Catalog implements OnInit, OnDestroy {
     }
 
     onDelete(bookId: UUIDv4) {
-        const sub = this.booksService.deleteBook(bookId, this.userSession.userToken() as string).subscribe({
-            next: () => {
-                this.fetchBooks();
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Book',
+                message: 'Are you sure you want to delete this book?',
             }
-        })
+        });
 
-        this.subscriptions.add(sub);
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.booksService.deleteBook(bookId).subscribe({
+                    next: () => {
+                        this.fetchBooks();
+                    }
+                })
+            };
+        });
     }
 }

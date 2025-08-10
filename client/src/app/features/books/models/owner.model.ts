@@ -4,7 +4,6 @@ export type Owner = {
     email: string,
     firstName: string,
     lastName: string,
-    username: string,
     _id: UUIDv4
-
+    username?: string,
 }

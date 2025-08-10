@@ -19,11 +19,11 @@
                             <p>Likes: {{likesCount()}}</p>
                             <div class="like-button-div">
                                 @if (userSession.userToken()) {
-                                @if (!userLikeId()) {
-                                <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
-                                } @else {
-                                <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
-                                }
+                                    @if (!userLikeId()) {
+                                        <button class="like-button" matButton="filled" (click)="onLike()">Like</button>
+                                    } @else {
+                                        <button class="unlike-button" matButton="filled" (click)="onUnlike()">Unlike</button>
+                                    }
                                 }
                             </div>
                         </section>
@@ -50,7 +50,7 @@
                     <form (ngSubmit)="onCommentSubmit()" [formGroup]="commentForm">
                         <mat-form-field appearance="outline">
                             <mat-label>Share your thoughts...</mat-label>
-                            <input matInput type="text" formControlName="content">
+                            <input matInput type="text" formControlName="create-content">
                         </mat-form-field>
                         <div class="button-container">
                             <button mat-raised-button class="post-button" type="submit">Post</button>
@@ -101,10 +101,10 @@
                                 @if (clickedComemntEditId() !== comment._id) {
                                 <mat-card-actions class="comment-actions">
                                     @if (userSession.userId() === comment._ownerId) {
-                                    <button class="edit-button" matButton="text"
-                                        (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
-                                    <button class="delete-button" matButton="filled"
-                                        (click)="onCommentDelete(comment._id)">Delete</button>
+                                        <button class="edit-button" matButton="text"
+                                            (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
+                                        <button class="delete-button" matButton="filled"
+                                            (click)="onCommentDelete(comment._id)">Delete</button>
                                     }
                                 </mat-card-actions>
                                 }

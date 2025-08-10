@@ -9,6 +9,7 @@ import { UserSessionService } from '../../services/user-session.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SnackbarService } from '../../../../shared/snackbar.service.js';
 
 @Component({
     selector: 'app-login',
@@ -29,7 +30,7 @@ export class Login {
         private router: Router,
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        private _snackBar: MatSnackBar,
+        private _snackBar: SnackbarService,
         protected userSession: UserSessionService,
     ) {
         this.loginForm = formBuilder.group({
@@ -67,11 +68,7 @@ export class Login {
             },
             error: (error: HttpErrorResponse) => {
                 if (error.status === 403) {
-                    this._snackBar.open('Unable to login, invalid credentials!');
-
-                    setTimeout(() => {
-                        this._snackBar.dismiss();
-                    }, 5000)
+                    this._snackBar.showSnackBar('Unable to login, invalid credentials!');
                 }
             }
         });
