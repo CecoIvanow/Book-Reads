@@ -12,6 +12,8 @@ import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FAKE_ID } from '../../../../shared/constants/index.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 
 @Component({
     selector: 'app-details',
@@ -43,6 +45,7 @@ export class BookDetails implements OnInit, OnDestroy {
         private likesService: LikesService,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
+        private dialog: MatDialog,
         private router: Router,
         protected userSession: UserSessionService,
     ) {
@@ -175,11 +178,23 @@ export class BookDetails implements OnInit, OnDestroy {
     }
 
     onCommentDelete(commentId: UUIDv4): void {
-        this.commentsService.deleteComment(commentId).subscribe({
-            next: () => {
-                this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Comment',
+                message: 'Are you sure you want to delete this comment?',
             }
-        })
+        });
+
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.commentsService.deleteComment(commentId).subscribe({
+                    next: () => {
+                        this.comments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+                    }
+                });
+            };
+        });
     }
 
     onCommentEditClick(commentId: UUIDv4, content: string): void {

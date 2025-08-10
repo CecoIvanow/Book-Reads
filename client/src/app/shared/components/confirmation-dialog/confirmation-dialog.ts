@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
     templateUrl: './confirmation-dialog.html',
     styleUrl: './confirmation-dialog.scss'
 })
-export class ConfirmationDialogComponent {
+export class ConfirmationDialog {
     constructor(@Inject(MAT_DIALOG_DATA) public data: {
         title: string;
         message: string;

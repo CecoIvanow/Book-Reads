@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RedirectCommand, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
@@ -13,6 +13,8 @@ import { BooksService } from '../../../books/services/books.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 
 @Component({
     selector: 'app-user-details',
@@ -43,6 +45,7 @@ export class UserDetails implements OnInit {
         private booksService: BooksService,
         private commentsService: CommentsService,
         private formBuilder: FormBuilder,
+        private dialog: MatDialog,
         protected userSession: UserSessionService,
     ) {
         this.commentForm = formBuilder.group({
@@ -66,11 +69,24 @@ export class UserDetails implements OnInit {
     }
 
     onCommentDelete(commentId: UUIDv4): void {
-        this.commentsService.deleteComment(commentId).subscribe({
-            next: () => {
-                this.userComments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Comment',
+                message: 'Are you sure you want to delete this comment?',
             }
-        })
+        });
+
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.commentsService.deleteComment(commentId).subscribe({
+                    next: () => {
+                        this.userComments.update(prev =>
+                            prev.filter(c => c._id !== commentId)
+                        );
+                    }
+                });
+            };
+        });
     }
 
     onBookDelete(bookId: UUIDv4): void {
