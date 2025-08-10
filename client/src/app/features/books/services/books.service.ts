@@ -56,8 +56,9 @@ export class BooksService {
         return this.httpClient.get<CommentType[]>(url);
     }
 
-    deleteBook(id: UUIDv4, userToken: AccessToken): Observable<unknown> {
+    deleteBook(id: UUIDv4): Observable<unknown> {
         const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
+        const userToken = this.userSession.userToken() as string;
 
         return this.httpClient.delete(url, {
             headers: {

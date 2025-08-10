@@ -77,7 +77,7 @@ export class BookDetails implements OnInit, OnDestroy {
             return;
         }
 
-        const sub = this.booksService.deleteBook(bookId, userToken).subscribe({
+        const sub = this.booksService.deleteBook(bookId).subscribe({
             next: () => {
                 this.router.navigate(['/catalog']);
             }

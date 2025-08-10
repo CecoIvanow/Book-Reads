@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
+import { ActivatedRoute, RedirectCommand, Router, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserPageDetails } from '../../user-book-details.model.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { CommentsService } from '../../../books/services/comments.service.js';
+import { BooksService } from '../../../books/services/books.service.js';
 
 @Component({
     selector: 'app-user-details',
@@ -30,7 +31,9 @@ export class UserDetails implements OnInit {
     protected userComments = signal<CommentType[]>([]);
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
+        private booksService: BooksService,
         private commentsService: CommentsService,
         protected userSession: UserSessionService,
     ) {
@@ -53,6 +56,22 @@ export class UserDetails implements OnInit {
         this.commentsService.deleteComment(commentId).subscribe({
             next: () => {
                 this.userComments.update(prevComments => prevComments.filter((curComment) => curComment._id !== commentId));
+            }
+        })
+    }
+
+    onBookDelete(bookId: UUIDv4): void {
+        const userToken = this.userSession.userToken();
+
+        console.log(bookId);
+
+        if (!userToken) {
+            return;
+        }
+
+        this.booksService.deleteBook(bookId).subscribe({
+            next: () => {
+                this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
             }
         })
     }
