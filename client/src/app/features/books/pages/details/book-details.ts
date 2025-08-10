@@ -80,13 +80,23 @@ export class BookDetails implements OnInit, OnDestroy {
             return;
         }
 
-        const sub = this.booksService.deleteBook(bookId).subscribe({
-            next: () => {
-                this.router.navigate(['/catalog']);
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Book',
+                message: 'Are you sure you want to delete this book?',
             }
-        })
+        });
 
-        this.subscriptions.add(sub);
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.booksService.deleteBook(bookId).subscribe({
+                    next: () => {
+                        this.router.navigate(['/catalog']);
+                    }
+                });
+            };
+        });
+
     }
 
     onLike(): void {

@@ -98,11 +98,22 @@ export class UserDetails implements OnInit {
             return;
         }
 
-        this.booksService.deleteBook(bookId).subscribe({
-            next: () => {
-                this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
+        const dialogRef = this.dialog.open(ConfirmationDialog, {
+            data: {
+                title: 'Delete Book',
+                message: 'Are you sure you want to delete this book?',
             }
-        })
+        });
+
+        dialogRef.afterClosed().subscribe(confirmed => {
+            if (confirmed) {
+                this.booksService.deleteBook(bookId).subscribe({
+                    next: () => {
+                        this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
+                    }
+                });
+            };
+        });
     }
 
     onCommentSubmit(commentId: UUIDv4, bookId: UUIDv4): void {
