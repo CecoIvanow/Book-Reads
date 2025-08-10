@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard, ownerGuard } from './core/auth/auth-guard.js';
 import { bookDetailsResolver } from './features/books/books.resolver.js';
+import { usersDetailsResolver } from './features/users/users.resolver.js';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,9 @@ export const routes: Routes = [
         path: 'users/details/:userId',
         loadComponent: () => import('./features/users/pages/user-details/user-details.js').then(c => c.UserDetails),
         pathMatch: 'full',
+        resolve: {
+            userDetails: usersDetailsResolver
+        }
     },
     {
         path: '404',

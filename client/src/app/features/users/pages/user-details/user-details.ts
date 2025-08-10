@@ -1,25 +1,24 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
-import { BooksService, CommentsService } from '../../../books/services/index.js';
 import { UserSessionService } from '../../../../core/auth/services/user-session.service.js';
 import { MatButtonModule } from '@angular/material/button';
-import { UsersServices } from '../../users.services.js';
+import { UserPageDetails } from '../../user-book-details.model.js';
 
 @Component({
-  selector: 'app-user-details',
-  imports: [
-    MatIconModule,
-    MatCardModule,
-    RouterModule,
-    CommonModule,
-    MatButtonModule
-  ],
-  templateUrl: './user-details.html',
-  styleUrl: './user-details.scss'
+    selector: 'app-user-details',
+    imports: [
+        MatIconModule,
+        MatCardModule,
+        RouterModule,
+        CommonModule,
+        MatButtonModule
+    ],
+    templateUrl: './user-details.html',
+    styleUrl: './user-details.scss'
 })
 export class UserDetails implements OnInit {
     protected user = signal<Owner | null>(null);
@@ -29,35 +28,21 @@ export class UserDetails implements OnInit {
     protected userComments = signal<CommentType[]>([]);
 
     constructor(
-        private booksService: BooksService,
-        private commentsService: CommentsService,
         private route: ActivatedRoute,
-        private usersService: UsersServices,
         protected userSession: UserSessionService,
     ) {
     }
 
-    ngOnInit(): void {
-        const userId = this.route.snapshot.params['userId']
-        
-        this.booksService.getBooksFromOwner(userId).subscribe({
-            next: (books) => {
-                this.userBooks.set(books);
-                this.booksCount.set(books.length);
-            }
-        })
+    ngOnInit(): void | RedirectCommand {
+        const [userBooks, userComments, userEmptyLike]: UserPageDetails = this.route.snapshot.data['userDetails'];
+        const userData = userEmptyLike.at(0)?.owner as Owner;
 
-        this.commentsService.getCommentsFromOwner(userId).subscribe({
-            next: (comments) => {              
-                this.userComments.set(comments);
-                this.commentsCount.set(comments.length);
-            }
-        })
+        this.userBooks.set(userBooks);
+        this.booksCount.set(userBooks.length);
 
-        this.usersService.getUserInfo(userId).subscribe({
-            next: (data) => {
-                this.user.set(data[0].owner as Owner)
-            }
-        });
+        this.userComments.set(userComments);
+        this.commentsCount.set(userComments.length);
+
+        this.user.set(userData);
     }
 }
