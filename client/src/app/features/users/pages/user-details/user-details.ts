@@ -10,6 +10,9 @@ import { UserPageDetails } from '../../user-book-details.model.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { CommentsService } from '../../../books/services/comments.service.js';
 import { BooksService } from '../../../books/services/books.service.js';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-user-details',
@@ -18,7 +21,10 @@ import { BooksService } from '../../../books/services/books.service.js';
         MatCardModule,
         RouterModule,
         CommonModule,
-        MatButtonModule
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
     ],
     templateUrl: './user-details.html',
     styleUrl: './user-details.scss'
@@ -29,14 +35,21 @@ export class UserDetails implements OnInit {
     protected commentsCount = signal<number>(0);
     protected userBooks = signal<Book[]>([]);
     protected userComments = signal<CommentType[]>([]);
+    protected clickedComemntEditId = signal<UUIDv4 | null>(null);
+    protected commentForm: FormGroup;
 
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
         private booksService: BooksService,
         private commentsService: CommentsService,
+        private formBuilder: FormBuilder,
         protected userSession: UserSessionService,
     ) {
+        this.commentForm = formBuilder.group({
+            content: ['',
+                []
+            ]
+        })
     }
 
     ngOnInit(): void | RedirectCommand {
@@ -74,5 +87,61 @@ export class UserDetails implements OnInit {
                 this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
             }
         })
+    }
+
+    onCommentSubmit(commentId: UUIDv4, bookId: UUIDv4): void {
+        const content = this.commentForm.get('content')?.value;
+
+        if (!bookId || !content) {
+            return;
+        }
+
+        if (commentId) {
+            this.clickedComemntEditId.set(null);
+
+            this.commentsService.updateComment(commentId, content).subscribe({
+                next: (updatedComment) => {
+                    this.userComments.update(prevComments => prevComments.map((curComment) => {
+                        if (curComment._id === updatedComment._id) {
+                            const patchedComment = curComment;
+
+                            patchedComment.content = updatedComment.content;
+
+                            return patchedComment;
+                        }
+
+                        return curComment;
+                    }));
+
+                }
+            })
+
+            return;
+        }
+
+        this.commentForm.reset();
+        this.commentsService.addComment(bookId, content).subscribe({
+            next: (respComment) => {
+                const newComment = respComment;
+                respComment.owner = {
+                    firstName: this.userSession.firstName() as string,
+                    lastName: this.userSession.lastName() as string,
+                    _id: this.userSession.userId() as string,
+                    email: this.userSession.email() as string,
+                    username: this.userSession.username() as string,
+                }
+
+                this.userComments.update(prevComments => [
+                    newComment,
+                    ...prevComments
+                ])
+            }
+        })
+    }
+
+    onCommentEditClick(commentId: UUIDv4, content: string): void {
+        this.clickedComemntEditId.set(commentId);
+
+        this.commentForm.get('content')?.setValue(content);
     }
 }

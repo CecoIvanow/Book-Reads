@@ -7,7 +7,6 @@
             </div>
             <div class="user-info">
                 <h1>{{user()?.firstName}} {{user()?.lastName}}</h1>
-                <!-- <h1>John Doe</h1> -->
                 <div class="user-stats">
                     <div class="stat-item">
                         <mat-icon>menu_book</mat-icon>
@@ -25,80 +24,103 @@
             <section class="user-books">
                 <h2>Added Books</h2>
                 @if (userBooks().length === 0) {
-                    <div class="empty-section">
-                        <mat-icon>auto_stories</mat-icon>
-                        <p>No books added yet</p>
-                    </div>
+                <div class="empty-section">
+                    <mat-icon>auto_stories</mat-icon>
+                    <p>No books added yet</p>
+                </div>
                 } @else {
-                    <ul>
-                        @for (book of userBooks(); track book._id) {
-                        <li>
-                            <mat-card class="book-item">
-                                <a [routerLink]="[`/books/details/${book._id}`]">
-                                    <div class="media">
-                                        <img [src]="book.img">
-                                    </div>
-                                    <mat-card-title-group>
-                                        <mat-card-title class="book-title">{{book.title}}</mat-card-title>
-                                        <mat-card-subtitle class="book-author">{{book.author}}</mat-card-subtitle>
-                                    </mat-card-title-group>
-                                </a>
+                <ul>
+                    @for (book of userBooks(); track book._id) {
+                    <li>
+                        <mat-card class="book-item">
+                            <a [routerLink]="[`/books/details/${book._id}`]">
+                                <div class="media">
+                                    <img [src]="book.img">
+                                </div>
+                                <mat-card-title-group>
+                                    <mat-card-title class="book-title">{{book.title}}</mat-card-title>
+                                    <mat-card-subtitle class="book-author">{{book.author}}</mat-card-subtitle>
+                                </mat-card-title-group>
+                            </a>
 
-                                <mat-card-actions>
-                                    @if (userSession.userId() === book._ownerId) {
-                                        <a class="edit-button" matButton="text"
-                                            [routerLink]="[`/books/edit/${book._id}`]">Edit</a>
-                                        <button class="delete-button" matButton="filled" (click)="onBookDelete(book._id)">Delete</button>
-                                    }
-                                </mat-card-actions>
-                            </mat-card>
-                        </li>
-                        }
-                    </ul>
+                            <mat-card-actions>
+                                @if (userSession.userId() === book._ownerId) {
+                                <a class="edit-button" matButton="text"
+                                    [routerLink]="[`/books/edit/${book._id}`]">Edit</a>
+                                <button class="delete-button" matButton="filled"
+                                    (click)="onBookDelete(book._id)">Delete</button>
+                                }
+                            </mat-card-actions>
+                        </mat-card>
+                    </li>
+                    }
+                </ul>
                 }
             </section>
 
             <section class="user-comments">
                 <h2>Recent Comments</h2>
                 @if (userComments().length === 0) {
-                    <div class="empty-section">
-                        <mat-icon>forum</mat-icon>
-                        <p>No comments yet</p>
-                    </div>
+                <div class="empty-section">
+                    <mat-icon>forum</mat-icon>
+                    <p>No comments yet</p>
+                </div>
                 } @else {
-                    <ul>
-                        @for (comment of userComments(); track comment._id) {
-                        <li class="comment-item">
-                            <mat-card>
-                                <mat-card-header>
-                                    <img mat-card-avatar
-                                        src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg">
-                                    <div class="comment-header-content">
-                                        <div class="comment-meta">
-                                            <span class="comment-author">{{comment.owner?.firstName}} {{comment.owner?.lastName}}</span>
-                                            <span class="comment-date">• {{comment._createdOn | date}}</span>
-                                        </div>
-                                        <mat-card-subtitle class="comment-book">
-                                            On <a [routerLink]="[`/books/details/${comment.bookId}`]">{{comment.book?.title}}</a>
-                                        </mat-card-subtitle>
+                <ul>
+                    @for (comment of userComments(); track comment._id) {
+                    <li class="comment-item">
+                        <mat-card>
+                            <mat-card-header>
+                                <img mat-card-avatar
+                                    src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg">
+                                <div class="comment-header-content">
+                                    <div class="comment-meta">
+                                        <span class="comment-author">{{comment.owner?.firstName}}
+                                            {{comment.owner?.lastName}}</span>
+                                        <span class="comment-date">• {{comment._createdOn | date}}</span>
                                     </div>
-                                </mat-card-header>
-                                <mat-card-content>
+                                    <mat-card-subtitle class="comment-book">
+                                        On <a
+                                            [routerLink]="[`/books/details/${comment.bookId}`]">{{comment.book?.title}}</a>
+                                    </mat-card-subtitle>
+                                </div>
+                            </mat-card-header>
+                            <mat-card-content>
+                                @if (clickedComemntEditId() !== comment._id) {
                                     <div class="comment-content">
                                         <p>{{comment.content}}</p>
                                     </div>
-                                </mat-card-content>
+                                } @else {
+                                    <form (ngSubmit)="onCommentSubmit(comment._id, comment.bookId)" [formGroup]="commentForm">
+                                        <mat-form-field appearance="outline">
+                                            <input matInput type="text" formControlName="content">
+                                        </mat-form-field>
 
+                                        <mat-card-actions class="comment-actions">
+                                            <div>
+                                                <button class="edit-button" matButton="text" type="submit">Save</button>
+                                                <button type="button" class="delete-button" matButton="filled"
+                                                    (click)="clickedComemntEditId.set(null)">Cancel</button>
+                                            </div>
+                                        </mat-card-actions>
+                                    </form>
+                                }
+                            </mat-card-content>
+
+                            @if (clickedComemntEditId() !== comment._id) {
                                 <mat-card-actions class="comment-actions">
                                     @if (userSession.userId() === comment._ownerId) {
-                                        <button class="edit-button" matButton="text">Edit</button>
-                                        <button class="delete-button" matButton="filled" (click)="onCommentDelete(comment._id)">Delete</button>
+                                        <button class="edit-button" matButton="text"
+                                            (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
+                                        <button class="delete-button" matButton="filled"
+                                            (click)="onCommentDelete(comment._id)">Delete</button>
                                     }
                                 </mat-card-actions>
-                            </mat-card>
-                        </li>
-                        }
-                    </ul>
+                            }
+                        </mat-card>
+                    </li>
+                    }
+                </ul>
                 }
             </section>
         </div>

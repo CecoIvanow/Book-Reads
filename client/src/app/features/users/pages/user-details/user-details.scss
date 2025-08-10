@@ -334,3 +334,19 @@ a {
     color: white;
     padding: 0 12px;
 }
+
+.comment-item mat-card mat-card-content form {
+    padding: 1.2rem;
+    background: linear-gradient(to bottom, #fdfdfd, #fff);
+    border-radius: 0 0 8px 8px;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field .mat-form-field-wrapper {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field .mat-form-field-outline {
+    display: none;
+}

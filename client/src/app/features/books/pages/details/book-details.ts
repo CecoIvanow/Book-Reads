@@ -184,8 +184,6 @@ export class BookDetails implements OnInit, OnDestroy {
 
     onCommentEditClick(commentId: UUIDv4, content: string): void {
         this.clickedComemntEditId.set(commentId);
-        
-        console.log(content);
 
         this.commentForm.get('content')?.setValue(content);
     }
