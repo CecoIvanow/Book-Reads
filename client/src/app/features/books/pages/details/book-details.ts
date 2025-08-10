@@ -52,6 +52,9 @@ export class BookDetails implements OnInit, OnDestroy {
         this.commentForm = formBuilder.group({
             content: ['',
                 []
+            ],
+            'create-content': ['',
+                []
             ]
         })
     }
@@ -137,15 +140,16 @@ export class BookDetails implements OnInit, OnDestroy {
     }
 
     onCommentSubmit(commentId?: UUIDv4): void {
-        const content = this.commentForm.get('content')?.value;
+        const newCommentContent = this.commentForm.get('create-content')?.value;
         const bookId = this.book()?._id;
 
-        if (!bookId || !content) {
+        if (!bookId || !newCommentContent) {
             return;
         }
 
+        this.clickedComemntEditId.set(null);
         if (commentId) {
-            this.clickedComemntEditId.set(null);
+        const content = this.commentForm.get('content')?.value;
 
             this.commentsService.updateComment(commentId, content).subscribe({
                 next: (updatedComment) => {
@@ -168,7 +172,7 @@ export class BookDetails implements OnInit, OnDestroy {
         }
 
         this.commentForm.reset();
-        this.commentsService.addComment(bookId, content).subscribe({
+        this.commentsService.addComment(bookId, newCommentContent).subscribe({
             next: (respComment) => {
                 const newComment = respComment;
                 respComment.owner = {
