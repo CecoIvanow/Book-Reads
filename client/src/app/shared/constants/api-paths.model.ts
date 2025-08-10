@@ -32,10 +32,12 @@ type BooksPaths = {
 }
 
 type UsersPaths = {
-    ROOT: string,
     LOGIN: string,
     REGISTER: string,
-    LOGOUT: string
+    LOGOUT: string,
+    DETAILS: {
+        ROOT: (userId: UUIDv4) => string
+    }
 }
 
 type LikesPaths = {

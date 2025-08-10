@@ -25,10 +25,12 @@ export const API_PATHS: ApiPaths = {
         }
     },
     USERS: {
-        ROOT: API_ROOTS.USERS,
         LOGIN: `${API_ROOTS.USERS}/login`,
         REGISTER: `${API_ROOTS.USERS}/register`,
         LOGOUT: `${API_ROOTS.USERS}/logout`,
+        DETAILS: {
+            ROOT: (userId) => `${API_ROOTS.USERS}/${userId}`,
+        }
 
     },
     LIKES: {
