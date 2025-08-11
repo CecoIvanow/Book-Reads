@@ -3,6 +3,10 @@ a {
     color: black;
 }
 
+li {
+    list-style: none;
+}
+
 .wrapper {
     min-height: 100vh;
     width: 100%;
@@ -161,10 +165,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-}
-
-.user-comments li {
-    list-style: none;
 }
 
 .comment-item mat-card {

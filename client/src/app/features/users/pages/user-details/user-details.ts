@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 import { BooksService, CommentsService } from '../../../services/index.js';
 import { BookItem } from '../../../components/book-item/book-item.js';
+import { CommentItem } from '../../../components/comment-item/comment-item.js';
 
 @Component({
     selector: 'app-user-details',
@@ -28,6 +29,7 @@ import { BookItem } from '../../../components/book-item/book-item.js';
         ReactiveFormsModule,
         MatInputModule,
         BookItem,
+        CommentItem,
     ],
     templateUrl: './user-details.html',
     styleUrl: './user-details.scss'
@@ -117,8 +119,12 @@ export class UserDetails implements OnInit {
         });
     }
 
-    onCommentSubmit(commentId: UUIDv4, bookId: UUIDv4): void {
-        const content = this.commentForm.get('content')?.value;
+    onCommentSubmit(submitData: [commentId: UUIDv4, bookId: UUIDv4, content: string]): void {
+        if (submitData instanceof SubmitEvent) {
+            return;
+        }
+
+        const [commentId, bookId, content] = submitData;
 
         if (!bookId || !content) {
             return;
@@ -167,7 +173,9 @@ export class UserDetails implements OnInit {
         })
     }
 
-    onCommentEditClick(commentId: UUIDv4, content: string): void {
+    onCommentEditClick(editData: [commentId: UUIDv4, content: string]): void {
+        const [commentId, content] = editData;
+
         this.clickedComemntEditId.set(commentId);
 
         this.commentForm.get('content')?.setValue(content);
