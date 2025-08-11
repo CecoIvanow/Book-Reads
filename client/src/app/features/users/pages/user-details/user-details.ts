@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 import { BooksService, CommentsService } from '../../../services/index.js';
+import { BookItem } from '../../../components/book-item/book-item.js';
 
 @Component({
     selector: 'app-user-details',
@@ -26,6 +27,7 @@ import { BooksService, CommentsService } from '../../../services/index.js';
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,
+        BookItem,
     ],
     templateUrl: './user-details.html',
     styleUrl: './user-details.scss'
