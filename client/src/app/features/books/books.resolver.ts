@@ -1,9 +1,10 @@
 import { RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { BookPageDetails} from './models/index.js';
 import { inject } from '@angular/core';
-import { BooksService } from './services/books.service.js';
-import { LikesService } from './services/likes.service.js';
+
 import { catchError, forkJoin, of } from 'rxjs';
+import { BooksService } from '../services/books.service.js';
+import { LikesService } from '../services/likes.service.js';
 
 
 export const bookDetailsResolver: ResolveFn<BookPageDetails | RedirectCommand> = (route, state) => {

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { buildURL } from '../../../shared/utils/index.js';
-import { API_PATHS } from '../../../shared/constants/index.js';
-import { UUIDv4 } from '../../../shared/models/index.js';
 import { Observable } from 'rxjs';
-import { Like } from '../models/index.js';
-import { UserSessionService } from '../../../core/auth/services/index.js';
+import { UserSessionService } from '../../core/auth/services/index.js';
+import { API_PATHS } from '../../shared/constants/index.js';
+import { buildURL } from '../../shared/utils/index.js';
+import { UUIDv4 } from '../../shared/models/index.js';
+import { Like } from '../books/models/like.model.js';
 
 @Injectable({
     providedIn: 'root'

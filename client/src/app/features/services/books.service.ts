@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_PATHS } from '../../../shared/constants/index.js';
-import { UUIDv4 } from '../../../shared/models/index.js';
-import { buildURL } from '../../../shared/utils/index.js';
-import { Book } from '../models/index.js';
-import { CommentType } from '../models/index.js';
-import { AccessToken } from '../../../core/auth/models/index.js';
-import { UserSessionService } from '../../../core/auth/services/user-session.service.js';
+import { Book, CommentType } from '../books/models/index.js';
+import { API_PATHS } from '../../shared/constants/index.js';
+import { buildURL } from '../../shared/utils/index.js';
+import { UserSessionService } from '../../core/auth/services/index.js';
+import { UUIDv4 } from '../../shared/models/uuid.model.js';
 
 
 @Injectable({

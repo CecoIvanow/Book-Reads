@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Book, BookPageDetails, CommentType } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { BooksService, CommentsService, LikesService } from '../../services/index.js';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +13,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
+import { BooksService, CommentsService, LikesService } from '../../../services/index.js';
 
 @Component({
     selector: 'app-details',

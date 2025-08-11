@@ -1,20 +1,19 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { MatButtonModule } from '@angular/material/button';
 import { UserPageDetails } from '../../user-book-details.model.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
-import { CommentsService } from '../../../books/services/comments.service.js';
-import { BooksService } from '../../../books/services/books.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
+import { BooksService, CommentsService } from '../../../services/index.js';
 
 @Component({
     selector: 'app-user-details',
