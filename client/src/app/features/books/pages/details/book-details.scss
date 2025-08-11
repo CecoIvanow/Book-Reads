@@ -231,3 +231,10 @@ mat-card-actions .user-actions {
 .book-details .comments {
     margin-top: 2rem;
 }
+
+.comments ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 2rem;
+}
