@@ -1,12 +1,11 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { MatButtonModule } from '@angular/material/button';
-import { UserPageDetails } from '../../user-book-details.model.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +15,9 @@ import { ConfirmationDialog } from '../../../../shared/components/confirmation-d
 import { BooksService, CommentsService } from '../../../services/index.js';
 import { BookItem } from '../../../components/book-item/book-item.js';
 import { CommentItem } from '../../../components/comment-item/comment-item.js';
+import { UsersServices } from '../../users.services.js';
+import { forkJoin, of, Subscription, switchMap } from 'rxjs';
+import { UserPageDetails } from '../../user-book-details.model.js';
 
 @Component({
     selector: 'app-user-details',
@@ -34,7 +36,7 @@ import { CommentItem } from '../../../components/comment-item/comment-item.js';
     templateUrl: './user-details.html',
     styleUrl: './user-details.scss'
 })
-export class UserDetails implements OnInit {
+export class UserDetails implements OnInit, OnDestroy {
     protected user = signal<Owner | null>(null);
     protected booksCount = signal<number>(0);
     protected commentsCount = signal<number>(0);
@@ -42,6 +44,8 @@ export class UserDetails implements OnInit {
     protected userComments = signal<CommentType[]>([]);
     protected clickedComemntEditId = signal<UUIDv4 | null>(null);
     protected commentForm: FormGroup;
+
+    private subscriptions = new Subscription();
 
     constructor(
         private route: ActivatedRoute,
@@ -59,16 +63,31 @@ export class UserDetails implements OnInit {
     }
 
     ngOnInit(): void {
-        const [userBooks, userComments, userEmptyLike]: UserPageDetails = this.route.snapshot.data['userDetails'];
-        const userData = userEmptyLike.at(0)?.owner as Owner;
+        const sub = this.route.data.subscribe({
+            next: (userResp) => {
+                const userDetails = userResp['userDetails'];
 
-        this.userBooks.set(userBooks);
-        this.booksCount.set(userBooks.length);
+                const userBooks = userDetails[0];
+                const userComments = userDetails[1];
+                const userEmptyLike = userDetails[2];
+                
+                const userData = userEmptyLike.at(0)?.owner as Owner;
 
-        this.userComments.set(userComments);
-        this.commentsCount.set(userComments.length);
+                this.userBooks.set(userBooks);
+                this.booksCount.set(userBooks.length);
 
-        this.user.set(userData);
+                this.userComments.set(userComments);
+                this.commentsCount.set(userComments.length);
+
+                this.user.set(userData);
+            }
+        })
+
+        this.subscriptions.add(sub);
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 
     onCommentDelete(commentId: UUIDv4): void {

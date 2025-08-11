@@ -11,7 +11,7 @@ export const usersDetailsResolver: ResolveFn<UserPageDetails | RedirectCommand> 
     const commentsService = inject(CommentsService);
     const router = inject(Router);
 
-    const userId = route.params['userId'];
+    const userId = route.params['userId'] as string;
 
     return usersService.getUserInfo(userId).pipe(
         switchMap(userInfo => {
