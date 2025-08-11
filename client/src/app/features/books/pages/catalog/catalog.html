@@ -9,26 +9,11 @@
         } @else {
         <ul>
             @for (book of books(); track book._id) {
-            <li>
-                <mat-card class="book-item">
-                    <a [routerLink]="[`/books/details/${book._id}`]">
-                        <div class="media">
-                            <img [src]="book.img">
-                        </div>
-                        <mat-card-title-group>
-                            <mat-card-title class="book-title">{{book.title | titlecase}}</mat-card-title>
-                            <mat-card-subtitle class="book-author">{{book.author | titlecase}}</mat-card-subtitle>
-                        </mat-card-title-group>
-                    </a>
-
-                    <mat-card-actions>
-                        @if (userSession.userId() === book._ownerId) {
-                            <a class="edit-button" matButton="text" [routerLink]="[`/books/edit/${book._id}`]" >Edit</a>
-                            <button class="delete-button" matButton="filled" (click)="onDelete(book._id)">Delete</button>
-                        }
-                    </mat-card-actions>
-                </mat-card>
-            </li>
+                <app-book-item
+                    [book]="book"
+                    (delete)="onDelete($event)"
+                >
+                </app-book-item>
             }
         </ul>
         }

@@ -12,18 +12,19 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 import { BooksService } from '../../../services/books.service.js';
+import { BookItem } from "../../../components/book-item/book-item";
 
 @Component({
     selector: 'app-catalog-page',
     imports: [
-        MatCardModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatPaginatorModule,
-        RouterModule,
-        CommonModule,
-
-    ],
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    RouterModule,
+    CommonModule,
+    BookItem
+],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss',
 })
