@@ -81,9 +81,8 @@ export class UserDetails implements OnInit {
             if (confirmed) {
                 this.commentsService.deleteComment(commentId).subscribe({
                     next: () => {
-                        this.userComments.update(prev =>
-                            prev.filter(c => c._id !== commentId)
-                        );
+                        this.userComments.update(prev => prev.filter(c => c._id !== commentId));
+                        this.commentsCount.update(prevCount => prevCount - 1);
                     }
                 });
             };
@@ -111,6 +110,7 @@ export class UserDetails implements OnInit {
                 this.booksService.deleteBook(bookId).subscribe({
                     next: () => {
                         this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
+                        this.booksCount.update(prevCount => prevCount - 1);
                     }
                 });
             };
