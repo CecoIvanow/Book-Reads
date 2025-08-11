@@ -5,12 +5,19 @@
                 src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg">
             <div class="comment-header-content">
                 <div class="comment-meta">
-                    <span class="comment-author">{{comment.owner?.firstName}}
-                        {{comment.owner?.lastName}}</span>
+                    @if(!isOnBookDetailsPage) {
+                        <span class="comment-author">{{comment.owner?.firstName}} {{comment.owner?.lastName}}</span>
+                    }@else {
+                        <a [routerLink]="[`/users/details/${comment._ownerId}`]">
+                            <span class="comment-author">{{comment.owner?.firstName}} {{comment.owner?.lastName}}</span>
+                        </a>
+                    }
                     <span class="comment-date">• {{comment._createdOn | date}}</span>
                 </div>
                 <mat-card-subtitle class="comment-book">
-                    On <a [routerLink]="[`/books/details/${comment.bookId}`]">{{comment.book?.title}}</a>
+                   @if (!isOnBookDetailsPage) {
+                        On <a [routerLink]="[`/books/details/${comment.bookId}`]">{{comment.book?.title}}</a>
+                   }
                 </mat-card-subtitle>
             </div>
         </mat-card-header>

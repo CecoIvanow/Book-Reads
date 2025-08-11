@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 import { BooksService, CommentsService, LikesService } from '../../../services/index.js';
+import { CommentItem } from '../../../components/comment-item/comment-item.js';
 
 @Component({
     selector: 'app-details',
@@ -25,6 +26,7 @@ import { BooksService, CommentsService, LikesService } from '../../../services/i
         RouterModule,
         ReactiveFormsModule,
         CommonModule,
+        CommentItem,
     ],
     templateUrl: './book-details.html',
     styleUrl: './book-details.scss'
@@ -139,9 +141,24 @@ export class BookDetails implements OnInit, OnDestroy {
         });
     }
 
-    onCommentSubmit(commentId?: UUIDv4): void {
+    onCommentSubmit(submitData?: [commentId: UUIDv4, bookId: UUIDv4, content: string]): void {
+        if (submitData instanceof SubmitEvent) {
+            return;
+        }
+
+        let commentId: UUIDv4 | undefined = undefined;
+        let bookId: UUIDv4 | undefined = undefined;
+        let content: string | undefined = undefined;
+
+        if (submitData !== undefined) {
+            commentId = submitData[0];
+            bookId = submitData[1];
+            content = submitData[2];
+        } else {
+            bookId = this.book()?._id;
+        }
+        
         const newCommentContent = this.commentForm.get('create-content')?.value;
-        const bookId = this.book()?._id;
 
         if (!bookId) {
             return;
@@ -215,7 +232,8 @@ export class BookDetails implements OnInit, OnDestroy {
         });
     }
 
-    onCommentEditClick(commentId: UUIDv4, content: string): void {
+    onCommentEditClick(editData: [commentId: UUIDv4, content: string]): void {
+        const [commentId, content] = editData;
         this.clickedComemntEditId.set(commentId);
 
         this.commentForm.get('content')?.setValue(content);

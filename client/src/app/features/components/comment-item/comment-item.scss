@@ -2,6 +2,11 @@ li {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .comment-item mat-card {
     background-color: white;
     border-radius: 12px;
@@ -44,6 +49,16 @@ li {
     display: flex;
     align-items: center;
     margin-bottom: 4px;
+}
+
+a > .comment-author {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+a > .comment-author:hover {
+    text-decoration: underline;
 }
 
 .comment-author {
