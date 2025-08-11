@@ -143,7 +143,11 @@ export class BookDetails implements OnInit, OnDestroy {
         const newCommentContent = this.commentForm.get('create-content')?.value;
         const bookId = this.book()?._id;
 
-        if (!bookId || !newCommentContent) {
+        if (!bookId) {
+            return;
+        }
+
+        if (!commentId && !newCommentContent) {
             return;
         }
 
