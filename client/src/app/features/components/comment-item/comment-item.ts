@@ -55,7 +55,7 @@ export class CommentItem implements OnInit {
 
     onSubmit() {      
         const content = this.commentForm.get('content')?.value as string;
-
+        
         this.submit.emit([this.comment._id, this.comment.bookId, content]);
     }
 

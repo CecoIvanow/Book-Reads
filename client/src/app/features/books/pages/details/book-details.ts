@@ -150,12 +150,12 @@ export class BookDetails implements OnInit, OnDestroy {
         let bookId: UUIDv4 | undefined = undefined;
         let content: string | undefined = undefined;
 
-        if (submitData !== undefined) {
+        if (submitData === undefined) {
+            bookId = this.book()?._id;
+        } else {
             commentId = submitData[0];
             bookId = submitData[1];
             content = submitData[2];
-        } else {
-            bookId = this.book()?._id;
         }
         
         const newCommentContent = this.commentForm.get('create-content')?.value;
@@ -164,15 +164,17 @@ export class BookDetails implements OnInit, OnDestroy {
             return;
         }
 
-        if (!commentId && !newCommentContent) {
+        if (!submitData && !newCommentContent) {
             return;
         }
 
         this.clickedComemntEditId.set(null);
         if (commentId) {
-        const content = this.commentForm.get('content')?.value;
+            if (!content) {
+                content = this.commentForm.get('content')?.value;
+            }
 
-            this.commentsService.updateComment(commentId, content).subscribe({
+            this.commentsService.updateComment(commentId, content as string).subscribe({
                 next: (updatedComment) => {
                     this.comments.update(prevComments => prevComments.map((curComment) => {
                         if (curComment._id === updatedComment._id) {
