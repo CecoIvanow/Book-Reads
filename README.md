@@ -10,6 +10,15 @@ Book Reads is an Angular-based web application that serves as a personal library
 - **User Profiles**: View user activity including added books and comments
 - **Authentication**: Secure login and registration system
 
+## User Profiles
+
+The service is initialized with hardcoded users, some of them are:
+
+- peter@abv.bg : 123456
+- george@abv.bg : 123456
+- michael@abv.bg : 123456
+- mia@abv.bg : 123456
+
 ## Installation
 
 To set up the project locally, follow these steps:
