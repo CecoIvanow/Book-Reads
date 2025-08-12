@@ -26,8 +26,9 @@ import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
     styleUrl: './add.scss'
 })
 export class Add implements OnDestroy {
-    protected imagePreviewObjectUrl = signal<string | null>(null);
     protected bookAddForm: FormGroup;
+    protected imagePreviewObjectUrl = signal<string | null>(null);
+    protected isLoading = signal<boolean>(false);
 
     private uploadedImage: File | null = null;
     private subscriptions = new Subscription();
@@ -86,6 +87,8 @@ export class Add implements OnDestroy {
             return;
         }
 
+        this.isLoading.set(true);
+
         const bookBody: Book = this.bookAddForm.value;
         bookBody.img = 'placeholder';
 
@@ -98,6 +101,8 @@ export class Add implements OnDestroy {
         actualBookBody.img = actualImageUrl;
 
         await firstValueFrom(this.booksService.updateBook(bookId, actualBookBody));
+
+        this.isLoading.set(false);
 
         this.router.navigate([`/books/details/${bookId}`]);
     }
