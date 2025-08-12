@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBar } from './core/layout/nav-bar/nav-bar.js';
 
@@ -8,6 +8,10 @@ import { NavBar } from './core/layout/nav-bar/nav-bar.js';
     templateUrl: './app.html',
     styleUrl: './app.scss'
 })
-export class App {
+export class App implements OnInit {
     protected title = 'Book-Reads';
+
+    ngOnInit() {
+        document.body.classList.add('angular-ready');
+    }
 }
