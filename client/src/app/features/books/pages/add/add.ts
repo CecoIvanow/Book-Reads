@@ -83,7 +83,7 @@ export class Add implements OnDestroy {
     }
 
     async onBookAddSubmit(): Promise<void> {
-        if (this.bookAddForm.invalid && !this.uploadedImage) {
+        if (this.bookAddForm.invalid || !this.uploadedImage) {
             return;
         }
 

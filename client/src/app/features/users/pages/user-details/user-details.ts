@@ -113,8 +113,6 @@ export class UserDetails implements OnInit, OnDestroy {
     onBookDelete(bookId: UUIDv4): void {
         const userToken = this.userSession.userToken();
 
-        console.log(bookId);
-
         if (!userToken) {
             return;
         }
