@@ -20,17 +20,17 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'app-catalog-page',
     imports: [
-    MatCardModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
-    RouterModule,
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    BookItem
-],
+        MatCardModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatPaginatorModule,
+        RouterModule,
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        BookItem
+    ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss',
 })
@@ -67,16 +67,28 @@ export class Catalog implements OnInit, OnDestroy {
             this.searchSubscription = null;
         }
 
+        if (!searchValue) {
+            this.searchSubscription = timer(1250).subscribe({
+                next: () => {
+                    this.skipBooks.set(0);
+                    this.pageSize.set(10);
+                    this.fetchBooks();
+                },
+                complete: () => {
+                    this.searchSubscription = null;
+                }
+            });
+            return;
+        }
+
         this.searchSubscription = timer(1250).pipe(
-            take(1),
             switchMap(() => {
                 return this.booksService.getBooksByName(searchValue);
             })
         ).subscribe({
             next: results => {
                 this.books.set(results);
-                this.skipBooks.set(0);
-                this.pageSize.set(10);
+                this.pageSize.set(results.length);
             },
             complete: () => {
                 this.searchSubscription = null;
