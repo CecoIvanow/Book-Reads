@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Book } from '../../models/index.js';
-import { forkJoin, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, forkJoin, Subscription, switchMap, take, timer } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
@@ -13,6 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
 import { BooksService } from '../../../services/books.service.js';
 import { BookItem } from "../../../components/book-item/book-item";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-catalog-page',
@@ -23,6 +26,9 @@ import { BookItem } from "../../../components/book-item/book-item";
     MatPaginatorModule,
     RouterModule,
     CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     BookItem
 ],
     templateUrl: './catalog.html',
@@ -35,6 +41,7 @@ export class Catalog implements OnInit, OnDestroy {
     protected pageSize = signal<number>(10);
 
     private subscriptions = new Subscription();
+    private searchSubscription: Subscription | null = null;
 
     constructor(
         private dialog: MatDialog,
@@ -49,6 +56,32 @@ export class Catalog implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
+    }
+
+    onSearchInput(event: Event) {
+        const currentInput = event.currentTarget as HTMLInputElement;
+        const searchValue = currentInput.value.trim();
+
+        if (this.searchSubscription) {
+            this.searchSubscription.unsubscribe();
+            this.searchSubscription = null;
+        }
+
+        this.searchSubscription = timer(1250).pipe(
+            take(1),
+            switchMap(() => {
+                return this.booksService.getBooksByName(searchValue);
+            })
+        ).subscribe({
+            next: results => {
+                this.books.set(results);
+                this.skipBooks.set(0);
+                this.pageSize.set(10);
+            },
+            complete: () => {
+                this.searchSubscription = null;
+            }
+        })
     }
 
     fetchBooks() {

@@ -22,7 +22,8 @@ export const API_PATHS: ApiPaths = {
         },
         ALL: {
             FROM_OWNER: (userId: UUIDv4) => `${API_ROOTS.BOOKS}?where=${encodeURIComponent(`_ownerId="${userId}"`)}&load=${encodeURIComponent(`owner=_ownerId:users`)}`
-        }
+        },
+        SEARCH_BY_NAME: (contents: string) => `${API_ROOTS.BOOKS}?where=${encodeURIComponent(`title LIKE "${contents}"`)}`,
     },
     AUTH: {
         LOGIN: `${API_ROOTS.AUTH}/login`,

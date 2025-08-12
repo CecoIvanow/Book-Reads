@@ -1,6 +1,12 @@
 <div class="wrapper">
     <section class="catalog">
-        <h1>Catalog</h1>
+        <div class="header-container">
+            <h1>Catalog</h1>
+            <div class="search-container">
+                <mat-icon>search</mat-icon>
+                <input type="text" placeholder="Search books..." (input)="onSearchInput($event)">
+            </div>
+        </div>
 
         @if (!books()) {
         <div class="spinner">
@@ -9,11 +15,8 @@
         } @else {
         <ul>
             @for (book of books(); track book._id) {
-                <app-book-item
-                    [book]="book"
-                    (delete)="onDelete($event)"
-                >
-                </app-book-item>
+            <app-book-item [book]="book" (delete)="onDelete($event)">
+            </app-book-item>
             }
         </ul>
         }

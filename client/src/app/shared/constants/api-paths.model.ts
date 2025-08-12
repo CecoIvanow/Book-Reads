@@ -29,6 +29,7 @@ type BooksPaths = {
         FROM_OWNER: (userId: UUIDv4) => string,
     }
     PAGINATION: (skip: number, size: number) => string,
+    SEARCH_BY_NAME: (contents: string) => string,
 }
 
 type AuthPaths = {

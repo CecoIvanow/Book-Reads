@@ -98,4 +98,10 @@ export class BooksService {
 
         return this.httpClient.get<Book[]>(url);
     }
+
+    getBooksByName(contents: string): Observable<Book[]> {
+        const url = buildURL(API_PATHS.BOOKS.SEARCH_BY_NAME(contents));
+
+        return this.httpClient.get<Book[]>(url);
+    }
 }
