@@ -2,6 +2,10 @@
     <section class="section add-section">
         <h1>Add New Book</h1>
 
+        @if(isLoading()) {
+            <app-loading-overlay />
+        }
+
         <div class="content">
             <section class="form-container">
                 <form class="book-form" (ngSubmit)="onBookAddSubmit()" [formGroup]="bookAddForm">

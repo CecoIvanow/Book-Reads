@@ -16,20 +16,21 @@ import { BookItem } from "../../../components/book-item/book-item";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingOverlay } from '../../../../shared/components/loading-overlay/loading-overlay.js';
 
 @Component({
     selector: 'app-catalog-page',
     imports: [
         MatCardModule,
         MatButtonModule,
-        MatProgressSpinnerModule,
         MatPaginatorModule,
         RouterModule,
         CommonModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        BookItem
+        BookItem,
+        LoadingOverlay,
     ],
     templateUrl: './catalog.html',
     styleUrl: './catalog.scss',
@@ -39,6 +40,7 @@ export class Catalog implements OnInit, OnDestroy {
     protected books = signal<Book[] | null>(null);
     protected skipBooks = signal<number>(0);
     protected pageSize = signal<number>(10);
+    protected isLoading = signal<boolean>(false);
 
     private subscriptions = new Subscription();
     private searchSubscription: Subscription | null = null;
@@ -51,6 +53,7 @@ export class Catalog implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.isLoading.set(true);
         this.fetchBooks();
     }
 
@@ -107,6 +110,11 @@ export class Catalog implements OnInit, OnDestroy {
             next: (data) => {
                 this.books.set(data[0]);
                 this.booksCount.set(data[1]);
+            },
+            complete: () => {
+                if (this.isLoading()) {
+                    this.isLoading.set(false);
+                }
             }
         });
 

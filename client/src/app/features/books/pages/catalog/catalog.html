@@ -8,10 +8,8 @@
             </div>
         </div>
 
-        @if (!books()) {
-            <div class="spinner">
-                <mat-spinner></mat-spinner>
-            </div>
+        @if (isLoading()) {
+            <app-loading-overlay />
         } @else {
             @if (booksCount() === 0) {
                 <div class="empty-catalog">

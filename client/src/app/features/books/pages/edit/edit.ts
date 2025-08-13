@@ -11,6 +11,7 @@ import { BooksService } from '../../../services/books.service.js';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../../../../firebase/config.js';
 import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
+import { LoadingOverlay } from '../../../../shared/components/loading-overlay/loading-overlay.js';
 
 @Component({
     selector: 'app-edit',
@@ -21,6 +22,7 @@ import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
         MatCardModule,
         RouterModule,
         ReactiveFormsModule,
+        LoadingOverlay,
     ],
     templateUrl: './edit.html',
     styleUrl: './edit.scss'
@@ -31,7 +33,6 @@ export class Edit implements OnDestroy {
     protected bookEditForm: FormGroup;
     protected isLoading = signal<boolean>(false);
 
-    private urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
     private uploadedImage: File | null = null;
     private subscriptions = new Subscription();
 
@@ -110,8 +111,10 @@ export class Edit implements OnDestroy {
         this.booksService.updateBook(bookId, bookBody).subscribe({
             next: (data: Book) => {
                 const bookId = data._id;
-                this.isLoading.set(false);
                 this.router.navigate([`/books/details/${bookId}`])
+            },
+            complete: () => {
+                this.isLoading.set(false);
             }
         })
 

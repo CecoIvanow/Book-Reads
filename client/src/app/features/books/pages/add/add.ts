@@ -11,6 +11,8 @@ import { BooksService } from '../../../services/index.js';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../../../../firebase/config.js';
 import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingOverlay } from '../../../../shared/components/loading-overlay/loading-overlay.js';
 
 @Component({
     selector: 'app-add',
@@ -20,7 +22,9 @@ import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
         MatButtonModule,
         MatIcon,
         ReactiveFormsModule,
+        MatProgressSpinnerModule,
         RouterModule,
+        LoadingOverlay,
     ],
     templateUrl: './add.html',
     styleUrl: './add.scss'

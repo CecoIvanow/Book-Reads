@@ -2,6 +2,10 @@
     <section class="section">
         <h1>Edit Book</h1>
 
+        @if(isLoading()) {
+            <app-loading-overlay />
+        }
+
         <div class="content">
             <section class="book-preview">
                 <mat-card>
