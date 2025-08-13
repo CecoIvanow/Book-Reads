@@ -13,7 +13,7 @@ import { UserSessionService } from '../../core/auth/services/user-session.servic
 })
 export class CommentsService {
 
-    constructor(private httpClient: HttpClient, private userSession: UserSessionService) {
+    constructor(private httpClient: HttpClient) {
     }
 
     addComment(bookId: UUIDv4, content: string): Observable<CommentType> {
@@ -24,21 +24,13 @@ export class CommentsService {
             content,
         }
 
-        return this.httpClient.post<CommentType>(url, body, {
-            headers: {
-                'X-Authorization': this.userSession.userToken() as string,
-            }
-        })
+        return this.httpClient.post<CommentType>(url, body)
     }
 
     deleteComment(commentId: UUIDv4): Observable<CommentType> {
         const url = buildURL(API_PATHS.COMMENTS.SPECIFIC.ROOT(commentId));
 
-        return this.httpClient.delete<CommentType>(url, {
-            headers: {
-                'X-Authorization': this.userSession.userToken() as string,
-            }
-        })
+        return this.httpClient.delete<CommentType>(url)
     }
 
     updateComment(commentId: UUIDv4, content: string): Observable<CommentType> {
@@ -48,11 +40,7 @@ export class CommentsService {
             content,
         }
 
-        return this.httpClient.patch<CommentType>(url, body, {
-            headers: {
-                'X-Authorization': this.userSession.userToken() as string,
-            }
-        })
+        return this.httpClient.patch<CommentType>(url, body)
     }
 
     getCommentsFromOwner(userId: UUIDv4): Observable<CommentType[]>{

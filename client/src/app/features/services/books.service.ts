@@ -15,7 +15,7 @@ export class BooksService {
     private defaultSkip: number = 0;
     private defaultSize: number = 10;
 
-    constructor(private httpClient: HttpClient, private userSession: UserSessionService) {
+    constructor(private httpClient: HttpClient) {
     }
 
     getAllBooks(): Observable<Book[]> {
@@ -56,13 +56,8 @@ export class BooksService {
 
     deleteBook(id: UUIDv4): Observable<unknown> {
         const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(id));
-        const userToken = this.userSession.userToken() as string;
 
-        return this.httpClient.delete(url, {
-            headers: {
-                'X-Authorization': userToken,
-            }
-        })
+        return this.httpClient.delete(url)
     }
 
     getImageBlob(imageUrl: string): Observable<Blob> {
@@ -73,24 +68,13 @@ export class BooksService {
 
     addBook(body: object): Observable<Book> {
         const url = buildURL(API_PATHS.BOOKS.ROOT);
-        const userToken = this.userSession.userToken() as string;
-
-        return this.httpClient.post<Book>(url, body, {
-            headers: {
-                'X-Authorization': userToken,
-            }
-        })
+        return this.httpClient.post<Book>(url, body)
     }
 
     updateBook(bookId: UUIDv4, body: Book): Observable<Book> {
         const url = buildURL(API_PATHS.BOOKS.DETAILS.ROOT(bookId));
-        const userToken = this.userSession.userToken() as string;
 
-        return this.httpClient.patch<Book>(url, body, {
-            headers: {
-                'X-Authorization': userToken,
-            }
-        })
+        return this.httpClient.patch<Book>(url, body)
     }
 
     getBooksFromOwner(userId: UUIDv4): Observable<Book[]> {
