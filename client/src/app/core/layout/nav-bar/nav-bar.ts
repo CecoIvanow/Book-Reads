@@ -21,9 +21,11 @@ export class NavBar {
     onLogout() {
         this.authService.logout().subscribe({
             next: () => {
-                this.userSession.removeSessionToken();
                 this.router.navigate(['/']);
             },
+            complete: () => {
+                this.userSession.removeSessionToken();
+            }
         });
     }
 }
