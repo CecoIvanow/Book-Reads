@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { UsersServices } from './users.services.js';
-import { BooksService, CommentsService } from '../books/services/index.js';
-import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, of, switchMap } from 'rxjs';
 import { UserPageDetails } from './user-book-details.model.js';
+import { BooksService, CommentsService } from '../services/index.js';
 
 export const usersDetailsResolver: ResolveFn<UserPageDetails | RedirectCommand> = (route, state) => {
     const usersService = inject(UsersServices);
@@ -11,7 +11,7 @@ export const usersDetailsResolver: ResolveFn<UserPageDetails | RedirectCommand> 
     const commentsService = inject(CommentsService);
     const router = inject(Router);
 
-    const userId = route.params['userId'];
+    const userId = route.params['userId'] as string;
 
     return usersService.getUserInfo(userId).pipe(
         switchMap(userInfo => {

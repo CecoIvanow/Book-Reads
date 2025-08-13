@@ -3,6 +3,10 @@ a {
     color: black;
 }
 
+li {
+    list-style: none;
+}
+
 .wrapper {
     min-height: 100vh;
     width: 100%;
@@ -146,65 +150,6 @@ a {
     gap: 5.25rem;
 }
 
-.user-books li {
-    list-style: none;
-}
-
-.user-books ul li mat-card {
-    width: 200px;
-    max-width: 200px;
-    background-color: inherit;
-    border: none;
-    box-shadow: none;
-}
-
-.user-books mat-card a:hover .media {
-    transform: scale(102.5%);
-    transition: 0.15s ease-in;
-}
-
-.user-books mat-card a:hover .book-title {
-    text-decoration: underline;
-}
-
-.user-books mat-card a mat-card-title-group {
-    margin-top: 1rem;
-}
-
-.user-books mat-card a mat-card-title-group>* {
-    text-align: left;
-}
-
-.user-books mat-card a mat-card-title-group .book-author {
-    color: rgba(0, 0, 0, 0.659);
-}
-
-.user-books mat-card mat-card-actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-top: 1rem;
-}
-
-.user-books mat-card a .media {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1/1.5;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.475);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.user-books mat-card a .media img {
-    object-fit: cover;
-    display: block;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 100%;
-}
-
 .edit-button {
     color: #1976d2;
     font-weight: 500;
@@ -220,10 +165,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-}
-
-.user-comments li {
-    list-style: none;
 }
 
 .comment-item mat-card {

@@ -53,6 +53,7 @@ export const routes: Routes = [
         path: 'users/details/:userId',
         loadComponent: () => import('./features/users/pages/user-details/user-details.js').then(c => c.UserDetails),
         pathMatch: 'full',
+        runGuardsAndResolvers: 'paramsChange',
         resolve: {
             userDetails: usersDetailsResolver
         }

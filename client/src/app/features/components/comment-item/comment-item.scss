@@ -1,0 +1,159 @@
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.comment-item mat-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-left: 4px solid #FFD767;
+}
+
+.comment-item mat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.comment-item mat-card-header {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+.comment-item .mat-card-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.comment-item mat-card-header {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comment-header-content {
+    flex: 1;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+a > .comment-author {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+a > .comment-author:hover {
+    text-decoration: underline;
+}
+
+.comment-author {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+.comment-date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-left: 8px;
+}
+
+.comment-book {
+    font-size: 0.95rem !important;
+    color: #555 !important;
+    margin-top: 0 !important;
+}
+
+.comment-book a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.comment-book a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.comment-content {
+    padding: 1.2rem;
+    background: linear-gradient(to bottom, #fdfdfd, #fff);
+    border-radius: 0 0 8px 8px;
+}
+
+.comment-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    margin: 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.comment-content p::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -8px;
+    font-size: 3rem;
+    color: #FFD767;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem 1rem !important;
+    gap: 0.5rem;
+}
+
+.comment-actions .edit-button {
+    color: #1976d2;
+}
+
+.comment-actions .delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 0 12px;
+}
+
+.comment-item mat-card mat-card-content form {
+    padding: 1.2rem;
+    background: linear-gradient(to bottom, #fdfdfd, #fff);
+    border-radius: 0 0 8px 8px;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field .mat-form-field-wrapper {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+.comment-item mat-card mat-card-content form mat-form-field .mat-form-field-outline {
+    display: none;
+}
+
+mat-card-content form mat-form-field {
+    width: 100%;
+}
+
+mat-card-content form mat-form-field input {
+    width: 100%;
+}

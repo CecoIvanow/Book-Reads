@@ -8,10 +8,16 @@ import { UUIDv4 } from '../../../shared/models/index.js';
 })
 export class UserSessionService {
     private _sessionData = signal<TokenSignal>(null);
+    initialized = false;
 
     constructor() {
+        this.initializeSession();
+    }
+
+    initializeSession() {
         if (this._sessionData() === null) {
             this._sessionData.set(this.getAccessToken());
+            this.initialized = true;
         }
     }
 
@@ -52,13 +58,11 @@ export class UserSessionService {
     })
 
     private getAccessToken(): TokenSignal {
-        if (typeof sessionStorage !== 'undefined') {
-            const data = sessionStorage.getItem(USER_SESSION_KEY);
-            
-            return data ? JSON.parse(data) : null;
+        if (typeof sessionStorage === 'undefined') {
+            return 'none';
         }
-
-        return 'none';
+        const data = sessionStorage.getItem(USER_SESSION_KEY);
+        return data ? JSON.parse(data) : null;
     }
 
     saveSessionToken(sessionData: UserSessionData) {

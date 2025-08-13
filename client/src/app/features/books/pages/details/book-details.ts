@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Book, BookPageDetails, CommentType } from '../../models/index.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { BooksService, CommentsService, LikesService } from '../../services/index.js';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +13,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
+import { BooksService, CommentsService, LikesService } from '../../../services/index.js';
+import { CommentItem } from '../../../components/comment-item/comment-item.js';
 
 @Component({
     selector: 'app-details',
@@ -25,6 +26,7 @@ import { ConfirmationDialog } from '../../../../shared/components/confirmation-d
         RouterModule,
         ReactiveFormsModule,
         CommonModule,
+        CommentItem,
     ],
     templateUrl: './book-details.html',
     styleUrl: './book-details.scss'
@@ -139,19 +141,40 @@ export class BookDetails implements OnInit, OnDestroy {
         });
     }
 
-    onCommentSubmit(commentId?: UUIDv4): void {
-        const newCommentContent = this.commentForm.get('create-content')?.value;
-        const bookId = this.book()?._id;
+    onCommentSubmit(submitData?: [commentId: UUIDv4, bookId: UUIDv4, content: string]): void {
+        if (submitData instanceof SubmitEvent) {
+            return;
+        }
 
-        if (!bookId || !newCommentContent) {
+        let commentId: UUIDv4 | undefined = undefined;
+        let bookId: UUIDv4 | undefined = undefined;
+        let content: string | undefined = undefined;
+
+        if (submitData === undefined) {
+            bookId = this.book()?._id;
+        } else {
+            commentId = submitData[0];
+            bookId = submitData[1];
+            content = submitData[2];
+        }
+        
+        const newCommentContent = this.commentForm.get('create-content')?.value;
+
+        if (!bookId) {
+            return;
+        }
+
+        if (!submitData && !newCommentContent) {
             return;
         }
 
         this.clickedComemntEditId.set(null);
         if (commentId) {
-        const content = this.commentForm.get('content')?.value;
+            if (!content) {
+                content = this.commentForm.get('content')?.value;
+            }
 
-            this.commentsService.updateComment(commentId, content).subscribe({
+            this.commentsService.updateComment(commentId, content as string).subscribe({
                 next: (updatedComment) => {
                     this.comments.update(prevComments => prevComments.map((curComment) => {
                         if (curComment._id === updatedComment._id) {
@@ -211,7 +234,8 @@ export class BookDetails implements OnInit, OnDestroy {
         });
     }
 
-    onCommentEditClick(commentId: UUIDv4, content: string): void {
+    onCommentEditClick(editData: [commentId: UUIDv4, content: string]): void {
+        const [commentId, content] = editData;
         this.clickedComemntEditId.set(commentId);
 
         this.commentForm.get('content')?.setValue(content);

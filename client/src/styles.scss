@@ -23,6 +23,17 @@ a.edit-button {
     ));
 }
 
+body:not(.angular-ready) {
+    visibility: hidden;
+    opacity: 0;
+}
+
+body.angular-ready {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;

@@ -111,7 +111,7 @@ export class Register {
                     username: data.username,
                 })
 
-                this.usersService.addUserEmptyLike(data.accessToken).subscribe();
+                this.usersService.addUserEmptyLike(data._id).subscribe();
 
                 this.router.navigate(['/']);
             }

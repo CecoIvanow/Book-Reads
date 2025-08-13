@@ -1,20 +1,23 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, RedirectCommand, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { Book, CommentType, Owner } from '../../../books/models/index.js';
 import { CommonModule } from '@angular/common';
 import { UserSessionService } from '../../../../core/auth/services/index.js';
 import { MatButtonModule } from '@angular/material/button';
-import { UserPageDetails } from '../../user-book-details.model.js';
 import { UUIDv4 } from '../../../../shared/models/index.js';
-import { CommentsService } from '../../../books/services/comments.service.js';
-import { BooksService } from '../../../books/services/books.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.js';
+import { BooksService, CommentsService } from '../../../services/index.js';
+import { BookItem } from '../../../components/book-item/book-item.js';
+import { CommentItem } from '../../../components/comment-item/comment-item.js';
+import { UsersServices } from '../../users.services.js';
+import { forkJoin, of, Subscription, switchMap } from 'rxjs';
+import { UserPageDetails } from '../../user-book-details.model.js';
 
 @Component({
     selector: 'app-user-details',
@@ -27,11 +30,13 @@ import { ConfirmationDialog } from '../../../../shared/components/confirmation-d
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,
+        BookItem,
+        CommentItem,
     ],
     templateUrl: './user-details.html',
     styleUrl: './user-details.scss'
 })
-export class UserDetails implements OnInit {
+export class UserDetails implements OnInit, OnDestroy {
     protected user = signal<Owner | null>(null);
     protected booksCount = signal<number>(0);
     protected commentsCount = signal<number>(0);
@@ -39,6 +44,8 @@ export class UserDetails implements OnInit {
     protected userComments = signal<CommentType[]>([]);
     protected clickedComemntEditId = signal<UUIDv4 | null>(null);
     protected commentForm: FormGroup;
+
+    private subscriptions = new Subscription();
 
     constructor(
         private route: ActivatedRoute,
@@ -56,16 +63,31 @@ export class UserDetails implements OnInit {
     }
 
     ngOnInit(): void {
-        const [userBooks, userComments, userEmptyLike]: UserPageDetails = this.route.snapshot.data['userDetails'];
-        const userData = userEmptyLike.at(0)?.owner as Owner;
+        const sub = this.route.data.subscribe({
+            next: (userResp) => {
+                const userDetails = userResp['userDetails'];
 
-        this.userBooks.set(userBooks);
-        this.booksCount.set(userBooks.length);
+                const userBooks = userDetails[0];
+                const userComments = userDetails[1];
+                const userEmptyLike = userDetails[2];
+                
+                const userData = userEmptyLike.at(0)?.owner as Owner;
 
-        this.userComments.set(userComments);
-        this.commentsCount.set(userComments.length);
+                this.userBooks.set(userBooks);
+                this.booksCount.set(userBooks.length);
 
-        this.user.set(userData);
+                this.userComments.set(userComments);
+                this.commentsCount.set(userComments.length);
+
+                this.user.set(userData);
+            }
+        })
+
+        this.subscriptions.add(sub);
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 
     onCommentDelete(commentId: UUIDv4): void {
@@ -80,9 +102,8 @@ export class UserDetails implements OnInit {
             if (confirmed) {
                 this.commentsService.deleteComment(commentId).subscribe({
                     next: () => {
-                        this.userComments.update(prev =>
-                            prev.filter(c => c._id !== commentId)
-                        );
+                        this.userComments.update(prev => prev.filter(c => c._id !== commentId));
+                        this.commentsCount.update(prevCount => prevCount - 1);
                     }
                 });
             };
@@ -91,8 +112,6 @@ export class UserDetails implements OnInit {
 
     onBookDelete(bookId: UUIDv4): void {
         const userToken = this.userSession.userToken();
-
-        console.log(bookId);
 
         if (!userToken) {
             return;
@@ -110,14 +129,19 @@ export class UserDetails implements OnInit {
                 this.booksService.deleteBook(bookId).subscribe({
                     next: () => {
                         this.userBooks.update(prevBooks => prevBooks.filter((curBook) => curBook._id !== bookId));
+                        this.booksCount.update(prevCount => prevCount - 1);
                     }
                 });
             };
         });
     }
 
-    onCommentSubmit(commentId: UUIDv4, bookId: UUIDv4): void {
-        const content = this.commentForm.get('content')?.value;
+    onCommentSubmit(submitData: [commentId: UUIDv4, bookId: UUIDv4, content: string]): void {
+        if (submitData instanceof SubmitEvent) {
+            return;
+        }
+
+        const [commentId, bookId, content] = submitData;
 
         if (!bookId || !content) {
             return;
@@ -166,7 +190,9 @@ export class UserDetails implements OnInit {
         })
     }
 
-    onCommentEditClick(commentId: UUIDv4, content: string): void {
+    onCommentEditClick(editData: [commentId: UUIDv4, content: string]): void {
+        const [commentId, content] = editData;
+
         this.clickedComemntEditId.set(commentId);
 
         this.commentForm.get('content')?.setValue(content);

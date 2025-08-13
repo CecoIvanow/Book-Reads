@@ -7,7 +7,6 @@ import { AuthService } from '../../services/auth.service.js';
 import { Router, RouterModule } from '@angular/router';
 import { UserSessionService } from '../../services/user-session.service.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarService } from '../../../../shared/snackbar.service.js';
 
@@ -65,11 +64,6 @@ export class Login {
                 });
 
                 this.router.navigate(['/']);
-            },
-            error: (error: HttpErrorResponse) => {
-                if (error.status === 403) {
-                    this._snackBar.showSnackBar('Unable to login, invalid credentials!');
-                }
             }
         });
     }

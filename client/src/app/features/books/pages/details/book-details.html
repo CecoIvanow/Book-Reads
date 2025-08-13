@@ -62,54 +62,15 @@
                 <section class="comments">
                     <ul>
                         @for (comment of comments(); track comment._id) {
-                        <li class="comment-item">
-                            <mat-card>
-                                <mat-card-header>
-                                    <img mat-card-avatar
-                                        src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg">
-                                    <div class="comment-header-content">
-                                        <div class="comment-meta">
-                                            <a [routerLink]="[`/users/details/${comment._ownerId}`]">
-                                                <span class="comment-author">{{comment?.owner?.firstName}} {{comment?.owner?.lastName}}</span>
-                                            </a>
-                                            <span class="comment-date">• {{comment._createdOn | date}}</span>
-                                        </div>
-                                    </div>
-                                </mat-card-header>
-
-                                <mat-card-content>
-                                    @if (clickedComemntEditId() !== comment._id) {
-                                    <div class="comment-content">
-                                        <p>{{ comment.content }}</p>
-                                    </div>
-                                    } @else {
-                                    <form (ngSubmit)="onCommentSubmit(comment._id)" [formGroup]="commentForm">
-                                        <mat-form-field appearance="outline">
-                                            <input matInput type="text" formControlName="content">
-                                        </mat-form-field>
-
-                                        <mat-card-actions class="comment-actions">
-                                            <div>
-                                                <button class="edit-button" matButton="text" type="submit">Save</button>
-                                                <button type="button" class="delete-button" matButton="filled" (click)="clickedComemntEditId.set(null)">Cancel</button>
-                                            </div>
-                                        </mat-card-actions>
-                                    </form>
-                                    }
-                                </mat-card-content>
-
-                                @if (clickedComemntEditId() !== comment._id) {
-                                <mat-card-actions class="comment-actions">
-                                    @if (userSession.userId() === comment._ownerId) {
-                                        <button class="edit-button" matButton="text"
-                                            (click)="onCommentEditClick(comment._id, comment.content)">Edit</button>
-                                        <button class="delete-button" matButton="filled"
-                                            (click)="onCommentDelete(comment._id)">Delete</button>
-                                    }
-                                </mat-card-actions>
-                                }
-                            </mat-card>
-                        </li>
+                            <app-comment-item
+                                [comment]="comment"
+                                [getClickedCommentId]="clickedComemntEditId()"
+                                (delete)="onCommentDelete($event)"
+                                (onCommentEditClick)="onCommentEditClick($event)"
+                                (setClickedCommentId)="clickedComemntEditId.set($event)"
+                                (submit)="onCommentSubmit($event)"
+                            >
+                            </app-comment-item>
                         }
                     </ul>
                 </section>

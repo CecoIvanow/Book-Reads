@@ -24,13 +24,9 @@ export class AuthService {
         return this.httpClient.post<AuthResponse>(url, body);
     }
 
-    logout(token: AccessToken): Observable<undefined> {
+    logout(): Observable<undefined> {
         const url = buildURL(API_PATHS.AUTH.LOGOUT);
 
-        return this.httpClient.get<undefined>(url, {
-            headers: {
-                'X-Authorization': token
-            }
-        })
+        return this.httpClient.get<undefined>(url);
     }
 }

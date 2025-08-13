@@ -28,10 +28,6 @@ export class UsersServices {
             bookId: '',
         }
 
-        return this.httpClient.post<Like>(url, body, {
-            headers: {
-                'X-Authorization': userToken
-            }
-        })
+        return this.httpClient.post<Like>(url, body)
     }
 }

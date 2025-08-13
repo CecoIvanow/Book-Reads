@@ -2,18 +2,22 @@
     <section class="section add-section">
         <h1>Add New Book</h1>
 
+        @if(isLoading()) {
+            <app-loading-overlay />
+        }
+
         <div class="content">
             <section class="form-container">
-            <form class="book-form" (ngSubmit)="onBookAddSubmit()" [formGroup]="bookAddForm">
+                <form class="book-form" (ngSubmit)="onBookAddSubmit()" [formGroup]="bookAddForm">
                     <div class="form-row">
                         <mat-form-field appearance="outline">
                             <mat-label>Book Title</mat-label>
                             <input matInput type="text" formControlName="title" required>
 
                             @if (bookAddForm.get('title')?.hasError('required')) {
-                                <mat-error>
-                                    Book title is required!
-                                </mat-error>
+                            <mat-error>
+                                Book title is required!
+                            </mat-error>
                             }
                         </mat-form-field>
 
@@ -22,30 +26,21 @@
                             <input matInput type="text" formControlName="author" required>
 
                             @if (bookAddForm.get('author')?.hasError('required')) {
-                                <mat-error>
-                                    Book author is required!
-                                </mat-error>
+                            <mat-error>
+                                Book author is required!
+                            </mat-error>
                             }
                         </mat-form-field>
                     </div>
 
                     <div class="form-row">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Cover Image URL</mat-label>
-                            <input matInput type="url" formControlName="img" required (input)="onImageUrlInput()">
-                            <mat-hint>Enter URL to see preview</mat-hint>
-
-                            @if (bookAddForm.get('img')?.hasError('required')) {
-                                <mat-error>
-                                    Book cover image is required!
-                                </mat-error>
-                            }@else if (bookAddForm.get('img')?.hasError('pattern')) {
-                                <mat-error>
-                                    Invalid image url link!
-                                </mat-error>
-                            }
-                        </mat-form-field>
-
+                        <div class="file-input-container">
+                            <label>Cover Image Upload</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" accept="image/*" (input)="onImageUpload($event)" required>
+                            </div>
+                            <mat-hint>Upload image to see preview</mat-hint>
+                        </div>
                     </div>
 
                     <mat-form-field appearance="outline" class="summary-field">
@@ -53,15 +48,15 @@
                         <textarea matInput formControlName="summary" rows="6" required></textarea>
 
                         @if (bookAddForm.get('summary')?.hasError('required')) {
-                            <mat-error>
-                                Book summary is required!
-                            </mat-error>
+                        <mat-error>
+                            Book summary is required!
+                        </mat-error>
                         }
                     </mat-form-field>
 
                     <div class="form-actions">
-                        <a mat-stroked-button routerLink="/catalog">Cancel</a>
-                        <button mat-raised-button class="add-button">
+                        <a mat-stroked-button routerLink="/catalog" [disabled]="isLoading()">Cancel</a>
+                        <button mat-raised-button class="add-button" [disabled]="isLoading()">
                             <mat-icon>add</mat-icon> Add Book
                         </button>
                     </div>

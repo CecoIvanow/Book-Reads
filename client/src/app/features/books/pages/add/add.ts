@@ -2,12 +2,17 @@ import { Component, OnDestroy, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BooksService } from '../../services/index.js';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { Book } from '../../models/index.js';
 import { Router, RouterModule } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BooksService } from '../../../services/index.js';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../../../../../firebase/config.js';
+import { UUIDv4 } from '../../../../shared/models/uuid.model.js';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingOverlay } from '../../../../shared/components/loading-overlay/loading-overlay.js';
 
 @Component({
     selector: 'app-add',
@@ -17,16 +22,19 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
         MatButtonModule,
         MatIcon,
         ReactiveFormsModule,
+        MatProgressSpinnerModule,
         RouterModule,
+        LoadingOverlay,
     ],
     templateUrl: './add.html',
     styleUrl: './add.scss'
 })
 export class Add implements OnDestroy {
-    protected imagePreviewObjectUrl = signal<string | null>(null);
     protected bookAddForm: FormGroup;
+    protected imagePreviewObjectUrl = signal<string | null>(null);
+    protected isLoading = signal<boolean>(false);
 
-    private urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/m;
+    private uploadedImage: File | null = null;
     private subscriptions = new Subscription();
 
     constructor(
@@ -40,9 +48,6 @@ export class Add implements OnDestroy {
             ],
             author: ['',
                 [Validators.required]
-            ],
-            img: ['',
-                [Validators.required, Validators.pattern(this.urlPattern)]
             ],
             summary: ['',
                 [Validators.required]
@@ -61,44 +66,48 @@ export class Add implements OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    onImageUrlInput(): void {
-        const imageUrl = this.bookAddForm.get('img')?.value as string;
-        
-        if (!this.urlPattern.test(imageUrl)) {
-            const imageObjectUrl = this.imagePreviewObjectUrl();
+    onImageUpload(event: Event) {
+        const inputEl = event.currentTarget as HTMLInputElement;
 
-            if (imageObjectUrl) {
-                this.imagePreviewObjectUrl.set(null);
-                URL.revokeObjectURL(imageObjectUrl);
-            }
-
+        if (!inputEl.files || inputEl.files.length === 0) {
             return;
         }
 
-        const sub = this.booksService.getImageBlob(imageUrl).subscribe({
-            next: (blob: Blob) => {
-                const objectUrl = URL.createObjectURL(blob);
-
-                this.imagePreviewObjectUrl.set(objectUrl);
-            }
-        })
-
-        this.subscriptions.add(sub);
+        const imageFile = inputEl.files[0];
+        this.uploadedImage = imageFile;
+        
+        const imageObject = URL.createObjectURL(imageFile);
+        this.imagePreviewObjectUrl.set(imageObject);
     }
 
-    onBookAddSubmit(): void {
-        if (this.bookAddForm.invalid) {
+    async imageUploadToStorage (bookId: UUIDv4): Promise<string> {
+        const imageRef = ref(storage, `/books/${bookId}/cover`);
+        const resp = await uploadBytes(imageRef, this.uploadedImage as Blob);
+        return await getDownloadURL(resp.ref);
+    }
+
+    async onBookAddSubmit(): Promise<void> {
+        if (this.bookAddForm.invalid || !this.uploadedImage) {
             return;
         }
 
-        const bookBody = this.bookAddForm.value;
+        this.isLoading.set(true);
 
-        this.booksService.addBook(bookBody).subscribe({
-            next: (data: Book) => {
-                const bookId = data._id;
-                this.router.navigate([`/books/details/${bookId}`])
-            }
-        })
-        
+        const bookBody: Book = this.bookAddForm.value;
+        bookBody.img = 'placeholder';
+
+        const bookData = await firstValueFrom(this.booksService.addBook(bookBody));
+        const bookId = bookData._id;
+
+        const actualImageUrl = await this.imageUploadToStorage(bookId);
+
+        const actualBookBody = bookData;
+        actualBookBody.img = actualImageUrl;
+
+        await firstValueFrom(this.booksService.updateBook(bookId, actualBookBody));
+
+        this.isLoading.set(false);
+
+        this.router.navigate([`/books/details/${bookId}`]);
     }
 }

@@ -14,6 +14,7 @@
     padding: 2rem;
     border-radius: 25px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.116);
+    position: relative;
 }
 
 .add-section h1 {
@@ -59,6 +60,50 @@
 
 .form-row mat-form-field {
     flex: 1;
+}
+
+.file-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-input-container label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: -0.5rem;
+}
+
+.file-upload-wrapper {
+    background-color: white;
+    border-radius: 4px;
+    padding: 0.84375em 1em;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: border-color 0.2s;
+}
+
+.file-upload-wrapper:hover {
+    border-color: rgba(0, 0, 0, 0.87);
+}
+
+.file-upload-wrapper:focus-within {
+    border-color: #FFD767;
+    border-width: 2px;
+}
+
+.file-input-container mat-hint {
+    font-size: 0.75rem;
+}
+
+.file-input-container input[type="file"] {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border: none;
+    background: transparent;
+    outline: none;
 }
 
 .summary-field textarea {
@@ -146,6 +191,8 @@
     padding: 0.7rem 2.2rem;
     font-size: 1.1rem;
     font-weight: 500;
+    background-color: #4CAF50;
+    color: white;
 }
 
 .add-button mat-icon {

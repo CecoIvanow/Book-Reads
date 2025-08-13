@@ -19,16 +19,12 @@ export class NavBar {
     }
 
     onLogout() {
-        const token = this.userSession.userToken();
-
-        if (!token) {
-            return
-        }
-
-        this.userSession.removeSessionToken();
-        this.authService.logout(token).subscribe({
+        this.authService.logout().subscribe({
             next: () => {
                 this.router.navigate(['/']);
+            },
+            complete: () => {
+                this.userSession.removeSessionToken();
             }
         });
     }
