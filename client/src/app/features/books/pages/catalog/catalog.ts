@@ -89,6 +89,7 @@ export class Catalog implements OnInit, OnDestroy {
             next: results => {
                 this.books.set(results);
                 this.pageSize.set(results.length);
+                this.booksCount.set(results.length);
             },
             complete: () => {
                 this.searchSubscription = null;
