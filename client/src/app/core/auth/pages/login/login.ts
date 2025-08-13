@@ -64,11 +64,6 @@ export class Login {
                 });
 
                 this.router.navigate(['/']);
-            },
-            error: (error: HttpErrorResponse) => {
-                if (error.status === 403) {
-                    this._snackBar.showSnackBar('Unable to login, invalid credentials!');
-                }
             }
         });
     }
