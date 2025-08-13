@@ -6,7 +6,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const userSession = inject(UserSessionService);
     const sessionToken = userSession.userToken();
 
-    if (!sessionToken) {
+    if (!sessionToken || sessionToken === 'none') {
         return next(req);
     }
 
